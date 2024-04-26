@@ -1,0 +1,110 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+
+class Personnage
+{
+    - m_nom: String
+    + <<Create>> Personnage(nom: String)
+}
+
+class EnsemblePokemon <<Interface>>
+{
+    + getCapacite() : int
+}
+
+class Defausse implements EnsemblePokemon
+{
+    - m_nom: String
+    - m_capacite : int
+    + <<Create>> Defausse(nom: String)
+}
+
+class Main implements EnsemblePokemon
+{
+    - m_nom: String
+    - m_capacite : int
+    + <<Create>> Main(nom: String, capacite: int)
+}
+
+class Terrain implements EnsemblePokemon
+{
+    - m_nom: String
+    - m_capacite : int
+    + <<Create>> Terrain(nom: String)
+}
+
+class Pioche implements EnsemblePokemon
+{
+    - m_nom: String
+    - m_capacite : int
+    + <<Create>> Pioche(nom: String, capacite: int)
+}
+
+
+class Pokemon
+{
+    - m_nom: String
+    - m_health : int
+    - m_atk : int
+    + <<Create>> Personnage(nom: String)
+    + attaquer() : Void
+}
+
+class Element <<Interface>>
+{
+    + getElmt() : String
+    + getFortContre(): String
+    + getFaibleContre() : String
+}
+
+
+class Terre implements Element
+{
+    + getElmt() : String
+    + getFortContre(): String
+    + getFaibleContre() : String
+}
+
+class Eau implements Element
+{
+    + getElmt() : String
+    + getFortContre(): String
+    + getFaibleContre() : String
+}
+
+class Feu implements Element
+{
+    + getElmt() : String
+    + getFortContre(): String
+    + getFaibleContre() : String
+}
+
+class Air implements Element
+{
+    + getElmt() : String
+    + getFortContre(): String
+    + getFaibleContre() : String
+}
+
+abstract Affichage
+{
+    + afficher() : String
+}
+
+Pioche "1" *---> "20..21\n-" Pokemon : composé de \t\t >
+Main "1" *---> "5\n" Pokemon : composé de \t\t >
+Terrain "1" *---> "3\n-" Pokemon : composé de \t\t >
+Defausse "1" *---> "*\n-" Pokemon : composé de \t\t >
+
+Pokemon "\n 1" *--> "1\n-m_elmt" Element : Possède\n\n >
+Personnage "1" *---> "1\n-m_terrain" Terrain : composé de \t\t >
+Personnage "1" *---> "1\n-m_pioche" Pioche : composé de \t\t >
+Personnage "1" *---> "1\n-m_main" Main : composé de \t\t >
+Personnage "1" *---> "1\n-m_defausse" Defausse : composé de \t\t >
+
+
+
+@enduml
