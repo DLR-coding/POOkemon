@@ -1,2 +1,2 @@
-public class Eau {
+public class Eau implements Element{
 }

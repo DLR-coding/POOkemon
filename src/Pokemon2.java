@@ -1,11 +1,11 @@
 public class pokemon
 {
     private String m_nom;
-    private element m_elements;
+    private Element m_elements;
     private int m_vie;
     private int m_attaque;
 
-    public pokemon(String nom,element element,int vie,int attaque)
+    public pokemon(String nom,Element element,int vie,int attaque)
     {
 
        m_nom = nom;
