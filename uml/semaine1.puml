@@ -12,6 +12,8 @@ class Personnage
 
 class EnsemblePokemon <<Interface>>
 {
+    - m_nom: String
+    - m_capacite : int
     + getCapacite() : int
 }
 
@@ -19,7 +21,7 @@ class Defausse implements EnsemblePokemon
 {
     - m_nom: String
     - m_capacite : int
-    + <<Create>> Defausse(nom: String)
+    + <<Create>> Defausse(nom: String, capacite: int)
 }
 
 class Main implements EnsemblePokemon
@@ -49,8 +51,10 @@ class Pokemon
     - m_nom: String
     - m_health : int
     - m_atk : int
-    + <<Create>> Personnage(nom: String)
+    + <<Create>> Pokemon(nom: String)
     + attaquer() : Void
+    + getHealth() : int
+    + getNom() : String
 }
 
 class Element <<Interface>>
