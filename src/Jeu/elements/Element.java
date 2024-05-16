@@ -3,11 +3,11 @@ package Jeu.elements;
 public interface Element
 {
 
-public String element();
+    public String element();
 
-public String Getforcontre();
+    public String Getforcontre();
 
-public String Getfaible();
+    public String Getfaible();
 
 
 }

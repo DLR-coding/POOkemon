@@ -25,18 +25,23 @@ public class MainDuJoueur implements EnsemblePokemon
             public Pokemon getPokemon(int index) {
                 if (index >= 0 && index < m_mainJoueur.length) {
                     return m_mainJoueur[index];
-                } else {
+                } else
+                {
                     System.out.println("Index invalide.");
                     return null;
                 }
             }
 
             @Override
-            public void afficherMain() {
-                for (int i = 0; i < m_mainJoueur.length; i++) {
-                    if (m_mainJoueur[i] != null) {
+            public void afficher() {
+                for (int i = 0; i < m_mainJoueur.length; i++)
+                {
+                    if (m_mainJoueur[i] != null)
+                    {
                         System.out.println("Pokemon" + i + ": " + m_mainJoueur[i].getNom() + " - Santé: " + m_mainJoueur[i].getVie() + " - Attaque: " + m_mainJoueur[i].getM_attaque());
-                    } else {
+                    }
+                    else
+                    {
                         System.out.println("Pokemon " + i + ": vide");
                     }
                 }

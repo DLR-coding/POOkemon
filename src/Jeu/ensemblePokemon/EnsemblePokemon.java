@@ -5,6 +5,6 @@ public interface EnsemblePokemon
 {
         void ajouterPokemon(int index, Pokemon pokemon);
         Pokemon getPokemon(int index);
-        void afficherMain();
+        void afficher();
 
 }
