@@ -88,11 +88,11 @@ Chaque Pokémon possède :
 
 ### Les éléments
 
-Il y a 4 éléments : la terre, l'eau, le feu et l'air. Chaque élément a un avantage sur un autre élément :
+Il y a 4 éléments : la terre, l'eau, le Feu et l'air. Chaque élément a un avantage sur un autre élément :
 
 - la terre a l'avantage sur l'eau
-- l'eau à l'avantage sur le feu
-- le feu a l'avantage sur l'air
+- l'eau à l'avantage sur le Feu
+- le Feu a l'avantage sur l'air
 - l'air a l'avantage sur la terre.
 
 ### Attaque des Pokémons
@@ -170,7 +170,7 @@ En main:
 
                                     Joueur 2
 
-Quel pokemon souhaitez-vous jouer? (Dracaufeu/Bulbizarre/Pikachu):
+Quel Pokemon souhaitez-vous jouer? (Dracaufeu/Bulbizarre/Pikachu):
 ```
 
 Il n'est pas nécessaire de reproduire le visuel tel quel mais toutes les informations doivent être présentes.

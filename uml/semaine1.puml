@@ -12,36 +12,34 @@ class Personnage
 
 class EnsemblePokemon <<Interface>>
 {
-    - m_nom: String
-    - m_capacite : int
     + getCapacite() : int
 }
 
 class Defausse implements EnsemblePokemon
 {
     - m_nom: String
-    - m_capacite : int
+    - m_morts : Arraylist<Pokemon>
     + <<Create>> Defausse(nom: String, capacite: int)
 }
 
 class Main implements EnsemblePokemon
 {
     - m_nom: String
-    - m_capacite : int
+    - m_main : Arraylist<Pokemon>
     + <<Create>> Main(nom: String, capacite: int)
 }
 
 class Terrain implements EnsemblePokemon
 {
     - m_nom: String
-    - m_capacite : int
+    - m_terrain : Arraylist<Pokemon>
     + <<Create>> Terrain(nom: String)
 }
 
 class Pioche implements EnsemblePokemon
 {
     - m_nom: String
-    - m_capacite : int
+    - m_pioche : Arraylist<Pokemon>
     + <<Create>> Pioche(nom: String, capacite: int)
 }
 
