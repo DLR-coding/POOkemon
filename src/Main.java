@@ -88,8 +88,16 @@ public class Main {
         robot.afficherTerrain();
 
         // Attaque
-        System.out.println("le 1er joueur attaque ");
-
+        System.out.println("le 1er joueur attaque...");
+        /*
+        if (joueur.isJoueur1())
+        {
+            joueur.joue();
+        }
+        else {
+            robot.joue();
+        }
+        */
 
 
 
