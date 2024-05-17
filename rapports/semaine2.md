@@ -23,5 +23,5 @@ Le choix de conception :
 ## ce que nous planifions de faire pour le rendu suivant
 coder : 
 - l'affichage
-- les joueurs (et robots)
+- finaliser joueurs (et robots)
 - déroulement de la partie
