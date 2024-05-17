@@ -1,0 +1,179 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+
+package Game
+{
+    package Elements
+    {
+
+        class Element <<Interface>>
+            {
+                + getElmt() : String
+                + getFortContre(): String
+                + getFaibleContre() : String
+            }
+
+        class Terre implements Element
+            {
+                + getElmt() : String
+                + getFortContre(): String
+                + getFaibleContre() : String
+            }
+
+        class Eau implements Element
+            {
+                + getElmt() : String
+                + getFortContre(): String
+                + getFaibleContre() : String
+            }
+
+        class Feu implements Element
+            {
+                + getElmt() : String
+                + getFortContre(): String
+                + getFaibleContre() : String
+            }
+
+        class Air implements Element
+            {
+                + getElmt() : String
+                + getFortContre(): String
+                + getFaibleContre() : String
+            }
+    }
+
+    package EnsemblePokemon
+    {
+        class EnsemblePokemon <<Interface>>
+                        {
+                            + ajouterPokemon(pokemon:Pokemon): Void
+                            + getPokemon(index:Integer):Pokemon
+                            + afficher() : void
+                            + retirerPokemon((pokemon:Pokemon):void
+                        }
+        class ListePokemon
+        {
+            - {static} listeNomsPokemon : String[*]
+            + {static} genererPokemon()
+
+        }
+        class Defausse implements EnsemblePokemon
+            {
+                - m_defausse : Pokemon[*]
+                + <<Create>> Defausse()
+                + ajouterPokemon(pokemon:Pokemon): Void
+                + getPokemon(index:Integer):Pokemon
+                + retirerPokemon((pokemon:Pokemon):void
+                + afficher() : void
+            }
+
+        class MainDuJoueur implements EnsemblePokemon
+            {
+                - m_mainJoueur: Pokemon[5]
+                + <<Create>> MainDuJoueur()
+                + ajouterPokemon(pokemon:Pokemon): Void
+                + getPokemon(index:Integer):Pokemon
+                + retirerPokemon((pokemon:Pokemon):void
+                + afficher() : void
+            }
+
+        class Terrain implements EnsemblePokemon
+            {
+                - m_terrain: Pokemon[3]
+                + <<Create>> Terrain()
+                + ajouterPokemon(pokemon:Pokemon) : void
+                + getPokemon(index:Integer): Pokemon
+                + afficher() : void
+                + retirerPokemon(pokemon:Pokemon) : void
+                + getPokemonAvecLeMoinsDeVie() : Pokemon
+            }
+
+        class Pioche implements EnsemblePokemon
+            {
+                - m_pioche: Pokemon[*]
+                + <<Create>> Pioche()
+                + <<Create>> Pioche(nbpokemon:Integer)
+                + ajouterPokemon(pokemon:Pokemon) : void
+                + retirerPokemon(pokemon:Pokemon) : void
+                + getPokemon(index:Integer): Pokemon
+                + afficher() : void
+            }
+    }
+
+    package Joueur
+    {
+        class Player <<Interface>>
+                                {
+                                    + isJoueur1() : Boolean
+                                    + setJoueur1() : Boolean
+                                    + GetPokemonFromPioche(index:Integer) : Pokemon
+                                    + piocherPokemon(pokemon:Pokemon):void
+                                    + placeSurTerrain(pokemon:Pokemon):void
+                                }
+        class JoueurHumain implements Player
+                    {
+                        - m_nom : String
+                        - m_joueur1 : Boolean
+                        + <<Create>> Joueur(nom: String)
+                        + GetPokemonFromPioche(index:Integer) : Pokemon
+                        + piocherPokemon(pokemon:Pokemon):void
+                        + placeSurTerrain(pokemon:Pokemon):void
+                        + afficherPioche(): void
+                        + afficherMain(): void
+                    }
+        class RobotPlayer implements Player
+                            {
+                                - m_nom : String
+                                - m_joueur1 : Boolean
+                                + <<Create>> RobotPlayer(nom: String)
+                                + GetPokemonFromPioche(index:Integer) : Pokemon
+                                + piocherPokemon(pokemon:Pokemon):void
+                                + placeSurTerrain(pokemon:Pokemon):void
+                                + afficherPioche(): void
+                                + afficherMain(): void
+                            }
+    }
+
+    class Pokemon
+    {
+        - m_nom: String
+        - m_health : int
+        - m_atk : int
+        + <<Create>> Pokemon(nom: String)
+        + Attaquer() : Void
+        + getVie() : int
+        + getM_attaque() : int
+        + getNom() : String
+        + presenter() : void
+    }
+
+    package Jeu
+    {
+        abstract Affichage
+        {
+            + afficher() : String
+        }
+    }
+
+}
+
+
+Pioche "1" *---> "20..21\n-" Pokemon : composé de \t\t >
+MainDuJoueur "1" *---> "5\n" Pokemon : composé de \t\t >
+Terrain "1" *---> "3\n-" Pokemon : composé de \t\t >
+Defausse "1" *---> "*\n-" Pokemon : composé de \t\t >
+
+Player "1" *---> "1\n-m_terrain" Terrain : composé de \t\t >
+Player "1" *---> "1\n-m_pioche" Pioche : composé de \t\t >
+Player "1" *---> "1\n-m_main" MainDuJoueur : composé de \t\t >
+Player "1" *---> "1\n-m_defausse" Defausse : composé de \t\t >
+Pokemon "\n 1" *--> "1\n-m_element" Element : Possède\n\n >
+
+
+
+@enduml

@@ -1,27 +1,27 @@
-package Jeu.elements;
+package Game.Elements;
 
 public class Eau implements Element {
 
     @Override
-    public String element(){
-        return "eau";
+    public String getElmnt(){
+        return "Eau";
     }
 
     @Override
-    public String Getforcontre(){
+    public String getFortContre(){
         return "feu";
     }
 
     @Override
-    public String Getfaible(){
+    public String getFaibleContre(){
         return "terre";
     }
 
     @Override
     public String toString() {
-        return "eau";
+        return "Eau";
     }
-    }
+}
 
 
 

@@ -1,21 +1,21 @@
-package Jeu.elements;
+package Game.Elements;
 
 public class Feu implements Element {
 
 
     @Override
-    public String element(){
+    public String getElmnt(){
         return "feu";
     }
 
     @Override
-    public String Getforcontre(){
-        return "air";
+    public String getFortContre(){
+        return "Air";
     }
 
     @Override
-    public String Getfaible(){
-        return "eau";
+    public String getFaibleContre(){
+        return "Eau";
     }
 
     @Override
