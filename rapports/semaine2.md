@@ -1,8 +1,9 @@
 #### Ne pas prendre en compte le package Joueur (ainsi que son contenu) car il n'est pas encore terminé.
 
 ## Choix de conception actuels
-- Utilisation d'interface "EnsemblePokemon" et "Elements" pour respecter le principe ....
-- Pour le moment mettre la liste des noms de Pokemon dans 
+- Utilisation d'interface "EnsemblePokemon" et "Elements" pour respecter le principe Ouvert/Fermé des Principes SOLID : une
+  classe doit être fermée à la modification de son comportement mais ouvert à l’extension.
+- Pour le moment mettre la liste des noms de Pokemon dans une classe ListePokemon avec l'attribut de la liste des noms ainsi que la méthode "genererPokemon" en static pour pouvoir les utiliser sans créer d'instance de la classe ListePokemon. 
 
 
 
@@ -23,4 +24,4 @@ Le choix de conception :
 coder : 
 - l'affichage
 - les joueurs (et robots)
-- déreoulement de la partie
+- déroulement de la partie
