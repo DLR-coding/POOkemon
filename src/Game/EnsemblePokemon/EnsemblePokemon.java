@@ -11,4 +11,8 @@ public interface EnsemblePokemon
         void afficher();
 
         void retirerPokemon(Pokemon pokemon) ;
+
+        Pokemon getPokemonByName(String name);
+        int getNbPokemon();
+
 }

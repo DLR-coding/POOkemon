@@ -41,6 +41,21 @@ public class Terrain implements EnsemblePokemon {
         m_terrain.remove(p);
     }
 
+    @Override
+    public Pokemon getPokemonByName(String name) {
+        for (Pokemon pokemon : m_terrain) {
+            if (pokemon.getM_nom().equalsIgnoreCase(name)) {
+                return pokemon;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public int getNbPokemon() {
+        return m_terrain.size();
+    }
+
     public List<Pokemon> getM_terrain()
     {
         return new ArrayList<>(m_terrain);

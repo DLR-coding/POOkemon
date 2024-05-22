@@ -61,6 +61,37 @@ public class RobotPlayer implements Player
         m_terrain.ajouterPokemon(pokemon);
     }
 
+    @Override
+    public Defausse getM_defausse() {
+        return this.m_defausse;
+    }
+
+    @Override
+    public MainDuJoueur getM_main() {
+        return m_main;
+    }
+
+    @Override
+    public String getM_nom() {
+        return m_nom;
+    }
+
+    @Override
+    public Terrain getM_terrain() {
+        return m_terrain;
+    }
+
+    @Override
+    public void joue(Player humain)
+    {
+        for (int i = 0; i < m_terrain.getNbPokemon() ; i++)
+        {
+            Pokemon monPokemon = m_terrain.getPokemon(i);
+
+        }
+
+    }
+
     public void setPioche(Pioche pioche) {
         this.m_pioche = pioche;
     }

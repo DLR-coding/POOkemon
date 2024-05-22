@@ -3,6 +3,8 @@ package Game.Joueur;
 import Game.EnsemblePokemon.*;
 import Game.Pokemon;
 
+import java.util.Scanner;
+
 public class JoueurHumain implements Player
 {
     private String m_nom;
@@ -66,12 +68,15 @@ public class JoueurHumain implements Player
     {
         this.m_main.retirerPokemon(pokemon);
         this.m_terrain.ajouterPokemon(pokemon);
+        this.piocherPokemon(this.getPokemonFromPioche(this.m_pioche.getNbPokemon()));
+
     }
 
 
     public Terrain getM_terrain() {
         return m_terrain;
     }
+
 
     @Override
     public boolean isJoueur1() {
@@ -113,6 +118,39 @@ public class JoueurHumain implements Player
     public void afficherTerrain() {
         m_terrain.afficher();
     }
+
+
+    public void joue(Player adversaire) {
+        Scanner scanner = new Scanner(System.in);
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Quel Pokémon souhaites-tu jouer depuis ta main ? (Donne le nom du Pokémon)");
+            String nomPokemonJoueur = scanner.nextLine();
+            Pokemon pokemonJoueur = m_terrain.getPokemonByName(nomPokemonJoueur);
+
+            if (pokemonJoueur == null) {
+                System.out.println("Pokémon introuvable dans ta main. Réessaye.");
+                i--; // Pour redemander le choix pour le même tour
+                continue;
+            }
+
+            System.out.println("Quel Pokémon de l'adversaire souhaites-tu attaquer ? (Donne le nom du Pokémon)");
+            String nomPokemonAdversaire = scanner.nextLine();
+            Pokemon pokemonAdversaire = adversaire.getM_terrain().getPokemonByName(nomPokemonAdversaire);
+
+            if (pokemonAdversaire == null) {
+                System.out.println("Pokémon introuvable sur le terrain de l'adversaire. Réessaye.");
+                i--; // Pour redemander le choix pour le même tour
+                continue;
+            }
+
+            pokemonJoueur.Attaquer(pokemonAdversaire);
+            System.out.println(pokemonJoueur.getM_nom() + " attaque " + pokemonAdversaire.getM_nom() + " !");
+        }
+    }
+
+
+
 }
 
 

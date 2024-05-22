@@ -2,6 +2,8 @@ package Game;
 
 import Game.Elements.*;
 
+import java.util.ArrayList;
+
 public class Pokemon
 {
     private String m_nom;
@@ -65,4 +67,6 @@ public class Pokemon
         String Presenter = m_nom + " :  element - " + m_elements.toString() + ", Vie : " + m_vie + ", Atk : " + m_attaque;
         System.out.println(Presenter);
     }
+
+
 }

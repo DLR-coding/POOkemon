@@ -48,4 +48,14 @@ public class MainDuJoueur implements EnsemblePokemon
         m_mainJoueur.remove(pokemon);
     }
 
+    @Override
+    public Pokemon getPokemonByName(String name) {
+        return null;
+    }
+
+    @Override
+    public int getNbPokemon() {
+        return m_mainJoueur.size();
+    }
+
 }

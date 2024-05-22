@@ -56,7 +56,7 @@ package Game
                             + afficher() : void
                             + retirerPokemon((pokemon:Pokemon):void
                         }
-        class ListePokemon
+        class  ListePokemon <<static>>
         {
             - {static} listeNomsPokemon : String[*]
             + {static} genererPokemon()
@@ -154,9 +154,26 @@ package Game
 
     package Jeu
     {
+        class LeJeu
+        {
+            - m_jHumain : JoueurHumain
+            - m_jRobot : RobotPlayer
+            - m_numTour : Integer
+            + <<Create>> LeJeu(humain:JoueurHumain , robot : RobotPlayer)
+            + Lunch(humain:Game.JoueurHumain) : void
+            + MainJoueurs(tailleMain: Integer)
+            + choix1erJoueur() : void
+            + piochesJoueurs() : void
+            + placementPokemon() : void
+
+        }
         abstract Affichage
         {
-            + afficher() : String
+            + afficherJeu() : String
+            + afficherMain(): String
+            + afficherTerrain() : String
+            + afficherPioche() : String
+            +
         }
     }
 
@@ -175,6 +192,8 @@ Player "1" *---> "1\n-m_defausse" Defausse : composé de \t\t >
 Pokemon "\n 1" *--> "1\n-m_element" Element : Possède\n\n >
 
 Game.EnsemblePokemon.EnsemblePokemon ..> ListePokemon : <<uses>>
+LeJeu ..> Player : <<uses>>
+LeJeu ..> Affichage : <<uses>>
 
 
 

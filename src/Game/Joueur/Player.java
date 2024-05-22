@@ -1,5 +1,8 @@
 package Game.Joueur;
 
+import Game.EnsemblePokemon.Defausse;
+import Game.EnsemblePokemon.MainDuJoueur;
+import Game.EnsemblePokemon.Terrain;
 import Game.Pokemon;
 
 public interface Player {
@@ -11,4 +14,10 @@ public interface Player {
 
     Pokemon getPokemonFromPioche(int index);
     void placeSurTerrain(Pokemon pokemon);
+    Defausse getM_defausse();
+    MainDuJoueur getM_main();
+    String getM_nom();
+    Terrain getM_terrain();
+
+    void joue(Player adversaire);
 }

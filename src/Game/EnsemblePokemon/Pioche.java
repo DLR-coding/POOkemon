@@ -37,6 +37,11 @@ public class Pioche implements EnsemblePokemon {
     }
 
     @Override
+    public Pokemon getPokemonByName(String name) {
+        return null;
+    }
+
+    @Override
     public Pokemon getPokemon(int index) {
         if (index >= 0 && index < m_pioche.size()) {
             return m_pioche.get(index);
@@ -55,6 +60,11 @@ public class Pioche implements EnsemblePokemon {
                 System.out.println("Pokemon à l'index " + (i+1) + ": vide");
             }
         }
+    }
+
+    public int getNbPokemon()
+    {
+        return m_pioche.size();
     }
 }
 

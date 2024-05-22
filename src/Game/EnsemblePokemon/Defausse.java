@@ -48,5 +48,15 @@ public class Defausse implements EnsemblePokemon{
         // je ne sais pas trop quel serait l'utilité de cette méthode ici (potentiel REVIVE SKILL ?)
         m_defausse.remove(pokemon);
     }
+
+    @Override
+    public Pokemon getPokemonByName(String name) {
+        return null;
+    }
+
+    @Override
+    public int getNbPokemon() {
+        return m_defausse.size();
+    }
 }
 
