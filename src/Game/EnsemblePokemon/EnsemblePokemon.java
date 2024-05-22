@@ -8,7 +8,6 @@ public interface EnsemblePokemon
 
         Pokemon getPokemon(int index);
 
-        void afficher();
 
         void retirerPokemon(Pokemon pokemon) ;
 

@@ -11,6 +11,8 @@ public class Pokemon
     private int m_vie;
     private int m_attaque;
 
+    private int m_vieMax;
+
     public Pokemon(String nom){
         m_nom = nom;
     }
@@ -21,6 +23,7 @@ public class Pokemon
         m_elements = elements;
         m_vie = vie ;
         m_attaque = attaque;
+        m_vieMax = vie;
 
     }
 
@@ -68,5 +71,8 @@ public class Pokemon
         System.out.println(Presenter);
     }
 
+    public int getM_vieMax() {
+        return m_vieMax;
+    }
 
 }

@@ -33,15 +33,6 @@ public class Defausse implements EnsemblePokemon{
         return m_defausse.get(index);
     }
 
-    @Override
-    public void afficher()
-    {
-        for (int i = 0; i < m_defausse.size(); i++)
-        {
-            m_defausse.get(i).toString();
-        }
-
-    }
 
     @Override
     public void retirerPokemon(Pokemon pokemon) {

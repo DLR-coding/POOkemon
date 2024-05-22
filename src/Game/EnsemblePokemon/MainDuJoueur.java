@@ -34,14 +34,6 @@ public class MainDuJoueur implements EnsemblePokemon
         }
     }
 
-    @Override
-    public void afficher() {
-        for (int i = 0; i < m_mainJoueur.size(); i++) {
-            m_mainJoueur.get(i).presenter();
-        }
-
-
-    }
 
     @Override
     public void retirerPokemon(Pokemon pokemon) {

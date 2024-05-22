@@ -51,16 +51,7 @@ public class Pioche implements EnsemblePokemon {
         }
     }
 
-    @Override
-    public void afficher() {
-        for (int i = 0; i < m_pioche.size(); i++) {
-            if (m_pioche.get(i) != null) {
-                m_pioche.get(i).presenter();
-            } else {
-                System.out.println("Pokemon à l'index " + (i+1) + ": vide");
-            }
-        }
-    }
+
 
     public int getNbPokemon()
     {

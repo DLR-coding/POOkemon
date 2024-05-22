@@ -22,20 +22,6 @@ public class Terrain implements EnsemblePokemon {
         return m_terrain.get(index);
     }
 
-    @Override
-    public void afficher()
-    {
-        /////////
-        for (int i = 0; i < m_terrain.size(); i++) {
-            System.out.println("  *--------------------*");
-            System.out.printf("  | Nom: %-14s |\n", m_terrain.get(i).getM_nom());
-            System.out.printf("  | Element: %-10s |\n", m_terrain.get(i).getM_elements().getElmnt());
-            System.out.printf("  | Vie: %-13d |\n", m_terrain.get(i).getVie());
-            System.out.printf("  | Attaque: %-9d |\n", m_terrain.get(i).getM_attaque());
-            System.out.println("  *--------------------*");
-        }
-
-    }
 
     public void retirerPokemon(Pokemon p) {
         m_terrain.remove(p);
