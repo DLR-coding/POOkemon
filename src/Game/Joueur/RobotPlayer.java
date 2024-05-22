@@ -84,11 +84,24 @@ public class RobotPlayer implements Player
     @Override
     public void joue(Player humain)
     {
-        for (int i = 0; i < m_terrain.getNbPokemon() ; i++)
-        {
-            Pokemon monPokemon = m_terrain.getPokemon(i);
+
+        // Parcourir les pokemons du joueur
+        for (int i= 0; i < humain.getM_terrain().getNbPokemon() ; i++) {
+            Pokemon pokemonOrdi = m_terrain.getPokemon(i);
+
+            for (int j= 0; j < humain.getM_terrain().getNbPokemon() ; j++) {
+                Pokemon pokemonJoueur = humain.getM_terrain().getPokemon(i);
+                // Vérifier l'avantage de l'affinité du pokemonOrdinateur sur l'affinité du pokemonJoueur
+                if (pokemonOrdi.getM_elements().equals(pokemonJoueur.getM_elements().getFaibleContre()) )
+                {
+                    // Renvoie le pokemonJoueur avec un désavantage
+
+                }
+            }
 
         }
+        // Renvoie null si aucun pokemonJoueur avec un désavantage n'est trouvé
+
 
     }
 
@@ -101,17 +114,4 @@ public class RobotPlayer implements Player
         return m_main.getPokemon(i);
     }
 
-    public void afficherPioche()
-    {
-        m_pioche.afficher();
-    }
-
-    public void afficherMain()
-    {
-        m_main.afficher();
-    }
-
-    public void afficherTerrain() {
-        m_terrain.afficher();
-    }
 }
