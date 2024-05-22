@@ -136,7 +136,10 @@ public class JoueurHumain implements Player
             System.out.println(pokemonJoueur.getM_nom() + " attaque " + pokemonAdversaire.getM_nom() + " !");
         }
     }
-
+    public Pioche getM_pioche() {
+        return m_pioche;
+    }
+// commentaire test
 
 }
 

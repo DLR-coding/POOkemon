@@ -114,4 +114,9 @@ public class RobotPlayer implements Player
         return m_main.getPokemon(i);
     }
 
+    public Pioche getM_pioche() {
+        return m_pioche;
+    }
+
+
 }
