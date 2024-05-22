@@ -100,7 +100,7 @@ public class Affichage {
 
 
         System.out.println("Joueur 2");
-        afficherPioche(joueur1.getM_pioche());
+        afficherPioche(joueur2.getM_pioche());
         afficherDefausse(joueur2.getM_defausse());
         afficherMain(joueur2.getM_main());
         afficherTerrain(joueur2.getM_terrain());

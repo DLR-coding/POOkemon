@@ -106,18 +106,6 @@ public class JoueurHumain implements Player
              this.m_main.ajouterPokemon(pokemon);
     }
 
-    public void afficherPioche()
-    {
-        m_pioche.afficher();
-    }
-    public void afficherMain()
-    {
-        m_main.afficher();
-    }
-
-    public void afficherTerrain() {
-        m_terrain.afficher();
-    }
 
 
     public void joue(Player adversaire) {
@@ -149,7 +137,9 @@ public class JoueurHumain implements Player
         }
     }
 
-
+    public Pioche getM_pioche() {
+        return m_pioche;
+    }
 
 }
 

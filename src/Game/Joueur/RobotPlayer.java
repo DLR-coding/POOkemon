@@ -101,17 +101,8 @@ public class RobotPlayer implements Player
         return m_main.getPokemon(i);
     }
 
-    public void afficherPioche()
-    {
-        m_pioche.afficher();
-    }
-
-    public void afficherMain()
-    {
-        m_main.afficher();
-    }
-
-    public void afficherTerrain() {
-        m_terrain.afficher();
+    public Pioche getM_pioche() {
+        return m_pioche;
     }
 }
+
