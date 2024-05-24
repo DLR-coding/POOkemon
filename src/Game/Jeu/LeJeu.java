@@ -1,5 +1,6 @@
 package Game.Jeu;
 
+import Game.Affichage;
 import Game.EnsemblePokemon.MainDuJoueur;
 import Game.EnsemblePokemon.Pioche;
 import Game.Joueur.JoueurHumain;
@@ -35,9 +36,11 @@ public class LeJeu
     {
         choix1erJoueur();
         piochesJoueurs();
+        Affichage affichage = new Affichage();
         MainJoueurs(5);
+        affichage.afficherJeu(m_jHumain,m_jRobot);
         placementPokemon();
-
+        affichage.afficherJeu(m_jHumain,m_jRobot);
 
         System.out.println("le 1er joueur attaque...");
         phaseAttaquer();
