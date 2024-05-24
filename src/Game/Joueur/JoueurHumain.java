@@ -1,6 +1,7 @@
 package Game.Joueur;
 
 import Game.EnsemblePokemon.*;
+import Game.Jeu.Affichage;
 import Game.Pokemon;
 
 import java.util.Scanner;
@@ -68,7 +69,8 @@ public class JoueurHumain implements Player
     {
         this.m_main.retirerPokemon(pokemon);
         this.m_terrain.ajouterPokemon(pokemon);
-        this.piocherPokemon(this.getPokemonFromPioche(this.m_pioche.getNbPokemon()));
+        System.out.println("Joueur repioche pour automatiquement remplir sa main...");
+        piocherPokemon(getPokemonFromPioche(m_pioche.getNbPokemon() - 1));
 
     }
 
@@ -108,7 +110,8 @@ public class JoueurHumain implements Player
 
 
 
-    public void joue(Player adversaire) {
+    public void joue(Player adversaire)
+    {
         Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; i < 3; i++) {
@@ -131,15 +134,18 @@ public class JoueurHumain implements Player
                 i--; // Pour redemander le choix pour le même tour
                 continue;
             }
-
-            pokemonJoueur.Attaquer(pokemonAdversaire);
             System.out.println(pokemonJoueur.getM_nom() + " attaque " + pokemonAdversaire.getM_nom() + " !");
+            pokemonJoueur.Attaquer(pokemonAdversaire);
         }
+
+
+
     }
+
+
     public Pioche getM_pioche() {
         return m_pioche;
     }
-// commentaire test
 
 }
 
