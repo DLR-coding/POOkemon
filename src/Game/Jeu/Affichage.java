@@ -16,6 +16,7 @@ public class Affichage {
     static void afficherMain(MainDuJoueur main) {
 
         for (int i = 0; i < main.getNbPokemon(); i++) {
+            System.out.print(i+1 +" : ");
             main.getPokemon(i).presenter();
         }
 
@@ -24,6 +25,7 @@ public class Affichage {
      static void afficherTerrain(Terrain terrain){
 
         afficherPokemon(terrain.getM_terrain());
+
 
     }
 
@@ -47,7 +49,7 @@ public class Affichage {
 
 
 
-     static void afficherPokemon(List<Pokemon> pokemons){
+    private static void afficherPokemon(List<Pokemon> pokemons){
         // Afficher la première ligne des cadres
         for (Pokemon p : pokemons) {
             System.out.print("  *--------------------*    ");
@@ -61,17 +63,17 @@ public class Affichage {
         System.out.println();
 
         for (Pokemon p : pokemons) {
-            System.out.printf("  | Vie: %3d/%-8d |    ", p.getVie(), p.getM_vieMax());
+            System.out.printf("  | Vie: %3d/%-8d  |    ", p.getVie(), p.getM_vieMax());
         }
         System.out.println();
 
         for (Pokemon p : pokemons) {
-            System.out.printf("  | Element : %-6s |    ", p.getM_elements());
+            System.out.printf("  | Element : %-6s   |    ", p.getM_elements());
         }
         System.out.println();
 
         for (Pokemon p : pokemons) {
-            System.out.printf("  |     %-12s |    ", p.getM_nom());
+            System.out.printf("  |     %-12s   |    ", p.getM_nom());
         }
         System.out.println();
 
