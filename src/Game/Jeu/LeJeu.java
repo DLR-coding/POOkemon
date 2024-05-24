@@ -1,5 +1,7 @@
 package Game.Jeu;
 
+
+import Game.Jeu.Affichage;
 import Game.EnsemblePokemon.MainDuJoueur;
 import Game.EnsemblePokemon.Pioche;
 import Game.Joueur.JoueurHumain;
