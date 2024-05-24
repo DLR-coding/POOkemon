@@ -3,7 +3,9 @@ package Game.Jeu;
 import Game.EnsemblePokemon.MainDuJoueur;
 import Game.EnsemblePokemon.Pioche;
 import Game.Joueur.JoueurHumain;
+import Game.Joueur.Player;
 import Game.Joueur.RobotPlayer;
+import Game.Jeu.Affichage;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -13,12 +15,13 @@ public class LeJeu
     private JoueurHumain m_jHumain;
     private RobotPlayer m_jRobot;
     private int m_numTour;
+    private Boolean m_arret = false;
 
     public LeJeu(JoueurHumain humain, RobotPlayer robot )
     {
         m_jHumain = humain;
         m_jRobot = robot;
-        m_numTour = 0;
+        m_numTour = 1;
     }
     public void MainJoueurs(int tailleMain)
     {
@@ -34,23 +37,70 @@ public class LeJeu
     public void Lunch()
     {
         choix1erJoueur();
+        System.out.println("Création des pioches...");
         piochesJoueurs();
+        System.out.println("Création des Mains...");
         MainJoueurs(5);
         placementPokemon();
 
-
         System.out.println("le 1er joueur attaque...");
-        phaseAttaquer();
+        phaseAttaquer(m_numTour);
+        /*while (!m_arret) {
+            Affichage.afficherJeu(this);
+            m_numTour++;
+            phaseAttaquer(m_numTour);
+            verifierFinJeu();
+        }*/
 
     }
+    private void verifierFinJeu() {
+        if (tousPokemonsElimines(m_jHumain)) {
+            m_arret = true;
+            System.out.println("Le robot a gagné ! Il lui reste " + nbPokemonsRestants(m_jRobot) + " Pokémons.");
+        } else if (tousPokemonsElimines(m_jRobot)) {
+            m_arret = true;
+            System.out.println("Tu as gagné ! Il te reste " + nbPokemonsRestants(m_jHumain) + " Pokémons.");
+        }
+    }
 
-    public void phaseAttaquer()
+    private int nbPokemonsRestants(Player joueur)
     {
-        //Attaque
-        if (m_jHumain.isJoueur1()) {
-            m_jHumain.joue(m_jRobot);
-        } else {
-            m_jRobot.joue(m_jHumain);
+        int nbPokemonInitial = (joueur.isJoueur1()) ? 20 : 21;
+        int count = nbPokemonInitial - joueur.getM_defausse().getNbPokemon() ;
+        return count;
+    }
+
+    public boolean tousPokemonsElimines(Player joueur) {
+        int nbPokemonInitial = (joueur.isJoueur1()) ? 20 : 21;
+        return joueur.getM_defausse().getNbPokemon() == nbPokemonInitial;
+    }
+
+    public void phaseAttaquer(int tour) {
+        int nb = tour % 2 ;
+        System.out.println("le tour est : " + nb);
+        if (tour % 2 != 0)
+        { // Si le tour est impair, c'est le joueur 1 qui joue
+            if (m_jHumain.isJoueur1()) {
+                m_jHumain.joue(m_jRobot);
+                m_jRobot.joue(m_jHumain);
+            }
+            else if (m_jRobot.isJoueur1())
+            {
+                m_jRobot.joue(m_jHumain);
+                m_jHumain.joue(m_jRobot);
+            }
+        }
+        else
+        { // Si le tour est pair, c'est le joueur 2 qui joue
+            if (m_jHumain.isJoueur1()) {
+                m_jRobot.joue(m_jHumain);
+                m_jHumain.joue(m_jRobot);
+            }
+            else if (m_jRobot.isJoueur1())
+            {
+                m_jHumain.joue(m_jRobot);
+                m_jRobot.joue(m_jHumain);
+            }
         }
     }
     private void placementPokemon()
@@ -61,22 +111,23 @@ public class LeJeu
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Tu places tes Pokémon de ta main sur ton terrain...");
-
+            Affichage.afficherJeu(this);
             for (int i = 0; i < 3; i++) {
-                System.out.println("Quel Pokémon souhaites-tu jouer ? (Choisissez le numéro de Pokémon dans votre main)");
+                System.out.println("Quel Pokémon souhaites-tu placer ? (Choisissez le numéro de Pokémon dans votre main)");
                 int index = scanner.nextInt();
 
                 if (index >= 1 && index <= 5) {
-                    m_jHumain.placeSurTerrain(m_jHumain.getPokemonFromMain(index));
+                    m_jHumain.placeSurTerrain(m_jHumain.getPokemonFromMain(index - 1)  );
                 } else {
                     System.out.println("Index invalide. Veuillez choisir un Pokémon valide.");
                     i--; // Pour redemander le choix pour le même emplacement
                 }
+                Affichage.afficherJeu(this);
             }
-            scanner.close();
             System.out.println("Robot place ses pokemon de sa main à son terrain... ");
             for (int i = 0; i < 3; i++) {
                 m_jRobot.placeSurTerrain(m_jRobot.getPokemonFromMain(i));
+                Affichage.afficherJeu(this);
             }
         }
         else
@@ -85,24 +136,25 @@ public class LeJeu
             System.out.println("Robot place ses pokemon de sa main à son terrain... ");
             for (int i = 0; i < 3; i++) {
                 m_jRobot.placeSurTerrain(m_jRobot.getPokemonFromMain(i));
+                Affichage.afficherJeu(this);
             }
 
             Scanner scanner2 = new Scanner(System.in);
 
             System.out.println("Tu places tes Pokémon de ta main sur ton terrain...");
-
+            Affichage.afficherJeu(this);
             for (int i = 0; i < 3; i++) {
                 System.out.println("Quel Pokémon souhaites-tu jouer ? (Choisissez le numéro de Pokémon dans votre main)");
                 int index = scanner2.nextInt();
 
                 if (index >= 1 && index <= 5) {
-                    m_jHumain.placeSurTerrain(m_jHumain.getPokemonFromMain(index));
+                    m_jHumain.placeSurTerrain(m_jHumain.getPokemonFromMain(index - 1));
                 } else {
                     System.out.println("Index invalide. Veuillez choisir un Pokémon valide.");
                     i--; // Pour redemander le choix pour le même emplacement
                 }
+                Affichage.afficherJeu(this);
             }
-            scanner2.close();
         }
     }
 
@@ -137,6 +189,23 @@ public class LeJeu
             m_jRobot.setJoueur1(true);
         }
     }
+
+    public JoueurHumain getM_jHumain()
+    {
+        return m_jHumain;
+    }
+
+    public RobotPlayer getM_jRobot()
+    {
+        return m_jRobot;
+    }
+
+    public int getM_numTour()
+    {
+        return m_numTour;
+    }
+
+
 
 
 

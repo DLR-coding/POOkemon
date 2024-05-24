@@ -165,6 +165,7 @@ package Game
             + choix1erJoueur() : void
             + piochesJoueurs() : void
             + placementPokemon() : void
+            +
 
         }
         abstract Affichage
