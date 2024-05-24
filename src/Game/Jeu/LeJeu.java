@@ -8,6 +8,7 @@ import Game.Joueur.JoueurHumain;
 import Game.Joueur.Player;
 import Game.Joueur.RobotPlayer;
 import Game.Jeu.Affichage;
+import Game.Pokemon;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -47,6 +48,8 @@ public class LeJeu
 
         System.out.println("le 1er joueur attaque...");
         phaseAttaquer(m_numTour);
+        Affichage.afficherJeu(this);
+
         /*while (!m_arret) {
             Affichage.afficherJeu(this);
             m_numTour++;
@@ -104,6 +107,11 @@ public class LeJeu
                 m_jRobot.joue(m_jHumain);
             }
         }
+
+        for(int i = 0; i < 3 ;i++){
+            PokemonMort(m_jHumain.getM_terrain().getPokemon(i));
+        }
+
     }
     private void placementPokemon()
     {
@@ -190,6 +198,13 @@ public class LeJeu
             m_jHumain.setJoueur1(false); // le joueur 1 est l'ordinateur
             m_jRobot.setJoueur1(true);
         }
+    }
+
+    public void PokemonMort(Pokemon pokemon){
+         if (pokemon.getVie() <= 0){
+             m_jHumain.getM_terrain().retirerPokemon(pokemon);
+             m_jHumain.getM_defausse().ajouterPokemon(pokemon);
+         }
     }
 
     public JoueurHumain getM_jHumain()
