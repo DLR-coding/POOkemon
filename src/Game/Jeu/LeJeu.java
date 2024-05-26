@@ -202,8 +202,7 @@ public class LeJeu
 
     public void PokemonMort(Pokemon pokemon){
          if (pokemon.getVie() <= 0){
-             m_jHumain.getM_terrain().retirerPokemon(pokemon);
-             m_jHumain.getM_defausse().ajouterPokemon(pokemon);
+             m_jHumain.getM_terrain().transferPokemon(pokemon,m_jHumain.getM_defausse());
          }
     }
 

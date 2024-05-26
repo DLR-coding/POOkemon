@@ -1,6 +1,7 @@
 package Game;
 
 import Game.Elements.*;
+import Game.Jeu.Affichage;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,7 @@ public class Pokemon
         attaque = attaque + this.m_attaque;
         blesser.m_vie = blesser.m_vie - attaque ;
         System.out.println(m_nom + " attaque de " + attaque + " a été effectué à "+ blesser.m_nom);
+
 
     }
 

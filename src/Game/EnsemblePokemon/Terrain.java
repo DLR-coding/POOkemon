@@ -22,10 +22,17 @@ public class Terrain implements EnsemblePokemon {
         return m_terrain.get(index);
     }
 
-
-    public void retirerPokemon(Pokemon p) {
-        m_terrain.remove(p);
+    @Override
+    public void transferPokemon(Pokemon pokemon, EnsemblePokemon destination) {
+        if (!destination.getEnsemble().contains(pokemon) && this.getEnsemble().contains(pokemon)) {
+            destination.getEnsemble().add(pokemon);
+            this.getEnsemble().remove(pokemon);
+        } else {
+            System.out.println("Le Pokémon invalide : déjà dans destination/pas dans source.");
+        }
     }
+
+
 
     @Override
     public Pokemon getPokemonByName(String name) {
@@ -40,6 +47,11 @@ public class Terrain implements EnsemblePokemon {
     @Override
     public int getNbPokemon() {
         return m_terrain.size();
+    }
+
+    @Override
+    public List<Pokemon> getEnsemble() {
+        return m_terrain;
     }
 
     public List<Pokemon> getM_terrain()

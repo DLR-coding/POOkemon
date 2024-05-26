@@ -67,8 +67,7 @@ public class JoueurHumain implements Player
     @Override
     public void placeSurTerrain(Pokemon pokemon)
     {
-        this.m_main.retirerPokemon(pokemon);
-        this.m_terrain.ajouterPokemon(pokemon);
+        this.m_main.transferPokemon(pokemon,m_terrain);
         System.out.println("Joueur repioche pour automatiquement remplir sa main...");
         piocherPokemon(getPokemonFromPioche(m_pioche.getNbPokemon() - 1));
 
@@ -104,8 +103,7 @@ public class JoueurHumain implements Player
     @Override
     public void piocherPokemon(Pokemon pokemon)
     {
-             this.m_pioche.retirerPokemon(pokemon);
-             this.m_main.ajouterPokemon(pokemon);
+             this.m_pioche.transferPokemon(pokemon, m_main);
     }
 
 

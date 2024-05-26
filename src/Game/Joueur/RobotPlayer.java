@@ -50,8 +50,7 @@ public class RobotPlayer implements Player
 
     @Override
     public void piocherPokemon(Pokemon pokemon) {
-        this.m_pioche.retirerPokemon(pokemon);
-        this.m_main.ajouterPokemon(pokemon);
+        this.m_pioche.transferPokemon(pokemon,m_main);
     }
 
     @Override
@@ -61,8 +60,7 @@ public class RobotPlayer implements Player
 
     @Override
     public void placeSurTerrain(Pokemon pokemon) {
-        m_main.retirerPokemon(pokemon);
-        m_terrain.ajouterPokemon(pokemon);
+        m_main.transferPokemon(pokemon,m_terrain);
         System.out.println("Robot repioche pour automatiquement remplir sa main...");
         piocherPokemon(getPokemonFromPioche(m_pioche.getNbPokemon() - 1));
 

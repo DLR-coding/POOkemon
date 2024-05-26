@@ -49,13 +49,13 @@ package Game
 
     package EnsemblePokemon
     {
-        class EnsemblePokemon <<Interface>>
-                        {
-                            + ajouterPokemon(pokemon:Pokemon)
-                            + getPokemon(index:Integer):Pokemon
-                            + afficher()
-                            + retirerPokemon((pokemon:Pokemon)
-                        }
+        class  EnsemblePokemon <<Interface>>
+        {
+            + getPokemon(index:Integer):Pokemon
+            + afficher()
+            + transferPokemon(pokemon:Pokemon ,desitnation:EnsemblePokemon)
+            + getEnsemble()
+        }
         class  ListePokemon <<static>>
         {
             - {static} listeNomsPokemon : String[*]
@@ -70,6 +70,9 @@ package Game
                 + getPokemon(index:Integer):Pokemon
                 + retirerPokemon((pokemon:Pokemon)
                 + afficher()
+                + transferPokemon(pokemon:Pokemon ,from:EnsemblePokemon , to:EnsemblePokemon )
+
+
             }
 
         class MainDuJoueur implements EnsemblePokemon
@@ -80,6 +83,7 @@ package Game
                 + getPokemon(index:Integer):Pokemon
                 + retirerPokemon((pokemon:Pokemon)
                 + afficher()
+                + transferPokemon(pokemon:Pokemon ,from:EnsemblePokemon , to:EnsemblePokemon )
             }
 
         class Terrain implements EnsemblePokemon
@@ -91,6 +95,7 @@ package Game
                 + afficher()
                 + retirerPokemon(pokemon:Pokemon)
                 + getPokemonAvecLeMoinsDeVie() : Pokemon
+                + transferPokemon(pokemon:Pokemon ,from:EnsemblePokemon , to:EnsemblePokemon )
             }
 
         class Pioche implements EnsemblePokemon
@@ -102,6 +107,7 @@ package Game
                 + retirerPokemon(pokemon:Pokemon)
                 + getPokemon(index:Integer): Pokemon
                 + afficher()
+                + transferPokemon(pokemon:Pokemon ,from:EnsemblePokemon , to:EnsemblePokemon )
             }
     }
 
@@ -170,10 +176,10 @@ package Game
         }
         abstract Affichage
         {
-            + afficherJeu() : String
-            + afficherMain(): String
-            + afficherTerrain() : String
-            + afficherPioche() : String
+            + {static} afficherJeu() : String
+            + {static} afficherMain(): String
+            + {static} afficherTerrain() : String
+            + {static} afficherPioche() : String
             +
         }
     }
