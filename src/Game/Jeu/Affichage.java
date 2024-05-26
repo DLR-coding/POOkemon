@@ -89,8 +89,10 @@ public class Affichage {
 
      static void afficherJeu(LeJeu jeu){
         System.out.println("********************************************************************************");
+         System.out.println("");
+         System.out.println("");
         System.out.println("Tour :"+ jeu.getM_numTour());
-        System.out.println("Toi");
+        System.out.println("Robot");
         afficherPioche(jeu.getM_jRobot().getM_pioche());
         afficherDefausse(jeu.getM_jRobot().getM_defausse());
         afficherMain(jeu.getM_jRobot().getM_main());
@@ -102,8 +104,6 @@ public class Affichage {
         afficherDefausse(jeu.getM_jHumain().getM_defausse());
         afficherMain(jeu.getM_jHumain().getM_main());
         afficherTerrain(jeu.getM_jHumain().getM_terrain());
-         System.out.println("");
-         System.out.println("");
         System.out.println("********************************************************************************");
         System.out.println("");
         System.out.println("");

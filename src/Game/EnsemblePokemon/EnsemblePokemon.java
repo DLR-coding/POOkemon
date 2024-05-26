@@ -10,7 +10,7 @@ public interface EnsemblePokemon
 
 
         void retirerPokemon(Pokemon pokemon) ;
-
+        //void transferPokemon(EnsemblePokemon destionation,Pokemon pokemon);
         Pokemon getPokemonByName(String name);
         int getNbPokemon();
 

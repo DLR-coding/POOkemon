@@ -51,10 +51,10 @@ package Game
     {
         class EnsemblePokemon <<Interface>>
                         {
-                            + ajouterPokemon(pokemon:Pokemon): Void
+                            + ajouterPokemon(pokemon:Pokemon)
                             + getPokemon(index:Integer):Pokemon
-                            + afficher() : void
-                            + retirerPokemon((pokemon:Pokemon):void
+                            + afficher()
+                            + retirerPokemon((pokemon:Pokemon)
                         }
         class  ListePokemon <<static>>
         {
@@ -66,30 +66,30 @@ package Game
             {
                 - m_defausse : Pokemon[*]
                 + <<Create>> Defausse()
-                + ajouterPokemon(pokemon:Pokemon): Void
+                + ajouterPokemon(pokemon:Pokemon)
                 + getPokemon(index:Integer):Pokemon
-                + retirerPokemon((pokemon:Pokemon):void
-                + afficher() : void
+                + retirerPokemon((pokemon:Pokemon)
+                + afficher()
             }
 
         class MainDuJoueur implements EnsemblePokemon
             {
                 - m_mainJoueur: Pokemon[5]
                 + <<Create>> MainDuJoueur()
-                + ajouterPokemon(pokemon:Pokemon): Void
+                + ajouterPokemon(pokemon:Pokemon)
                 + getPokemon(index:Integer):Pokemon
-                + retirerPokemon((pokemon:Pokemon):void
-                + afficher() : void
+                + retirerPokemon((pokemon:Pokemon)
+                + afficher()
             }
 
         class Terrain implements EnsemblePokemon
             {
                 - m_terrain: Pokemon[3]
                 + <<Create>> Terrain()
-                + ajouterPokemon(pokemon:Pokemon) : void
+                + ajouterPokemon(pokemon:Pokemon)
                 + getPokemon(index:Integer): Pokemon
-                + afficher() : void
-                + retirerPokemon(pokemon:Pokemon) : void
+                + afficher()
+                + retirerPokemon(pokemon:Pokemon)
                 + getPokemonAvecLeMoinsDeVie() : Pokemon
             }
 
@@ -98,10 +98,10 @@ package Game
                 - m_pioche: Pokemon[*]
                 + <<Create>> Pioche()
                 + <<Create>> Pioche(nbpokemon:Integer)
-                + ajouterPokemon(pokemon:Pokemon) : void
-                + retirerPokemon(pokemon:Pokemon) : void
+                + ajouterPokemon(pokemon:Pokemon)
+                + retirerPokemon(pokemon:Pokemon)
                 + getPokemon(index:Integer): Pokemon
-                + afficher() : void
+                + afficher()
             }
     }
 
@@ -111,31 +111,31 @@ package Game
                                 {
                                     + isJoueur1() : Boolean
                                     + setJoueur1() : Boolean
-                                    + GetPokemonFromPioche(index:Integer) : Pokemon
-                                    + piocherPokemon(pokemon:Pokemon):void
-                                    + placeSurTerrain(pokemon:Pokemon):void
+                                    + getPokemonFromPioche(index:Integer) : Pokemon
+                                    + piocherPokemon(pokemon:Pokemon)
+                                    + placeSurTerrain(pokemon:Pokemon)
                                 }
         class JoueurHumain implements Player
                     {
                         - m_nom : String
                         - m_joueur1 : Boolean
                         + <<Create>> Joueur(nom: String)
-                        + GetPokemonFromPioche(index:Integer) : Pokemon
-                        + piocherPokemon(pokemon:Pokemon):void
-                        + placeSurTerrain(pokemon:Pokemon):void
-                        + afficherPioche(): void
-                        + afficherMain(): void
+                        + getPokemonFromPioche(index:Integer) : Pokemon
+                        + piocherPokemon(pokemon:Pokemon)
+                        + placeSurTerrain(pokemon:Pokemon)
+                        + afficherPioche()
+                        + afficherMain()
                     }
         class RobotPlayer implements Player
                             {
                                 - m_nom : String
                                 - m_joueur1 : Boolean
                                 + <<Create>> RobotPlayer(nom: String)
-                                + GetPokemonFromPioche(index:Integer) : Pokemon
-                                + piocherPokemon(pokemon:Pokemon):void
-                                + placeSurTerrain(pokemon:Pokemon):void
-                                + afficherPioche(): void
-                                + afficherMain(): void
+                                + getPokemonFromPioche(index:Integer) : Pokemon
+                                + piocherPokemon(pokemon:Pokemon)
+                                + placeSurTerrain(pokemon:Pokemon)
+                                + afficherPioche()
+                                + afficherMain()
                             }
     }
 
@@ -145,11 +145,11 @@ package Game
         - m_health : int
         - m_atk : int
         + <<Create>> Pokemon(nom: String)
-        + Attaquer() : Void
+        + attaquer()
         + getVie() : int
         + getM_attaque() : int
         + getNom() : String
-        + presenter() : void
+        + presenter()
     }
 
     package Jeu
@@ -160,11 +160,11 @@ package Game
             - m_jRobot : RobotPlayer
             - m_numTour : Integer
             + <<Create>> LeJeu(humain:JoueurHumain , robot : RobotPlayer)
-            + Lunch(humain:Game.JoueurHumain) : void
-            + MainJoueurs(tailleMain: Integer)
-            + choix1erJoueur() : void
-            + piochesJoueurs() : void
-            + placementPokemon() : void
+            + launch(humain:Game.JoueurHumain)
+            + mainJoueurs(tailleMain: Integer)
+            + choix1erJoueur()
+            + piochesJoueurs()
+            + placementPokemon()
             +
 
         }

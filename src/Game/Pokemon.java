@@ -39,7 +39,7 @@ public class Pokemon
         }
         attaque = attaque + this.m_attaque;
         blesser.m_vie = blesser.m_vie - attaque ;
-        System.out.println(m_nom + " attaque de " + attaque + " a été effectué a "+ blesser.m_nom);
+        System.out.println(m_nom + " attaque de " + attaque + " a été effectué à "+ blesser.m_nom);
 
     }
 

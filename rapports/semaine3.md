@@ -1,7 +1,5 @@
-#### Ne pas prendre en compte le package Joueur (ainsi que son contenu) car il n'est pas encore terminé.
-
 ## Choix de conception actuels
-Classe Affichage static pour que l'on puisse l'utiliser sans instance , nottament pour l'utiliser dans la classe LeJeu
+Classe Affichage static pour que l'on puisse l'utiliser sans instance, nottament pour l'utiliser dans la classe LeJeu
 
 ## Quelles fonctionnalités ont été implémentées 
 - Affichage
@@ -12,7 +10,7 @@ Classe Affichage static pour que l'on puisse l'utiliser sans instance , nottamen
 - Mort d'un pokemon 
 
 ## Les difficultés rencontrées 
-Principalement la stratégie d'attaque du robot avec les recherches de cible à attaquer. 
+Principalement l'algorithme de la stratégie d'attaque du robot avec les recherches de cible à attaquer. 
 
 ## ce que nous planifions de faire pour le rendu suivant
 coder : 
