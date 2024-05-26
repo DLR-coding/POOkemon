@@ -91,18 +91,22 @@ public class Affichage {
         System.out.println("********************************************************************************");
         System.out.println("Tour :"+ jeu.getM_numTour());
         System.out.println("Toi");
+        afficherPioche(jeu.getM_jRobot().getM_pioche());
+        afficherDefausse(jeu.getM_jRobot().getM_defausse());
+        afficherMain(jeu.getM_jRobot().getM_main());
+        afficherTerrain(jeu.getM_jRobot().getM_terrain());
+
+
+        System.out.println("Toi");
         afficherPioche(jeu.getM_jHumain().getM_pioche());
         afficherDefausse(jeu.getM_jHumain().getM_defausse());
         afficherMain(jeu.getM_jHumain().getM_main());
         afficherTerrain(jeu.getM_jHumain().getM_terrain());
-
-
-        System.out.println("Le Robot");
-        afficherPioche(jeu.getM_jHumain().getM_pioche());
-        afficherDefausse(jeu.getM_jRobot().getM_defausse());
-        afficherMain(jeu.getM_jRobot().getM_main());
-        afficherTerrain(jeu.getM_jRobot().getM_terrain());
+         System.out.println("");
+         System.out.println("");
         System.out.println("********************************************************************************");
+        System.out.println("");
+        System.out.println("");
     }
 }
 
