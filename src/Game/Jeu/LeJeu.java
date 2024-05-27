@@ -44,7 +44,7 @@ public class LeJeu
         piochesJoueurs();
         System.out.println("Création des Mains...");
         MainJoueurs(5);
-        placementPokemon();
+        placementPokemon(3,3);
 
         System.out.println("le 1er joueur attaque...");
         phaseAttaquer(m_numTour);
@@ -107,13 +107,31 @@ public class LeJeu
                 m_jRobot.joue(m_jHumain);
             }
         }
-
+        int nbMortJ1 = 0;
+        int nbMortRobot = 0;
+        int index = 0;
         for(int i = 0; i < 3 ;i++){
-            PokemonMort(m_jHumain.getM_terrain().getPokemon(i));
+            boolean Mort;
+           Mort = PokemonMort(m_jHumain.getM_terrain().getPokemon(i));
+           if(Mort == true){
+               nbMortJ1 = nbMortJ1 + 1;
+               index = i;
+           }
+           Mort = PokemonMort(m_jRobot.getM_terrain().getPokemon(i));
+           if(Mort == true){
+              nbMortRobot = nbMortRobot + 1;
+              index = i;
+           }
         }
+        if(nbMortJ1 !=0) {
+            AjouterDefausse(m_jHumain, m_jHumain.getM_terrain().getPokemon(index));
+        } else if (nbMortRobot != 0) {
+            AjouterDefausse(m_jRobot, m_jRobot.getM_terrain().getPokemon(index));
+        }
+        placementPokemon(nbMortJ1,nbMortRobot);
 
     }
-    private void placementPokemon()
+    private void placementPokemon(int nbJ1,int nbRobot)
     {
         //Terrain
         if (m_jHumain.isJoueur1())
@@ -122,7 +140,7 @@ public class LeJeu
 
             System.out.println("Tu places tes Pokémon de ta main sur ton terrain...");
             Affichage.afficherJeu(this);
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < nbJ1; i++) {
                 System.out.println("Quel Pokémon souhaites-tu placer ? (Choisissez le numéro de Pokémon dans votre main)");
                 int index = scanner.nextInt();
 
@@ -135,7 +153,7 @@ public class LeJeu
                 Affichage.afficherJeu(this);
             }
             System.out.println("Robot place ses pokemon de sa main à son terrain... ");
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < nbRobot; i++) {
                 m_jRobot.placeSurTerrain(m_jRobot.getPokemonFromMain(i));
                 Affichage.afficherJeu(this);
             }
@@ -144,7 +162,7 @@ public class LeJeu
         {
 
             System.out.println("Robot place ses pokemon de sa main à son terrain... ");
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < nbRobot; i++) {
                 m_jRobot.placeSurTerrain(m_jRobot.getPokemonFromMain(i));
                 Affichage.afficherJeu(this);
             }
@@ -153,7 +171,7 @@ public class LeJeu
 
             System.out.println("Tu places tes Pokémon de ta main sur ton terrain...");
             Affichage.afficherJeu(this);
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < nbJ1; i++) {
                 System.out.println("Quel Pokémon souhaites-tu jouer ? (Choisissez le numéro de Pokémon dans votre main)");
                 int index = scanner2.nextInt();
 
@@ -200,10 +218,16 @@ public class LeJeu
         }
     }
 
-    public void PokemonMort(Pokemon pokemon){
+    public boolean PokemonMort(Pokemon pokemon){
          if (pokemon.getVie() <= 0){
-             m_jHumain.getM_terrain().transferPokemon(pokemon,m_jHumain.getM_defausse());
+             return true;
          }
+         return false;
+    }
+
+    public void AjouterDefausse(Player joueur,Pokemon pokemon){
+        joueur.getM_terrain().retirerPokemon(pokemon);
+        joueur.getM_defausse().ajouterPokemon(pokemon);
     }
 
     public JoueurHumain getM_jHumain()
