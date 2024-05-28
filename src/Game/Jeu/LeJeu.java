@@ -124,9 +124,9 @@ public class LeJeu
            }
         }
         if(nbMortJ1 !=0) {
-            AjouterDefausse(m_jHumain, m_jHumain.getM_terrain().getPokemon(index));
+            m_jHumain.getM_terrain().transferPokemon(m_jHumain.getM_terrain().getPokemon(index) ,m_jHumain.getM_defausse());
         } else if (nbMortRobot != 0) {
-            AjouterDefausse(m_jRobot, m_jRobot.getM_terrain().getPokemon(index));
+            m_jRobot.getM_terrain().transferPokemon(m_jRobot.getM_terrain().getPokemon(index) ,m_jRobot.getM_defausse());
         }
         placementPokemon(nbMortJ1,nbMortRobot);
 
@@ -225,10 +225,7 @@ public class LeJeu
          return false;
     }
 
-    public void AjouterDefausse(Player joueur,Pokemon pokemon){
-        joueur.getM_terrain().retirerPokemon(pokemon);
-        joueur.getM_defausse().ajouterPokemon(pokemon);
-    }
+
 
     public JoueurHumain getM_jHumain()
     {
