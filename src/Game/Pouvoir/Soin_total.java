@@ -1,4 +1,4 @@
-package Pouvoir;
+package Game.Pouvoir;
 
 import Game.Pokemon;
 

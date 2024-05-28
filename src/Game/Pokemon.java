@@ -1,7 +1,7 @@
 package Game;
 
 import Game.Elements.*;
-import Pouvoir.Pouvoir;
+import Game.Pouvoir.Pouvoir;
 
 public class Pokemon
 {

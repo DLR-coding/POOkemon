@@ -1,8 +1,8 @@
-package Pouvoir;
+package Game.Pouvoir;
 
 import Game.Pokemon;
 
-public class Soin_de_zone implements Pouvoir{
+public class Soin_de_zone implements Pouvoir {
 
     @Override
     public void Activation(Pokemon p) {
