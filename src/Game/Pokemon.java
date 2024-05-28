@@ -3,8 +3,6 @@ package Game;
 import Game.Elements.*;
 import Pouvoir.Pouvoir;
 
-import java.util.ArrayList;
-
 public class Pokemon
 {
     private String m_nom;
@@ -73,6 +71,13 @@ public class Pokemon
     public Element getM_elements() {
         return m_elements;
     }
+
+    public void setM_pouvoir(Pouvoir pouvoir){this.m_pouvoir = pouvoir;   }
+    public Pouvoir getM_pouvoir(){
+        return m_pouvoir;
+    }
+
+
 
 
     public void presenter() {
