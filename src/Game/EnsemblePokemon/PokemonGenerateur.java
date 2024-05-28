@@ -70,7 +70,13 @@ public class PokemonGenerateur {
             // Attribuer le pouvoir sélectionné au Pokémon
             pokemon.setPouvoir(pouvoir);
         }
-        System.out.println("Pokemon crée : " + pokemon.getM_nom() + " atk :" + pokemon.getM_attaque() + "HP : " +  pokemon.getVie() + " Pouvoir : " + pokemon.getM_pouvoir());
+        if (pokemon.getM_pouvoir() != null)
+        {
+            System.out.println("Pokemon crée : " + pokemon.getM_nom() + " atk :" + pokemon.getM_attaque() + "HP : " +  pokemon.getVie() + " Pouvoir : " + pokemon.getM_pouvoir().getNomPouvoir());
+        }
+        else {
+            System.out.println("Pokemon crée : " + pokemon.getM_nom() + " atk :" + pokemon.getM_attaque() + "HP : " +  pokemon.getVie() + " Pouvoir : " + "Aucun");
+        }
         // Retourner le Pokémon généré
         return pokemon;
     }
