@@ -20,4 +20,8 @@ public interface Player {
     Terrain getM_terrain();
 
     void joue(Player adversaire);
+
+
+
+
 }

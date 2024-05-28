@@ -12,9 +12,10 @@ class Joueur
 
 class EnsemblePokemon <<Interface>>
 {
-    + ajouterPokemon(index: Integer, pokemon:Pokemon): Void
+    + ajouterPokemon(index: Integer, pokemon:Pokemon)
     + getPokemon(int index):Pokemon
-    + afficher() : void
+    + afficher()
+
 }
 
 class Defausse implements EnsemblePokemon
@@ -28,27 +29,27 @@ class MainDuJoueur implements EnsemblePokemon
 {
     - m_mainJoueur: Pokemon[5]
     + <<Create>> MainDuJoueur()
-    + ajouterPokemon(index:Integer,pokemon:Pokemon) : void
+    + ajouterPokemon(index:Integer,pokemon:Pokemon)
     + getPokemon(index:Integer): Pokemon
-    + afficher() : void
+    + afficher()
 }
 
 class Terrain implements EnsemblePokemon
 {
     - m_Terrain: Pokemon[3]
     + <<Create>> Pioche(joueur:Integer)
-    + ajouterPokemon(index:Integer,pokemon:Pokemon) : void
+    + ajouterPokemon(index:Integer,pokemon:Pokemon)
     + getPokemon(index:Integer): Pokemon
-    + afficher() : void
+    + afficher()
 }
 
 class Pioche implements EnsemblePokemon
 {
     - m_mainJoueur: Pokemon[]
     + <<Create>> Pioche(joueur:Integer)
-    + ajouterPokemon(index:Integer,pokemon:Pokemon) : void
+    + ajouterPokemon(index:Integer,pokemon:Pokemon)
     + getPokemon(index:Integer): Pokemon
-    + afficher() : void
+    + afficher()
 }
 
 

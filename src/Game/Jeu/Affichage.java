@@ -1,4 +1,4 @@
-package Game;
+package Game.Jeu;
 import Game.EnsemblePokemon.Defausse;
 import Game.EnsemblePokemon.MainDuJoueur;
 import Game.EnsemblePokemon.Pioche;
@@ -12,30 +12,28 @@ import java.util.List;
 public class Affichage {
 
 
-    public Affichage()
-    {
-    }
 
-
-    public void afficherMain(MainDuJoueur main) {
+    static void afficherMain(MainDuJoueur main) {
 
         for (int i = 0; i < main.getNbPokemon(); i++) {
+            System.out.print(i+1 +" : ");
             main.getPokemon(i).presenter();
         }
 
     }
 
-    public void afficherTerrain(Terrain terrain){
+     static void afficherTerrain(Terrain terrain){
 
         afficherPokemon(terrain.getM_terrain());
 
+
     }
 
-    public void afficherDefausse(Defausse defausse){
+     static void afficherDefausse(Defausse defausse){
         System.out.println("defausse:" + defausse.getNombreDePokemons());
     }
 
-    public void afficherPioche(Pioche pioche){
+     static void afficherPioche(Pioche pioche){
         System.out.println("pioche:" + pioche.getNbPokemon());
     }
 
@@ -51,7 +49,7 @@ public class Affichage {
 
 
 
-    private void afficherPokemon(List<Pokemon> pokemons){
+    private static void afficherPokemon(List<Pokemon> pokemons){
         // Afficher la première ligne des cadres
         for (Pokemon p : pokemons) {
             System.out.print("  *--------------------*    ");
@@ -65,17 +63,17 @@ public class Affichage {
         System.out.println();
 
         for (Pokemon p : pokemons) {
-            System.out.printf("  | Vie: %3d/%-8d |    ", p.getVie(), p.getM_vieMax());
+            System.out.printf("  | Vie: %3d/%-8d  |    ", p.getVie(), p.getM_vieMax());
         }
         System.out.println();
 
         for (Pokemon p : pokemons) {
-            System.out.printf("  | Element : %-6s |    ", p.getM_elements());
+            System.out.printf("  | Element : %-6s   |    ", p.getM_elements());
         }
         System.out.println();
 
         for (Pokemon p : pokemons) {
-            System.out.printf("  |     %-12s |    ", p.getM_nom());
+            System.out.printf("  |     %-12s   |    ", p.getM_nom());
         }
         System.out.println();
 
@@ -89,22 +87,31 @@ public class Affichage {
 
 
 
-    public void afficherJeu(JoueurHumain joueur1, RobotPlayer joueur2){
+     static void afficherJeu(LeJeu jeu){
         System.out.println("********************************************************************************");
-        System.out.println("Tour :");
-        System.out.println("Joueur 1");
-        afficherPioche(joueur1.getM_pioche());
-        afficherDefausse(joueur1.getM_defausse());
-        afficherMain(joueur1.getM_main());
-        afficherTerrain(joueur1.getM_terrain());
+         System.out.println("");
+         System.out.println("");
+        System.out.println("Tour :"+ jeu.getM_numTour());
+        System.out.println("Robot");
+        afficherPioche(jeu.getM_jRobot().getM_pioche());
+        afficherDefausse(jeu.getM_jRobot().getM_defausse());
+        afficherMain(jeu.getM_jRobot().getM_main());
+        afficherTerrain(jeu.getM_jRobot().getM_terrain());
+
+         System.out.println("----------------------------------------------------------------------------------------------");
 
 
-        System.out.println("Joueur 2");
-        afficherPioche(joueur1.getM_pioche());
-        afficherDefausse(joueur2.getM_defausse());
-        afficherMain(joueur2.getM_main());
-        afficherTerrain(joueur2.getM_terrain());
+         afficherTerrain(jeu.getM_jHumain().getM_terrain());
+        System.out.println("");
+        System.out.println("Toi");
+        afficherPioche(jeu.getM_jHumain().getM_pioche());
+        afficherDefausse(jeu.getM_jHumain().getM_defausse());
+        System.out.println("");;
+        afficherMain(jeu.getM_jHumain().getM_main());
+
         System.out.println("********************************************************************************");
+
+
     }
 }
 

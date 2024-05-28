@@ -1,6 +1,7 @@
 package Game.Joueur;
 
 import Game.EnsemblePokemon.*;
+import Game.Jeu.Affichage;
 import Game.Pokemon;
 
 import java.util.Scanner;
@@ -66,9 +67,9 @@ public class JoueurHumain implements Player
     @Override
     public void placeSurTerrain(Pokemon pokemon)
     {
-        this.m_main.retirerPokemon(pokemon);
-        this.m_terrain.ajouterPokemon(pokemon);
-        this.piocherPokemon(this.getPokemonFromPioche(this.m_pioche.getNbPokemon()));
+        this.m_main.transferPokemon(pokemon,m_terrain);
+        System.out.println("Joueur repioche pour automatiquement remplir sa main...");
+        piocherPokemon(getPokemonFromPioche(m_pioche.getNbPokemon() - 1));
 
     }
 
@@ -102,13 +103,13 @@ public class JoueurHumain implements Player
     @Override
     public void piocherPokemon(Pokemon pokemon)
     {
-             this.m_pioche.retirerPokemon(pokemon);
-             this.m_main.ajouterPokemon(pokemon);
+             this.m_pioche.transferPokemon(pokemon, m_main);
     }
 
 
 
-    public void joue(Player adversaire) {
+    public void joue(Player adversaire)
+    {
         Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; i < 3; i++) {
@@ -131,15 +132,18 @@ public class JoueurHumain implements Player
                 i--; // Pour redemander le choix pour le même tour
                 continue;
             }
-
-            pokemonJoueur.Attaquer(pokemonAdversaire);
             System.out.println(pokemonJoueur.getM_nom() + " attaque " + pokemonAdversaire.getM_nom() + " !");
+            pokemonJoueur.Attaquer(pokemonAdversaire);
         }
+
+
+
     }
+
+
     public Pioche getM_pioche() {
         return m_pioche;
     }
-// commentaire test
 
 }
 
