@@ -1,10 +1,7 @@
 package Game;
 
 import Game.Elements.*;
-import Pouvoir.Pouvoir;
-import Game.Jeu.Affichage;
-
-import java.util.ArrayList;
+import Game.Pouvoir.Pouvoir;
 
 public class Pokemon
 {
@@ -16,11 +13,8 @@ public class Pokemon
     private int m_vieMax;
     private Pouvoir m_pouvoir;
 
-    public Pokemon(String nom){
-        m_nom = nom;
-    }
 
-    public Pokemon(String nom, Element elements, int vie, int attaque )
+    public Pokemon(String nom, Element elements, int vie, int attaque)
     {
         m_nom = nom;
         m_elements = elements;
@@ -28,11 +22,10 @@ public class Pokemon
         m_attaque = attaque;
         m_vieMax = vie;
         m_pouvoir = null;
-
     }
 
 
-    public void Attaquer(Pokemon blesser)
+    public void attaquer(Pokemon blesser)
     {
         int attaque = 0;
         if (m_elements.getFortContre() == blesser.m_elements.toString()) {
@@ -86,4 +79,11 @@ public class Pokemon
         return m_vieMax;
     }
 
+    public void setPouvoir(Pouvoir pouvoir) {
+        this.m_pouvoir = pouvoir;
+    }
+    public Pouvoir getM_pouvoir()
+    {
+        return this.m_pouvoir;
+    }
 }

@@ -2,13 +2,17 @@ package Game.EnsemblePokemon;
 
 import Game.Elements.*;
 import Game.Pokemon;
+import Game.Pouvoir.Ferveur_guerrière;
+import Game.Pouvoir.Pouvoir;
+import Game.Pouvoir.Soin_simple;
+import Game.Pouvoir.Soin_total;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class ListePokemon {
+public class PokemonGenerateur {
 
 
     static final List<String> listeNomsPokemon = new ArrayList<>(Arrays.asList(
@@ -19,6 +23,9 @@ public class ListePokemon {
             "Raichu", "Sabelette", "Sablaireau", "Nidoran♀", "Nidorina", "Nidoqueen",
             "Nidoran♂", "Nidorino", "Nidoking", "Mélofée", "Mélodelfe", "Goupix",
             "Feunard", "Rondoudou", "Grodoudou", "Nosferapti"));
+
+    static final List<Pouvoir> listePouvoirs = new ArrayList<>(Arrays.asList(
+            new Ferveur_guerrière(),new Soin_simple() , new Soin_total()));
 
     static Pokemon genererPokemon() {
         Random randomNumbers = new Random();
@@ -44,8 +51,28 @@ public class ListePokemon {
         else if (ele == 4) {elements = new Air();}
         else {elements = null;}
 
-        // Créer et retourner un nouveau Pokémon avec les valeurs générées
-        return new Pokemon(nomPokemon, elements, vie, attaque);
+        // Créer le Pokémon avec les valeurs générées
+        Pokemon pokemon = new Pokemon(nomPokemon, elements, vie, attaque);
+        if (listePouvoirs.isEmpty()) {
+            System.out.println("le ListPouvoir est vide");
+        }
+        if (!listePouvoirs.isEmpty()) {
+
+            // Générer un index aléatoire pour sélectionner un pouvoir
+            int indexPouvoir = randomNumbers.nextInt(listePouvoirs.size());
+            System.out.println("il y a " + listePouvoirs.size() + " pouvoirs");
+            // Sélectionner le pouvoir à l'index généré
+            Pouvoir pouvoir = listePouvoirs.get(indexPouvoir);
+
+            // Supprimer le pouvoir sélectionné de la liste
+            listePouvoirs.remove(indexPouvoir);
+
+            // Attribuer le pouvoir sélectionné au Pokémon
+            pokemon.setPouvoir(pouvoir);
+        }
+        System.out.println("Pokemon crée : " + pokemon.getM_nom() + " atk :" + pokemon.getM_attaque() + "HP : " +  pokemon.getVie() + " Pouvoir : " + pokemon.getM_pouvoir());
+        // Retourner le Pokémon généré
+        return pokemon;
     }
 
 

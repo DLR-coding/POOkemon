@@ -99,7 +99,7 @@ public class RobotPlayer implements Player
         {
             Pokemon cible = choisirCible(adversaire.getM_terrain(), attaquant);
             if (cible != null) {
-                attaquant.Attaquer(cible);
+                attaquant.attaquer(cible);
                 System.out.println(attaquant.getM_nom() + " attaque " + cible.getM_nom() + " !");
             }
         }

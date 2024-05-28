@@ -226,36 +226,6 @@ public class LeJeu
     }
 
 
-    /*
-    public void verifMort(){
-         int nbMortJ1 = 0;
-        int nbMortRobot = 0;
-        int index = 0;
-        for(int i = 0; i < 3 ;i++){
-            boolean Mort;
-            Mort = PokemonMort(m_jHumain.getM_terrain().getPokemon(i));
-            if(Mort == true){
-               nbMortJ1 = 1;
-                index = i ;
-            }
-            Mort = PokemonMort(m_jRobot.getM_terrain().getPokemon(i));
-            if(Mort == true){
-                nbMortRobot = 1;
-                index = i;
-            }
-        }
-        if(nbMortJ1 !=0) {
-            AjouterDefausse(m_jHumain, m_jHumain.getM_terrain().getPokemon(index));
-        } else if (nbMortRobot != 0) {
-            AjouterDefausse(m_jRobot, m_jRobot.getM_terrain().getPokemon(index));
-        }
-        if(nbMortJ1 != 0) {
-            placementPokemon(nbMortJ1, nbMortRobot);
-        } else if (nbMortRobot != 0) {
-            placementPokemon(nbMortJ1, nbMortRobot);
-        }
-    }
-    */
 
     public JoueurHumain getM_jHumain()
     {

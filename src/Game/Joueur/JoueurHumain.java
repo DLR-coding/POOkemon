@@ -1,7 +1,6 @@
 package Game.Joueur;
 
 import Game.EnsemblePokemon.*;
-import Game.Jeu.Affichage;
 import Game.Pokemon;
 
 import java.util.Scanner;
@@ -133,7 +132,7 @@ public class JoueurHumain implements Player
                 continue;
             }
             System.out.println(pokemonJoueur.getM_nom() + " attaque " + pokemonAdversaire.getM_nom() + " !");
-            pokemonJoueur.Attaquer(pokemonAdversaire);
+            pokemonJoueur.attaquer(pokemonAdversaire);
         }
 
 
