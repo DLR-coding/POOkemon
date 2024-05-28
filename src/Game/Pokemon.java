@@ -93,4 +93,14 @@ public class Pokemon
     {
         return this.m_pouvoir;
     }
+
+    public String getNom_pouvoir()
+    {
+        if (m_pouvoir != null) {
+            String nomPouvoir = m_pouvoir.getNom();
+            return nomPouvoir;
+        } else {
+            return "Aucun";
+        }
+    }
 }

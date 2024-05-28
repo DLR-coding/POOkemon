@@ -4,6 +4,5 @@ import Game.Pokemon;
 
 public interface Pouvoir {
     void activatePouvoir(Pokemon p);
-    String getNomPouvoir();
-
+    String getNom();
 }

@@ -73,17 +73,12 @@ public class Affichage {
         System.out.println();
 
         for (Pokemon p : pokemons) {
-            System.out.printf("  | Pouvoir: %-10s|    ", p.getM_pouvoir());
+            System.out.printf("  | Pouvoir: %-10s|    ", p.getNom_pouvoir());
         }
         System.out.println();
 
         for (Pokemon p : pokemons) {
             System.out.printf("  |     %-12s   |    ", p.getM_nom());
-        }
-        System.out.println();
-
-        for (Pokemon p : pokemons) {
-            System.out.printf("  |     %-6s   |    ", p.getM_pouvoir());
         }
         System.out.println();
 

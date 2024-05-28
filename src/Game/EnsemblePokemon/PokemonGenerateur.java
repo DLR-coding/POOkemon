@@ -2,11 +2,7 @@ package Game.EnsemblePokemon;
 
 import Game.Elements.*;
 import Game.Pokemon;
-import Game.Pouvoir.Ferveur_guerrière;
-import Game.Pouvoir.Pouvoir;
-import Game.Pouvoir.Soin_simple;
-import Game.Pouvoir.Soin_total;
-
+import Game.Pouvoir.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -70,13 +66,9 @@ public class PokemonGenerateur {
             // Attribuer le pouvoir sélectionné au Pokémon
             pokemon.setPouvoir(pouvoir);
         }
-        if (pokemon.getM_pouvoir() != null)
-        {
-            System.out.println("Pokemon crée : " + pokemon.getM_nom() + " atk :" + pokemon.getM_attaque() + "HP : " +  pokemon.getVie() + " Pouvoir : " + pokemon.getM_pouvoir().getNomPouvoir());
-        }
-        else {
-            System.out.println("Pokemon crée : " + pokemon.getM_nom() + " atk :" + pokemon.getM_attaque() + "HP : " +  pokemon.getVie() + " Pouvoir : " + "Aucun");
-        }
+            System.out.println("Pokemon crée : " + pokemon.getM_nom() + " atk :" + pokemon.getM_attaque() + "HP : " +  pokemon.getVie() + " Pouvoir : " + pokemon.getNom_pouvoir());
+
+
         // Retourner le Pokémon généré
         return pokemon;
     }
