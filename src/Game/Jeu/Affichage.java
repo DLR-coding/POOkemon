@@ -50,6 +50,7 @@ public class Affichage {
 
 
     private static void afficherPokemon(List<Pokemon> pokemons){
+
         // Afficher la première ligne des cadres
         for (Pokemon p : pokemons) {
             System.out.print("  *--------------------*    ");
@@ -73,7 +74,11 @@ public class Affichage {
         System.out.println();
 
         for (Pokemon p : pokemons) {
-            System.out.printf("  | Pouvoir: %-10s|    ", p.getM_pouvoir());
+            String pouvoir = "nul";
+            if (p.getM_pouvoir() != null) {
+                 pouvoir = p.getM_pouvoir().getNomPouvoir() ;
+            }
+            System.out.printf("  | Pouvoir: %-10s|    ",pouvoir );
         }
         System.out.println();
 

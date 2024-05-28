@@ -1,7 +1,6 @@
 package Game.Joueur;
 
 import Game.EnsemblePokemon.*;
-import Game.Jeu.Affichage;
 import Game.Pokemon;
 
 import java.util.Scanner;
@@ -67,8 +66,7 @@ public class JoueurHumain implements Player
     @Override
     public void placeSurTerrain(Pokemon pokemon)
     {
-        this.m_main.retirerPokemon(pokemon);
-        this.m_terrain.ajouterPokemon(pokemon);
+        this.m_main.transferPokemon(pokemon,m_terrain);
         System.out.println("Joueur repioche pour automatiquement remplir sa main...");
         piocherPokemon(getPokemonFromPioche(m_pioche.getNbPokemon() - 1));
 
@@ -104,8 +102,7 @@ public class JoueurHumain implements Player
     @Override
     public void piocherPokemon(Pokemon pokemon)
     {
-             this.m_pioche.retirerPokemon(pokemon);
-             this.m_main.ajouterPokemon(pokemon);
+        this.m_pioche.transferPokemon(pokemon, m_main);
     }
 
 
@@ -135,7 +132,7 @@ public class JoueurHumain implements Player
                 continue;
             }
             System.out.println(pokemonJoueur.getM_nom() + " attaque " + pokemonAdversaire.getM_nom() + " !");
-            pokemonJoueur.Attaquer(pokemonAdversaire);
+            pokemonJoueur.attaquer(pokemonAdversaire);
         }
 
 

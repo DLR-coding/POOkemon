@@ -1,7 +1,8 @@
 package Game;
 
 import Game.Elements.*;
-import Pouvoir.Pouvoir;
+//import Game.Pouvoir.Pouvoir;
+import Game.Pouvoirs.Pouvoir;
 
 public class Pokemon
 {
@@ -9,14 +10,12 @@ public class Pokemon
     private Element m_elements;
     private int m_vie;
     private int m_attaque;
+
     private int m_vieMax;
     private Pouvoir m_pouvoir;
 
-    public Pokemon(String nom){
-        m_nom = nom;
-    }
 
-    public Pokemon(String nom, Element elements, int vie, int attaque )
+    public Pokemon(String nom, Element elements, int vie, int attaque)
     {
         m_nom = nom;
         m_elements = elements;
@@ -24,11 +23,10 @@ public class Pokemon
         m_attaque = attaque;
         m_vieMax = vie;
         m_pouvoir = null;
-
     }
 
 
-    public void Attaquer(Pokemon blesser)
+    public void attaquer(Pokemon blesser)
     {
         int attaque = 0;
         if (m_elements.getFortContre() == blesser.m_elements.toString()) {
@@ -72,16 +70,13 @@ public class Pokemon
         return m_elements;
     }
 
-    public void setM_pouvoir(Pouvoir pouvoir){this.m_pouvoir = pouvoir;   }
-    public Pouvoir getM_pouvoir(){
-        return m_pouvoir;
-    }
-
-
-
 
     public void presenter() {
-        String Presenter = m_nom + " :  element - " + m_elements.toString() + ", Vie : " + m_vie + ", Atk : " + m_attaque;
+        String pouvoir = "nul";
+        if(m_pouvoir != null){
+         pouvoir = m_pouvoir.getNomPouvoir();
+        }
+        String Presenter = m_nom + " :  element - " + m_elements.toString() + ", Vie : " + m_vie + ", Atk : " + m_attaque + " Pouvoir : " + pouvoir;
         System.out.println(Presenter);
     }
 
@@ -89,4 +84,12 @@ public class Pokemon
         return m_vieMax;
     }
 
+    public void setPouvoir(Pouvoir pouvoir) {
+        this.m_pouvoir = pouvoir;
+    }
+
+    public Pouvoir getM_pouvoir()
+    {
+        return this.m_pouvoir;
+    }
 }

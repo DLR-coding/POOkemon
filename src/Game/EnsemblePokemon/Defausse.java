@@ -17,16 +17,6 @@ public class Defausse implements EnsemblePokemon{
         return m_defausse.size();
     }
 
-    /*
-        public List<Pokemon> getM_pokemons() {
-            return m_pokemons;
-        }
-    */
-    @Override
-    public void ajouterPokemon(Pokemon p)
-    {
-        m_defausse.add(p);
-    }
 
     @Override
     public Pokemon getPokemon(int index) {
@@ -34,10 +24,16 @@ public class Defausse implements EnsemblePokemon{
     }
 
 
+
+
     @Override
-    public void retirerPokemon(Pokemon pokemon) {
-        // je ne sais pas trop quel serait l'utilité de cette méthode ici (potentiel REVIVE SKILL ?)
-        m_defausse.remove(pokemon);
+    public void transferPokemon(Pokemon pokemon, EnsemblePokemon destination) {
+        if (!destination.getEnsemble().contains(pokemon) && this.getEnsemble().contains(pokemon)) {
+            destination.getEnsemble().add(pokemon);
+            this.getEnsemble().remove(pokemon);
+        } else {
+            System.out.println("Le Pokémon invalide : déjà dans destination/pas dans source.");
+        }
     }
 
     @Override
@@ -48,6 +44,11 @@ public class Defausse implements EnsemblePokemon{
     @Override
     public int getNbPokemon() {
         return m_defausse.size();
+    }
+
+    @Override
+    public List<Pokemon> getEnsemble() {
+        return m_defausse;
     }
 }
 

@@ -9,6 +9,7 @@ import Game.Joueur.Player;
 import Game.Joueur.RobotPlayer;
 import Game.Jeu.Affichage;
 import Game.Pokemon;
+import Game.Pouvoirs.Pouvoir;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -86,12 +87,24 @@ public class LeJeu
         if (tour % 2 != 0)
         { // Si le tour est impair, c'est le joueur 1 qui joue
             if (m_jHumain.isJoueur1()) {
+                for(int i = 0 ; i < 3 ;i++){
+                    if(m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir() != null){
+                        System.out.println(m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir());
+                        UtilisePouvoir(m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir(),m_jHumain.getM_terrain().getPokemon(i));
+                    }
+                }
                 m_jHumain.joue(m_jRobot);
                 m_jRobot.joue(m_jHumain);
             }
             else if (m_jRobot.isJoueur1())
             {
                 m_jRobot.joue(m_jHumain);
+                for(int i = 0 ; i < 3 ;i++){
+                    if(m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir() != null){
+                        System.out.println(m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir());
+                        UtilisePouvoir(m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir(),m_jHumain.getM_terrain().getPokemon(i));
+                    }
+                }
                 m_jHumain.joue(m_jRobot);
             }
         }
@@ -99,10 +112,21 @@ public class LeJeu
         { // Si le tour est pair, c'est le joueur 2 qui joue
             if (m_jHumain.isJoueur1()) {
                 m_jRobot.joue(m_jHumain);
+                for(int i = 0 ; i < 3 ;i++){
+                    if(m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir() != null){
+                        UtilisePouvoir(m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir(),m_jHumain.getM_terrain().getPokemon(i));
+                    }
+                }
                 m_jHumain.joue(m_jRobot);
+
             }
             else if (m_jRobot.isJoueur1())
             {
+                for(int i = 0 ; i < 3 ;i++){
+                    if(m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir() != null){
+                        UtilisePouvoir(m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir(),m_jHumain.getM_terrain().getPokemon(i));
+                    }
+                }
                 m_jHumain.joue(m_jRobot);
                 m_jRobot.joue(m_jHumain);
             }
@@ -207,10 +231,6 @@ public class LeJeu
          return false;
     }
 
-    public void AjouterDefausse(Player joueur,Pokemon pokemon){
-        joueur.getM_terrain().retirerPokemon(pokemon);
-        joueur.getM_defausse().ajouterPokemon(pokemon);
-    }
 
     public void verifMort(){
          int nbMortJ1 = 0;
@@ -230,15 +250,22 @@ public class LeJeu
             }
         }
         if(nbMortJ1 !=0) {
-            AjouterDefausse(m_jHumain, m_jHumain.getM_terrain().getPokemon(index));
+            m_jHumain.getM_terrain().transferPokemon(m_jHumain.getM_terrain().getPokemon(index) ,m_jHumain.getM_defausse());
         } else if (nbMortRobot != 0) {
-            AjouterDefausse(m_jRobot, m_jRobot.getM_terrain().getPokemon(index));
+            m_jRobot.getM_terrain().transferPokemon(m_jRobot.getM_terrain().getPokemon(index) ,m_jRobot.getM_defausse());
         }
-        if(nbMortJ1 != 0) {
-            placementPokemon(nbMortJ1, nbMortRobot);
-        } else if (nbMortRobot != 0) {
-            placementPokemon(nbMortJ1, nbMortRobot);
+        placementPokemon(nbMortJ1, nbMortRobot);
+
+    }
+
+    public void UtilisePouvoir(Pouvoir pouvoir,Pokemon p){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Veut tu utiliser le pouvoir : " + pouvoir.getNomPouvoir() +" y/n");
+            String confirm = scanner.nextLine();
+        if(confirm.equals("y")) {  // Utilisation de equals pour comparer le contenu des chaînes
+            pouvoir.activatePouvoir(p);
         }
+
     }
 
     public JoueurHumain getM_jHumain()

@@ -16,12 +16,6 @@ public class MainDuJoueur implements EnsemblePokemon
     }
 
 
-    @Override
-    public void ajouterPokemon(Pokemon pokemon)
-    {
-            m_mainJoueur.add(pokemon);
-
-    }
 
     @Override
     public Pokemon getPokemon(int index) {
@@ -36,8 +30,14 @@ public class MainDuJoueur implements EnsemblePokemon
 
 
     @Override
-    public void retirerPokemon(Pokemon pokemon) {
-        m_mainJoueur.remove(pokemon);
+    public void transferPokemon(Pokemon pokemon, EnsemblePokemon destination) {
+        if (!destination.getEnsemble().contains(pokemon) && this.getEnsemble().contains(pokemon)) {
+            destination.getEnsemble().add(pokemon);
+            this.getEnsemble().remove(pokemon);
+        } else {
+            System.out.println("Le Pokémon invalide : déjà dans destination/pas dans source.");
+        }
+
     }
 
     @Override
@@ -48,6 +48,11 @@ public class MainDuJoueur implements EnsemblePokemon
     @Override
     public int getNbPokemon() {
         return m_mainJoueur.size();
+    }
+
+    @Override
+    public List<Pokemon> getEnsemble() {
+        return m_mainJoueur;
     }
 
 }
