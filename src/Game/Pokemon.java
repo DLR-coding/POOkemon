@@ -1,6 +1,7 @@
 package Game;
 
 import Game.Elements.*;
+import Pouvoir.Pouvoir;
 
 import java.util.ArrayList;
 
@@ -10,8 +11,8 @@ public class Pokemon
     private Element m_elements;
     private int m_vie;
     private int m_attaque;
-
     private int m_vieMax;
+    private Pouvoir m_pouvoir;
 
     public Pokemon(String nom){
         m_nom = nom;
@@ -24,6 +25,7 @@ public class Pokemon
         m_vie = vie ;
         m_attaque = attaque;
         m_vieMax = vie;
+        m_pouvoir = null;
 
     }
 
@@ -53,10 +55,17 @@ public class Pokemon
         return this.m_vie;
     }
 
+    public void setVie(int vie) {
+        this.m_vie = vie;
+    }
+
     public int getM_attaque() {
         return m_attaque;
     }
 
+    public void setM_attaque(int attaque) {
+        this.m_attaque = attaque;
+    }
     public String getM_nom() {
         return m_nom;
     }

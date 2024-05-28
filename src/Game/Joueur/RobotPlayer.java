@@ -6,6 +6,10 @@ import Game.EnsemblePokemon.Pioche;
 import Game.EnsemblePokemon.Terrain;
 import Game.Pokemon;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class RobotPlayer implements Player
 {
     private String m_nom;
@@ -59,6 +63,10 @@ public class RobotPlayer implements Player
     public void placeSurTerrain(Pokemon pokemon) {
         m_main.retirerPokemon(pokemon);
         m_terrain.ajouterPokemon(pokemon);
+        System.out.println("Robot repioche pour automatiquement remplir sa main...");
+        piocherPokemon(getPokemonFromPioche(m_pioche.getNbPokemon() - 1));
+
+
     }
 
     @Override
@@ -82,27 +90,50 @@ public class RobotPlayer implements Player
     }
 
     @Override
-    public void joue(Player humain)
-    {
+    public void joue(Player adversaire) {
 
-        // Parcourir les pokemons du joueur
-        for (int i= 0; i < humain.getM_terrain().getNbPokemon() ; i++) {
-            Pokemon pokemonOrdi = m_terrain.getPokemon(i);
+        Random rand = new Random();
+        int index = rand.nextInt(m_terrain.getNbPokemon());
+        Pokemon attaquant = m_terrain.getPokemon(index);
 
-            for (int j= 0; j < humain.getM_terrain().getNbPokemon() ; j++) {
-                Pokemon pokemonJoueur = humain.getM_terrain().getPokemon(i);
-                // Vérifier l'avantage de l'affinité du pokemonOrdinateur sur l'affinité du pokemonJoueur
-                if (pokemonOrdi.getM_elements().equals(pokemonJoueur.getM_elements().getFaibleContre()) )
-                {
-                    // Renvoie le pokemonJoueur avec un désavantage
 
-                }
+        for (int i = 0 ; i < adversaire.getM_terrain().getNbPokemon(); i++)
+        {
+            Pokemon cible = choisirCible(adversaire.getM_terrain(), attaquant);
+            if (cible != null) {
+                attaquant.Attaquer(cible);
+                System.out.println(attaquant.getM_nom() + " attaque " + cible.getM_nom() + " !");
             }
-
         }
-        // Renvoie null si aucun pokemonJoueur avec un désavantage n'est trouvé
+    }
 
+    private Pokemon choisirCible(Terrain adversairePokemons, Pokemon attaquant) {
+        List<Pokemon> ciblesPotentielles = new ArrayList<>();
 
+        // Pokemon avec désavantage d'élément
+        for (int i = 0 ; i < adversairePokemons.getNbPokemon(); i++) {
+            if (attaquant.getM_elements().getFortContre().equals((adversairePokemons.getPokemon(i).getM_elements().getFaibleContre())))
+            {
+                ciblesPotentielles.add(adversairePokemons.getPokemon(i));
+            }
+        }
+
+        // Pokemon avec le moins de PV
+        if (ciblesPotentielles.isEmpty()) {
+            for (int i = 0 ; i < adversairePokemons.getNbPokemon(); i++) {
+                ciblesPotentielles.add(adversairePokemons.getPokemon(i));
+            }
+        }
+        Pokemon cibleChoisie = ciblesPotentielles.get(0);
+        for (Pokemon p : ciblesPotentielles) {
+            Random randomBool = new Random();
+            if (p.getVie() < cibleChoisie.getVie()) {
+                cibleChoisie = p;
+            } else if (p.getVie() == cibleChoisie.getVie() && randomBool.nextBoolean()) {
+                cibleChoisie = p;
+            }
+        }
+        return cibleChoisie;
     }
 
     public void setPioche(Pioche pioche) {

@@ -20,6 +20,7 @@ public class Pioche implements EnsemblePokemon {
         List<Pokemon> pioche = new ArrayList<>();
         for (int i = 0; i < nombreDePokemons; i++) {
             pioche.add(ListePokemon.genererPokemon());
+
         }
 
         m_pioche = pioche;

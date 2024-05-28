@@ -53,8 +53,9 @@ package Game
                         {
                             + ajouterPokemon(pokemon:Pokemon): Void
                             + getPokemon(index:Integer):Pokemon
-                            + afficher() : void
                             + retirerPokemon((pokemon:Pokemon):void
+                            +getPokemonByName(name : String) :Pokemon
+                            +getNbPokmon() : Integer
                         }
         class  ListePokemon <<static>>
         {
@@ -66,10 +67,12 @@ package Game
             {
                 - m_defausse : Pokemon[*]
                 + <<Create>> Defausse()
+                +getNombreDePokemons() : Integer
                 + ajouterPokemon(pokemon:Pokemon): Void
                 + getPokemon(index:Integer):Pokemon
                 + retirerPokemon((pokemon:Pokemon):void
-                + afficher() : void
+                +getPokemonByName(name : String) : Pokemon
+                +getNbPokmon() : Integer
             }
 
         class MainDuJoueur implements EnsemblePokemon
@@ -79,7 +82,8 @@ package Game
                 + ajouterPokemon(pokemon:Pokemon): Void
                 + getPokemon(index:Integer):Pokemon
                 + retirerPokemon((pokemon:Pokemon):void
-                + afficher() : void
+                +GetPokemonByName(name : String) : Pokemon
+                +getNbPokmon() : Integer
             }
 
         class Terrain implements EnsemblePokemon
@@ -88,8 +92,9 @@ package Game
                 + <<Create>> Terrain()
                 + ajouterPokemon(pokemon:Pokemon) : void
                 + getPokemon(index:Integer): Pokemon
-                + afficher() : void
                 + retirerPokemon(pokemon:Pokemon) : void
+                + getPokemonByName(name : String) : Pokemon
+                + getM_terrain() : ListePokemon
                 + getPokemonAvecLeMoinsDeVie() : Pokemon
             }
 
@@ -100,8 +105,9 @@ package Game
                 + <<Create>> Pioche(nbpokemon:Integer)
                 + ajouterPokemon(pokemon:Pokemon) : void
                 + retirerPokemon(pokemon:Pokemon) : void
+                + getPokemonByName (name : String) : Pokemon
                 + getPokemon(index:Integer): Pokemon
-                + afficher() : void
+                + getNbPokmon() : Integer
             }
     }
 
@@ -114,42 +120,74 @@ package Game
                                     + GetPokemonFromPioche(index:Integer) : Pokemon
                                     + piocherPokemon(pokemon:Pokemon):void
                                     + placeSurTerrain(pokemon:Pokemon):void
+                                    + getM_defausse() : Defausse
+                                    + getM_main() : MainDuJoueur
+                                    + getM_nom() : String
+                                    + getM_terrain : Terrain
+                                    + joue(adversaire : Player) : void
                                 }
         class JoueurHumain implements Player
                     {
                         - m_nom : String
                         - m_joueur1 : Boolean
+                        - m_main : MainDuJoueur
+                        - m_pioche : Pioche
+                        - m_terrain : Terrain
+                        - m_defausse : Defausse
                         + <<Create>> Joueur(nom: String)
                         + GetPokemonFromPioche(index:Integer) : Pokemon
                         + piocherPokemon(pokemon:Pokemon):void
                         + placeSurTerrain(pokemon:Pokemon):void
-                        + afficherPioche(): void
-                        + afficherMain(): void
+                        + getM_defausse() : Defausse
+                        + getM_main() : MainDuJoueur
+                        + getM_nom() : String
+                        + getM_terrain() : Terrain
+                        + isJoueur1() : Boolean
+                        + setPioche(pioche : Pioche) : void
+                        + setJoueur1(bool Boolean) : void
+                        + joue(adversaire : Player) : void
+                        + getM_pioche() : Pioche
                     }
         class RobotPlayer implements Player
                             {
-                                - m_nom : String
-                                - m_joueur1 : Boolean
-                                + <<Create>> RobotPlayer(nom: String)
-                                + GetPokemonFromPioche(index:Integer) : Pokemon
-                                + piocherPokemon(pokemon:Pokemon):void
-                                + placeSurTerrain(pokemon:Pokemon):void
-                                + afficherPioche(): void
-                                + afficherMain(): void
+                               - m_nom : String
+                                                       - m_joueur1 : Boolean
+                                                       - m_main : MainDuJoueur
+                                                       - m_pioche : Pioche
+                                                       - m_terrain : Terrain
+                                                       - m_defausse : Defausse
+                                                       + <<Create>> RobotPlayer(nom: String)
+                                                       + GetPokemonFromPioche(index:Integer) : Pokemon
+                                                       + piocherPokemon(pokemon:Pokemon):void
+                                                       + placeSurTerrain(pokemon:Pokemon):void
+                                                       + getM_defausse() : Defausse
+                                                       + getM_main() : MainDuJoueur
+                                                       + getM_nom() : String
+                                                       + getM_terrain() : Terrain
+                                                       + isJoueur1() : Boolean
+                                                       + setPioche(pioche : Pioche) : void
+                                                       + choisirCible(adversairePokemon : Terrain, attaquant : Pokemon) : Pokemon
+                                                       + joue(adversaire : Player) : void
+                                                       + getM_pioche() : Pioche
                             }
     }
 
     class Pokemon
     {
         - m_nom: String
-        - m_health : int
-        - m_atk : int
+        - m_health : Integer
+        - m_atk : Integer
+        - m_vieMax : Integer
+        - m_elements : Element
         + <<Create>> Pokemon(nom: String)
+        + <<Create>> Pokemon(nom: String,elements : Element,vie : Integer,attaque Integer)
         + Attaquer() : Void
-        + getVie() : int
-        + getM_attaque() : int
+        + getVie() : Integer
+        + getM_attaque() : Integer
         + getNom() : String
+        + getM_elements() : Element
         + presenter() : void
+        + getM_vieMax() : Integer
     }
 
     package Jeu
@@ -159,21 +197,31 @@ package Game
             - m_jHumain : JoueurHumain
             - m_jRobot : RobotPlayer
             - m_numTour : Integer
+            - m_arret : Boolean
             + <<Create>> LeJeu(humain:JoueurHumain , robot : RobotPlayer)
             + Lunch(humain:Game.JoueurHumain) : void
             + MainJoueurs(tailleMain: Integer)
             + choix1erJoueur() : void
             + piochesJoueurs() : void
             + placementPokemon() : void
-
+            + verifierFinJeu() : void
+            + nbPokemonRestans(joueur Player) : Integer
+            + tousPokemonsElimines(joueur Player) : Boolean
+            + phaseAttaquer( tour : Integer) : void
+            + PokemonMort(pokemon:Pokemon) : Boolean
+            + AjouterDefausse(joueur : Player,pokemon Pokemon) : void
+            + getM_jHumain() : JoueurHumain
+            + getM_jRobot() : RobotPlayer
+            + grtM_numTour() : Integer
         }
         abstract Affichage
         {
-            + afficherJeu() : String
-            + afficherMain(): String
-            + afficherTerrain() : String
-            + afficherPioche() : String
-            +
+            + afficherJeu(jeu : LeJeu) : Void
+            + afficherMain(main : MainDuJoeur): Void
+            + afficherTerrain(terrain : Terrain) : Void
+            + afficherPioche(pioche : Pioche) : Void
+            + afficherDefausse(defausse : Defausse) : Void
+            + afficherPokemon(pokemons : ListePokemon) : Void
         }
     }
 
