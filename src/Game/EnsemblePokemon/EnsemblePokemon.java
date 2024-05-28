@@ -2,16 +2,15 @@ package Game.EnsemblePokemon;
 
 import Game.Pokemon;
 
+import java.util.List;
+
 public interface EnsemblePokemon
 {
-        void ajouterPokemon(Pokemon pokemon);
-
         Pokemon getPokemon(int index);
 
-
-        void retirerPokemon(Pokemon pokemon) ;
-
+        void transferPokemon(Pokemon pokemon , EnsemblePokemon destination);
         Pokemon getPokemonByName(String name);
         int getNbPokemon();
+        List<Pokemon> getEnsemble();
 
 }

@@ -1,5 +1,4 @@
 package Game.EnsemblePokemon;
-import Game.Joueur.JoueurHumain;
 import Game.Pokemon;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class Pioche implements EnsemblePokemon {
     {
         List<Pokemon> pioche = new ArrayList<>();
         for (int i = 0; i < nombreDePokemons; i++) {
-            pioche.add(ListePokemon.genererPokemon());
+            pioche.add(PokemonGenerateur.genererPokemon());
 
         }
 
@@ -27,15 +26,8 @@ public class Pioche implements EnsemblePokemon {
     }
 
 
-    @Override
-    public void ajouterPokemon(Pokemon p)
-    {
-        m_pioche.add(p);
-    }
 
-    public void retirerPokemon(Pokemon p) {
-        m_pioche.remove(p);
-    }
+
 
     @Override
     public Pokemon getPokemonByName(String name) {
@@ -52,11 +44,25 @@ public class Pioche implements EnsemblePokemon {
         }
     }
 
+    @Override
+    public void transferPokemon(Pokemon pokemon, EnsemblePokemon destination) {
+        if (!destination.getEnsemble().contains(pokemon) && this.getEnsemble().contains(pokemon)) {
+            destination.getEnsemble().add(pokemon);
+            this.getEnsemble().remove(pokemon);
+        } else {
+            System.out.println("Le Pokémon invalide : déjà dans destination/pas dans source.");
+        }
+    }
 
 
     public int getNbPokemon()
     {
         return m_pioche.size();
+    }
+
+    @Override
+    public List<Pokemon> getEnsemble() {
+        return m_pioche;
     }
 }
 

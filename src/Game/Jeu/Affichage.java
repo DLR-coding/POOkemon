@@ -82,6 +82,11 @@ public class Affichage {
         }
         System.out.println();
 
+        for (Pokemon p : pokemons) {
+            System.out.printf("  |     %-6s   |    ", p.getM_pouvoir());
+        }
+        System.out.println();
+
         // Afficher la dernière ligne des cadres
         for (Pokemon p : pokemons) {
             System.out.print("  *--------------------*    ");
@@ -94,6 +99,8 @@ public class Affichage {
 
      static void afficherJeu(LeJeu jeu){
         System.out.println("********************************************************************************");
+         System.out.println("");
+         System.out.println("");
         System.out.println("Tour :"+ jeu.getM_numTour());
         System.out.println("Robot");
         afficherPioche(jeu.getM_jRobot().getM_pioche());
@@ -101,17 +108,20 @@ public class Affichage {
         afficherMain(jeu.getM_jRobot().getM_main());
         afficherTerrain(jeu.getM_jRobot().getM_terrain());
 
+         System.out.println("----------------------------------------------------------------------------------------------");
 
+
+         afficherTerrain(jeu.getM_jHumain().getM_terrain());
+        System.out.println("");
         System.out.println("Toi");
         afficherPioche(jeu.getM_jHumain().getM_pioche());
         afficherDefausse(jeu.getM_jHumain().getM_defausse());
+        System.out.println("");;
         afficherMain(jeu.getM_jHumain().getM_main());
-        afficherTerrain(jeu.getM_jHumain().getM_terrain());
-         System.out.println("");
-         System.out.println("");
+
         System.out.println("********************************************************************************");
-        System.out.println("");
-        System.out.println("");
+
+
     }
 }
 
