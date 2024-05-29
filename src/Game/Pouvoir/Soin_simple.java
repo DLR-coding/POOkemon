@@ -12,7 +12,7 @@ public class Soin_simple implements Pouvoir {
     }
 
     @Override
-    public String getNomPouvoir() {
+    public String getNom() {
         return "Soin_simple";
     }
 

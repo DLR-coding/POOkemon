@@ -78,7 +78,7 @@ public class Pokemon
 
 
     public void presenter() {
-        String Presenter = m_nom + " :  element - " + m_elements.toString() + ", Vie : " + m_vie + ", Atk : " + m_attaque;
+        String Presenter = m_nom + " :  element - " + m_elements.getElmnt() + ", Vie : " + m_vie + ", Atk : " + m_attaque;
         System.out.println(Presenter);
     }
 
@@ -88,10 +88,6 @@ public class Pokemon
 
     public void setPouvoir(Pouvoir pouvoir) {
         this.m_pouvoir = pouvoir;
-    }
-    public Pouvoir getM_pouvoir()
-    {
-        return this.m_pouvoir;
     }
 
     public String getNom_pouvoir()

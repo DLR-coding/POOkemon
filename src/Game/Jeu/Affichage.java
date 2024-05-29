@@ -24,13 +24,13 @@ public class Affichage {
 
      static void afficherTerrain(Terrain terrain){
 
-        afficherPokemon(terrain.getM_terrain());
+        afficherPokemon(terrain.getEnsemble());
 
 
     }
 
      static void afficherDefausse(Defausse defausse){
-        System.out.println("defausse:" + defausse.getNombreDePokemons());
+        System.out.println("defausse:" + defausse.getNbPokemon());
     }
 
      static void afficherPioche(Pioche pioche){
@@ -68,7 +68,7 @@ public class Affichage {
         System.out.println();
 
         for (Pokemon p : pokemons) {
-            System.out.printf("  | Element : %-6s   |    ", p.getM_elements());
+            System.out.printf("  | Element : %-6s   |    ", p.getM_elements().getElmnt());
         }
         System.out.println();
 
@@ -77,10 +77,7 @@ public class Affichage {
         }
         System.out.println();
 
-        for (Pokemon p : pokemons) {
-            System.out.printf("  |     %-12s   |    ", p.getM_nom());
-        }
-        System.out.println();
+
 
         // Afficher la dernière ligne des cadres
         for (Pokemon p : pokemons) {

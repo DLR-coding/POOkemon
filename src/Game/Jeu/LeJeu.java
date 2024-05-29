@@ -32,7 +32,7 @@ public class LeJeu
         for (int i = 0; i < tailleMain; i++)
         {
             m_jHumain.piocherPokemon(m_jHumain.getM_pioche().getPokemon(i));
-            m_jRobot.piocherPokemon(m_jHumain.getM_pioche().getPokemon(i));
+            m_jRobot.piocherPokemon(m_jRobot.getM_pioche().getPokemon(i));
         }
 
     }

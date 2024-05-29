@@ -21,7 +21,14 @@ public class PokemonGenerateur {
             "Feunard", "Rondoudou", "Grodoudou", "Nosferapti"));
 
     static final List<Pouvoir> listePouvoirs = new ArrayList<>(Arrays.asList(
-            new Ferveur_guerrière(),new Soin_simple() , new Soin_total()));
+            new Intimidation(),
+            new Extension_du_territoire() ,
+            new Soin_de_zone(),
+            new Soin_simple(),
+            new Ferveur_guerrière(),
+            new Soin_total()
+    ));
+
 
     static Pokemon genererPokemon() {
         Random randomNumbers = new Random();
@@ -30,7 +37,7 @@ public class PokemonGenerateur {
         int indexNomPokemon = randomNumbers.nextInt(listeNomsPokemon.size());
         String nomPokemon = listeNomsPokemon.get(indexNomPokemon);
 
-        // Enlever le nom de Pokémon sélectionné de la liste pour éviter qu'il reviennent 2 fois
+        // Enlever le nom de Pokémon sélectionné de la liste pour éviter qu'il revienne 2 fois
         listeNomsPokemon.remove(indexNomPokemon);
 
         // Générer aléatoirement les points de vie (entre 100 et 200)
