@@ -83,6 +83,11 @@ package Game
                 + activatePouvoir(pokemon:Pokemon)
                 + getNom() : String
            }
+           class Intimidation implements Pouvoir
+           {
+                + activatePouvoir(pokemon:Pokemon)
+                + getNom() : String
+           }
 
     }
 
@@ -184,7 +189,7 @@ package Game
                     + {static} genererPokemon()
 
                 }
-                class Defausse implements EnsemblePokemon
+                class Defausse extends EnsemblePokemon
                     {
                         + <<Create>> Defausse()
                         + getPokemon(index:Integer):Pokemon
@@ -194,7 +199,7 @@ package Game
                         + getEnsemble() : Pokemon[*]
                     }
 
-                class MainDuJoueur implements EnsemblePokemon
+                class MainDuJoueur extends EnsemblePokemon
                     {
                         + <<Create>> MainDuJoueur()
                         + getPokemon(index:Integer):Pokemon
@@ -204,7 +209,7 @@ package Game
                         + getEnsemble() : Pokemon[*]
                     }
 
-                class Terrain implements EnsemblePokemon
+                class Terrain extends EnsemblePokemon
                     {
                         + <<Create>> Terrain()
                         + ajouterPokemon(pokemon:Pokemon)
@@ -217,7 +222,7 @@ package Game
 
                     }
 
-                class Pioche implements EnsemblePokemon
+                class Pioche extends EnsemblePokemon
                     {
                         + <<Create>> Pioche()
                         + <<Create>> Pioche(nbpokemon:Integer)
@@ -288,7 +293,7 @@ Pokemon "\n 1" *--> "0..1\n-m_pouvoir" Pouvoir : Possède\n\n >
 Game.Pokemons.EnsemblePokemon.EnsemblePokemon ..> PokemonGenerateur : <<uses>>
 LeJeu ..> Affichage : <<uses>>
 Game.Pokemons.EnsemblePokemon.EnsemblePokemon ..> Pokemon  : <<instantiate>>
-
+PokemonGenerateur ..> Pouvoir : <<instanciate>>
 
 
 @enduml
