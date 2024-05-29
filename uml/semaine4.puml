@@ -274,6 +274,11 @@ package Game
     }
 
 }
+class Main
+{
+    + {static} main( args:String[] )
+}
+Main ..> Game : <<uses>>
 
 LeJeu "1" *---> "1\n-m_tour" Tour : composé de \t\t >
 LeJeu "1" *---> "1 \n-m_jHumain"  JoueurHumain : composé de \t\t >
