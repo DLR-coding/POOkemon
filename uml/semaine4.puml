@@ -46,73 +46,48 @@ package Game
                 + getFaibleContre() : String
             }
     }
-
-    package EnsemblePokemon
+    package Pouvoirs
     {
-        class  EnsemblePokemon <<Interface>>
-        {
-            + getPokemon(index:Integer):Pokemon
-            + transferPokemon(pokemon:Pokemon ,desitnation:EnsemblePokemon)
-            + getEnsemble()
-            + getPokemonByName(nom:String) : Pokemon
-            + getNbPokmon() : int
-            + getEnsemble() : Pokemon[*]
-        }
-        class  PokemonGenerateur <<static>>
-        {
-            - {static} listeNomsPokemon : String[*]
-            - {static} listePouvoirs : Pouvoirs[*]
-            + {static} genererPokemon()
-
-        }
-        class Defausse implements EnsemblePokemon
+        class Pouvoir <<Interface>>
             {
-                - m_defausse : Pokemon[*]
-                + <<Create>> Defausse()
-                + getPokemon(index:Integer):Pokemon
-                + transferPokemon(pokemon:Pokemon ,from:EnsemblePokemon , to:EnsemblePokemon )
-                + getPokemonByName(name : String) : Pokemon
-                + getNbPokmon() : Integer
-                + getEnsemble() : Pokemon[*]
+                + activatePouvoir(pokemon:Pokemon)
+                + getNom() : String
             }
+           class Extension_Du_Territoire implements Pouvoir
+           {
+                + activatePouvoir(pokemon:Pokemon)
+                + getNom() : String
 
-        class MainDuJoueur implements EnsemblePokemon
-            {
-                - m_mainJoueur: Pokemon[5]
-                + <<Create>> MainDuJoueur()
-                + getPokemon(index:Integer):Pokemon
-                + getPokemonByName(name : String) : Pokemon
-                + getNbPokmon() : Integer
-                + transferPokemon(pokemon:Pokemon ,from:EnsemblePokemon , to:EnsemblePokemon )
-                + getEnsemble() : Pokemon[*]
-            }
+           }class Ferveur_guerrière implements Pouvoir
+           {
+                + activatePouvoir(pokemon:Pokemon)
+                + getNom() : String
+           }
+           class Soin_de_zone implements Pouvoir
+           {
+                + activatePouvoir(pokemon:Pokemon)
+                + getNom() : String
+           }
+           class Soin_simple implements Pouvoir
+           {
+                + activatePouvoir(pokemon:Pokemon)
+                + getNom() : String
+           }
+           class Soin_total implements Pouvoir
+           {
+                + activatePouvoir(pokemon:Pokemon)
+                + getNom() : String
+           }
+           class Kamikaze implements Pouvoir
+           {
+                + activatePouvoir(pokemon:Pokemon)
+                + getNom() : String
+           }
 
-        class Terrain implements EnsemblePokemon
-            {
-                - m_terrain: Pokemon[3]
-                + <<Create>> Terrain()
-                + ajouterPokemon(pokemon:Pokemon)
-                + getPokemon(index:Integer): Pokemon
-                + getPokemonByName(name : String) : Pokemon
-                + getPokemonAvecLeMoinsDeVie() : Pokemon
-                + transferPokemon(pokemon:Pokemon , destination:EnsemblePokemon )
-                + getEnsemble() : Pokemon[*]
-                + getNbPokmon() : Integer
-
-            }
-
-        class Pioche implements EnsemblePokemon
-            {
-                - m_pioche: Pokemon[*]
-                + <<Create>> Pioche()
-                + <<Create>> Pioche(nbpokemon:Integer)
-                + getPokemonByName(String) : Pokemon
-                + getPokemon(index:Integer): Pokemon
-                + getEnsemble() : Pokemon[*]
-                + getNbPokmon() : Integer
-                + transferPokemon(pokemon:Pokemon , to:EnsemblePokemon )
-            }
     }
+
+
+
 
     package Joueur
     {
@@ -168,41 +143,104 @@ package Game
                                 + getPokemonFromMain(int) : Pokemon
                             }
     }
-
-    class Pokemon
+    package Pokemons
     {
-        - m_nom: String
-        - m_vie : Integer
-        - m_vieMax : Integer
-        - m_attaque : Integer
-        - m_pouvoir : Pouvoir
-        + <<Create>> Pokemon(nom: String , elmt:Element , vie : Integer , attaque : Integer )
-        + attaquer()
-        + estVivant() : Boolean
-        + getVie() : Integer
-        + setVie(valeur : Integer)
-        + getM_attaque() : Integer
-        + setM_attaque(valeur : Integer)
-        + getM_nom() : String
-        + getElement() : Element
-        + getM_Pouvoir() : Pouvoir
-        + setPouvoir(pouvoir : Pouvoir)
-        + getNom_Pouvoir() : String
-        + presenter() : void
+        class Pokemon
+            {
+                - m_nom: String
+                - m_vie : Integer
+                - m_vieMax : Integer
+                - m_attaque : Integer
+                - m_pouvoir : Pouvoir
+                + <<Create>> Pokemon(nom: String , elmt:Element , vie : Integer , attaque : Integer )
+                + attaquer()
+                + estVivant() : Boolean
+                + getVie() : Integer
+                + setVie(valeur : Integer)
+                + getM_attaque() : Integer
+                + setM_attaque(valeur : Integer)
+                + getM_nom() : String
+                + getElement() : Element
+                + getM_Pouvoir() : Pouvoir
+                + setPouvoir(pouvoir : Pouvoir)
+                + getNom_Pouvoir() : String
+                + presenter()
+            }
+         package EnsemblePokemon
+            {
+                class  EnsemblePokemon <<abstract>>
+                {
+                    + {abstract} getPokemon(index:Integer):Pokemon
+                    + transferPokemon(pokemon:Pokemon ,desitnation:EnsemblePokemon)
+                    + {abstract} getEnsemble()
+                    + {abstract} getPokemonByName(nom:String) : Pokemon
+                    + getNbPokmon() : Integer
+                    + {abstract} getEnsemble() : Pokemon[*]
+                }
+                class  PokemonGenerateur <<static>>
+                {
+                    - {static} listeNomsPokemon : String[*]
+                    - {static} listePouvoirs : Pouvoirs[*]
+                    + {static} genererPokemon()
+
+                }
+                class Defausse implements EnsemblePokemon
+                    {
+                        + <<Create>> Defausse()
+                        + getPokemon(index:Integer):Pokemon
+                        + transferPokemon(pokemon:Pokemon ,from:EnsemblePokemon , to:EnsemblePokemon )
+                        + getPokemonByName(name : String) : Pokemon
+                        + getNbPokmon() : Integer
+                        + getEnsemble() : Pokemon[*]
+                    }
+
+                class MainDuJoueur implements EnsemblePokemon
+                    {
+                        + <<Create>> MainDuJoueur()
+                        + getPokemon(index:Integer):Pokemon
+                        + getPokemonByName(name : String) : Pokemon
+                        + getNbPokmon() : Integer
+                        + transferPokemon(pokemon:Pokemon ,from:EnsemblePokemon , to:EnsemblePokemon )
+                        + getEnsemble() : Pokemon[*]
+                    }
+
+                class Terrain implements EnsemblePokemon
+                    {
+                        + <<Create>> Terrain()
+                        + ajouterPokemon(pokemon:Pokemon)
+                        + getPokemon(index:Integer): Pokemon
+                        + getPokemonByName(name : String) : Pokemon
+                        + getPokemonAvecLeMoinsDeVie() : Pokemon
+                        + transferPokemon(pokemon:Pokemon , destination:EnsemblePokemon )
+                        + getEnsemble() : Pokemon[*]
+                        + getNbPokmon() : Integer
+
+                    }
+
+                class Pioche implements EnsemblePokemon
+                    {
+                        + <<Create>> Pioche()
+                        + <<Create>> Pioche(nbpokemon:Integer)
+                        + getPokemonByName(String) : Pokemon
+                        + getPokemon(index:Integer): Pokemon
+                        + getEnsemble() : Pokemon[*]
+                        + getNbPokmon() : Integer
+                        + transferPokemon(pokemon:Pokemon , to:EnsemblePokemon )
+                    }
+            }
     }
+
 
     package Jeu
     {
         class Tour
         {
             - m_numTour : Integer
+            + phaseAttaquer( tour : Integer)
 
         }
         class LeJeu
         {
-            - m_jHumain : JoueurHumain
-            - m_jRobot : RobotPlayer
-            - m_numTour : Integer
             - m_arret : Boolean
             + <<Create>> LeJeu(humain:JoueurHumain , robot : RobotPlayer)
             + Lunch(humain: Game.JoueurHumain , Rrobot : RobotPlayer )
@@ -211,10 +249,9 @@ package Game
             + choix1erJoueur()
             + piochesJoueurs()
             + placementPokemon( nbJ1 : Integer, nbRobot : Integer)
-            + verifierFinJeu() : void
+            + verifierFinJeu()
             + nbPokemonRestans(joueur : Player) : Integer
             + tousPokemonsElimines(joueur : Player) : Boolean
-            + phaseAttaquer( tour : Integer) : void
             + PokemonMort(pokemon:Pokemon) : Boolean
             + getM_jHumain() : JoueurHumain
             + getM_jRobot() : RobotPlayer
@@ -222,32 +259,35 @@ package Game
         }
         abstract Affichage
         {
-            + afficherJeu(jeu : LeJeu)
-            + afficherMain(main : MainDuJoeur)
-            + afficherTerrain(terrain : Terrain)
-            + afficherPioche(pioche : Pioche)
-            + afficherDefausse(defausse : Defausse)
-            + afficherPokemon(pokemons : ListePokemon)
+            + {static} afficherJeu(jeu : LeJeu)
+            + {static} afficherMain(main : MainDuJoeur)
+            + {static} afficherTerrain(terrain : Terrain)
+            + {static} afficherPioche(pioche : Pioche)
+            + {static} afficherDefausse(defausse : Defausse)
+            + {static} afficherPokemon(pokemons : ListePokemon)
         }
     }
 
 }
 
-
-Pioche "1" *---> "20..21\n-" Pokemon : composé de \t\t >
-MainDuJoueur "1" *---> "5\n" Pokemon : composé de \t\t >
-Terrain "1" *---> "3\n-" Pokemon : composé de \t\t >
-Defausse "1" *---> "*\n-" Pokemon : composé de \t\t >
+LeJeu "1" *---> "1\n-m_tour" Tour : composé de \t\t >
+LeJeu "1" *---> "1 \n-m_jHumain"  JoueurHumain : composé de \t\t >
+LeJeu "1" *---> "1 \n-m_jRobot"  RobotPlayer : composé de \t\t >
+Pioche "1" *---> "20..21\n-m_Pioche" Pokemon : composé de \t\t >
+MainDuJoueur "1" *---> "5\n-m_mainJoueur" Pokemon : composé de \t\t >
+Terrain "1" *---> "3\n-m_terrain" Pokemon : composé de \t\t >
+Defausse "1" *---> "*\n-m_defausse" Pokemon : composé de \t\t >
 
 Player "1" *---> "1\n-m_terrain" Terrain : Possède  \t\t >
 Player "1" *---> "1\n-m_pioche" Pioche : Possède \t\t >
 Player "1" *---> "1\n-m_main" MainDuJoueur : Possède \t\t >
 Player "1" *---> "1\n-m_defausse" Defausse : Possède \t\t >
 Pokemon "\n 1" *--> "1\n-m_element" Element : Possède\n\n >
+Pokemon "\n 1" *--> "0..1\n-m_pouvoir" Pouvoir : Possède\n\n >
 
-Game.EnsemblePokemon.EnsemblePokemon ..> PokemonGenerateur : <<uses>>
-LeJeu ..> Player : <<uses>>
+Game.Pokemons.EnsemblePokemon.EnsemblePokemon ..> PokemonGenerateur : <<uses>>
 LeJeu ..> Affichage : <<uses>>
+Game.Pokemons.EnsemblePokemon.EnsemblePokemon ..> Pokemon  : <<instantiate>>
 
 
 
