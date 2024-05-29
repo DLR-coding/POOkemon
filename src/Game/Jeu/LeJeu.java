@@ -31,8 +31,8 @@ public class LeJeu
         // Main pour chaque joueur
         for (int i = 0; i < tailleMain; i++)
         {
-            m_jHumain.piocherPokemon(m_jHumain.getPokemonFromPioche(i));
-            m_jRobot.piocherPokemon(m_jRobot.getPokemonFromPioche(i));
+            m_jHumain.piocherPokemon(m_jHumain.getM_pioche().getPokemon(i));
+            m_jRobot.piocherPokemon(m_jHumain.getM_pioche().getPokemon(i));
         }
 
     }
@@ -145,7 +145,7 @@ public class LeJeu
                 int index = scanner.nextInt();
 
                 if (index >= 1 && index <= 5) {
-                    m_jHumain.placeSurTerrain(m_jHumain.getPokemonFromMain(index - 1)  );
+                    m_jHumain.placeSurTerrain(m_jHumain.getM_main().getPokemon(index - 1));
                 } else {
                     System.out.println("Index invalide. Veuillez choisir un Pokémon valide.");
                     i--; // Pour redemander le choix pour le même emplacement
@@ -176,7 +176,7 @@ public class LeJeu
                 int index = scanner2.nextInt();
 
                 if (index >= 1 && index <= 5) {
-                    m_jHumain.placeSurTerrain(m_jHumain.getPokemonFromMain(index - 1));
+                    m_jHumain.placeSurTerrain(m_jHumain.getM_main().getPokemon(index - 1));
                 } else {
                     System.out.println("Index invalide. Veuillez choisir un Pokémon valide.");
                     i--; // Pour redemander le choix pour le même emplacement

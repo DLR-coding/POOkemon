@@ -13,9 +13,6 @@ public class Defausse implements EnsemblePokemon{
     }
 
 
-    public int getNombreDePokemons() {
-        return m_defausse.size();
-    }
 
 
     @Override

@@ -16,9 +16,4 @@ public class Air implements Element {
     public String getFaibleContre(){
         return "Feu";
     }
-
-    @Override
-    public String toString() {
-        return "Air";
-    }
 }

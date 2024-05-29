@@ -53,16 +53,12 @@ public class RobotPlayer implements Player
         this.m_pioche.transferPokemon(pokemon,m_main);
     }
 
-    @Override
-    public Pokemon getPokemonFromPioche(int index) {
-        return m_pioche.getPokemon(index);
-    }
 
     @Override
     public void placeSurTerrain(Pokemon pokemon) {
         m_main.transferPokemon(pokemon,m_terrain);
         System.out.println("Robot repioche pour automatiquement remplir sa main...");
-        piocherPokemon(getPokemonFromPioche(m_pioche.getNbPokemon() - 1));
+        m_pioche.transferPokemon(m_pioche.getPokemon(m_pioche.getNbPokemon() -1) , m_main);
 
 
     }

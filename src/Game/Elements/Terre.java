@@ -17,8 +17,4 @@ public class Terre implements Element {
         return "Air";
     }
 
-    @Override
-    public String toString() {
-        return "terre";
-    }
 }

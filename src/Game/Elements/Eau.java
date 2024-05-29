@@ -17,10 +17,7 @@ public class Eau implements Element {
         return "terre";
     }
 
-    @Override
-    public String toString() {
-        return "Eau";
-    }
+
 }
 
 

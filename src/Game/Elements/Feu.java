@@ -18,10 +18,6 @@ public class Feu implements Element {
         return "Eau";
     }
 
-    @Override
-    public String toString() {
-        return "feu";
-    }
 
 
 }

@@ -34,15 +34,6 @@ public class JoueurHumain implements Player
 
 
 
-    public boolean aDesPokemons() {
-        for (int i = 0; i < 4; i++) {
-            if (m_main.getPokemon(i) == null) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public Defausse getM_defausse() {
         return m_defausse;
     }
@@ -51,16 +42,8 @@ public class JoueurHumain implements Player
         return m_main;
     }
 
-    public Pokemon getPokemonFromMain(int i) {
-        return m_main.getPokemon(i);
-    }
-
     public String getM_nom() {
         return m_nom;
-    }
-
-    public Pokemon getPokemonFromPioche(int index) {
-        return m_pioche.getPokemon(index);
     }
 
     @Override
@@ -68,7 +51,7 @@ public class JoueurHumain implements Player
     {
         this.m_main.transferPokemon(pokemon,m_terrain);
         System.out.println("Joueur repioche pour automatiquement remplir sa main...");
-        piocherPokemon(getPokemonFromPioche(m_pioche.getNbPokemon() - 1));
+        m_pioche.transferPokemon(m_pioche.getPokemon(m_pioche.getNbPokemon() -1) , m_main);
 
     }
 
