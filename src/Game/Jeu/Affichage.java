@@ -53,43 +53,97 @@ public class Affichage {
 
         // Afficher la première ligne des cadres
         for (Pokemon p : pokemons) {
-            System.out.print("  *--------------------*    ");
+            System.out.print("  *---------------------*    ");
         }
         System.out.println();
 
         // Afficher les lignes de contenu
         for (Pokemon p : pokemons) {
-            System.out.printf("  | Attaque: %-9d |    ", p.getM_attaque());
+            System.out.printf("  | Attaque: %-9d  |    ", p.getM_attaque());
         }
         System.out.println();
 
         for (Pokemon p : pokemons) {
-            System.out.printf("  | Vie: %3d/%-8d  |    ", p.getVie(), p.getM_vieMax());
+            System.out.printf("  | Vie: %3d/%-8d   |    ", p.getVie(), p.getM_vieMax());
         }
         System.out.println();
 
         for (Pokemon p : pokemons) {
-            System.out.printf("  | Element : %-6s   |    ", p.getM_elements());
+            System.out.printf("  | Element : %-6s    |    ", p.getM_elements());
         }
         System.out.println();
 
+
+         String[] tab;
         for (Pokemon p : pokemons) {
             String pouvoir = "nul";
-            if (p.getM_pouvoir() != null) {
-                 pouvoir = p.getM_pouvoir().getNomPouvoir() ;
-            }
-            System.out.printf("  | Pouvoir: %-10s|    ",pouvoir );
+                if (p.getM_pouvoir() != null) {
+                    if(!p.getM_pouvoir().getNomPouvoir().contains(" ") ) {
+                        pouvoir = p.getM_pouvoir().getNomPouvoir();
+                        System.out.printf("  | Power : %-10s  |     ", pouvoir);
+                    }
+                    else{
+                         String pouvoir1 = p.getM_pouvoir().getNomPouvoir();
+                        tab = pouvoir1.split(" ");
+                        if(tab.length == 2){
+                            pouvoir1 = " ";
+                        }else {
+                            pouvoir1 = tab[0];
+                        }
+
+                        System.out.printf("  | Power : %-10s |     ", pouvoir1);
+
+                    }
+
+                }else {
+                    System.out.printf("  | Power : %-10s |     ", pouvoir);
+                }
         }
+
         System.out.println();
 
+
+          for (Pokemon p : pokemons) {
+
+            String pouvoir2;
+            if (p.getM_pouvoir() != null) {
+                if(p.getM_pouvoir().getNomPouvoir().contains(" ") ) {
+                    pouvoir2 = p.getM_pouvoir().getNomPouvoir();
+                    tab = pouvoir2.split(" ");
+                    pouvoir2 = p.getM_pouvoir().getNomPouvoir();
+                    if(tab.length == 3){
+                        pouvoir2 = tab[1];
+                        pouvoir2 = pouvoir2 + " " + tab[2];
+                        System.out.printf("  |     %-10s   |    ", pouvoir2);
+                    }else {
+
+                        System.out.printf("  |    %-10s  |    ", pouvoir2);
+                    }
+                }
+                else {
+                    pouvoir2 = " ";
+                    System.out.printf("  |      %-10s     |    ", pouvoir2);
+
+                }
+            }
+            else {
+                pouvoir2 = "nul";
+                System.out.printf("  |      %-10s     |    ", pouvoir2);
+                  }
+         }
+
+        System.out.println();
+
+
+
         for (Pokemon p : pokemons) {
-            System.out.printf("  |     %-12s   |    ", p.getM_nom());
+            System.out.printf("  |     %-12s    |    ", p.getM_nom());
         }
         System.out.println();
 
         // Afficher la dernière ligne des cadres
         for (Pokemon p : pokemons) {
-            System.out.print("  *--------------------*    ");
+            System.out.print("  *---------------------*    ");
         }
         System.out.println();
     }
@@ -97,21 +151,22 @@ public class Affichage {
 
 
 
-     static void afficherJeu(LeJeu jeu){
+     static void afficherJeu(Tour tour){
         System.out.println("********************************************************************************");
-        System.out.println("Tour :"+ jeu.getM_numTour());
+        System.out.println("Tour :"+ tour.getM_numTour());
         System.out.println("Robot");
-        afficherPioche(jeu.getM_jRobot().getM_pioche());
-        afficherDefausse(jeu.getM_jRobot().getM_defausse());
-        afficherMain(jeu.getM_jRobot().getM_main());
-        afficherTerrain(jeu.getM_jRobot().getM_terrain());
+        afficherPioche(tour.getM_jRobot().getM_pioche());
+        afficherDefausse(tour.getM_jRobot().getM_defausse());
+        afficherMain(tour.getM_jRobot().getM_main());
+        afficherTerrain(tour.getM_jRobot().getM_terrain());
 
+         System.out.println("********************************************************************************");
 
         System.out.println("Toi");
-        afficherPioche(jeu.getM_jHumain().getM_pioche());
-        afficherDefausse(jeu.getM_jHumain().getM_defausse());
-        afficherMain(jeu.getM_jHumain().getM_main());
-        afficherTerrain(jeu.getM_jHumain().getM_terrain());
+        afficherTerrain(tour.getM_jHumain().getM_terrain());
+        afficherPioche(tour.getM_jHumain().getM_pioche());
+        afficherDefausse(tour.getM_jHumain().getM_defausse());
+        afficherMain(tour.getM_jHumain().getM_main());
          System.out.println("");
          System.out.println("");
         System.out.println("********************************************************************************");

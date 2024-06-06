@@ -1,6 +1,7 @@
 package Game.Joueur;
 
 import Game.EnsemblePokemon.*;
+import Game.Jeu.Affichage;
 import Game.Pokemon;
 
 import java.util.Scanner;
@@ -139,6 +140,19 @@ public class JoueurHumain implements Player
 
     }
 
+    @Override
+    public Boolean UtilisePouvoir(int index) {
+        if (m_terrain.getPokemon(index).getM_pouvoir() != null) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Veut tu utiliser le pouvoir : " + getM_terrain().getPokemon(index).getM_pouvoir().getNomPouvoir() + " y/n");
+            String confirm = scanner.nextLine();
+            if (confirm.equals("y")) {// Utilisation de equals pour comparer le contenu des chaînes
+
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Pioche getM_pioche() {
         return m_pioche;

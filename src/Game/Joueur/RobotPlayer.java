@@ -9,6 +9,7 @@ import Game.Pokemon;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class RobotPlayer implements Player
 {
@@ -64,7 +65,6 @@ public class RobotPlayer implements Player
         System.out.println("Robot repioche pour automatiquement remplir sa main...");
         piocherPokemon(getPokemonFromPioche(m_pioche.getNbPokemon() - 1));
 
-
     }
 
     @Override
@@ -105,7 +105,7 @@ public class RobotPlayer implements Player
         }
     }
 
-    private Pokemon choisirCible(Terrain adversairePokemons, Pokemon attaquant) {
+    public Pokemon choisirCible(Terrain adversairePokemons, Pokemon attaquant) {
         List<Pokemon> ciblesPotentielles = new ArrayList<>();
 
         // Pokemon avec désavantage d'élément
@@ -133,6 +133,23 @@ public class RobotPlayer implements Player
         }
         return cibleChoisie;
     }
+
+    @Override
+    public Boolean UtilisePouvoir(int index) {
+        if (m_terrain.getPokemon(index).getM_pouvoir() != null) {
+            Random randomBool = new Random();
+            Boolean confirm = randomBool.nextBoolean();
+            if (confirm == true) {
+                System.out.println("Robot utilise le pouvoir : " + getM_terrain().getPokemon(index).getM_pouvoir().getNomPouvoir());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void CiblePouvoir(){
+
+}
 
     public void setPioche(Pioche pioche) {
         this.m_pioche = pioche;

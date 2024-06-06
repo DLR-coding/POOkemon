@@ -2,10 +2,7 @@ package Game.EnsemblePokemon;
 
 import Game.Elements.*;
 import Game.Pokemon;
-import Game.Pouvoirs.Ferveur_guerrière;
-import Game.Pouvoirs.Pouvoir;
-import Game.Pouvoirs.Soin_simple;
-import Game.Pouvoirs.Soin_total;
+import Game.Pouvoirs.*;
 import Game.Pouvoirs.Ferveur_guerrière;
 import Game.Pouvoirs.Pouvoir;
 import Game.Pouvoirs.Soin_simple;
@@ -32,7 +29,7 @@ public class PokemonGenerateur {
 
     static {
         listePouvoirs = new ArrayList<>(Arrays.asList(
-                new Ferveur_guerrière(), new Soin_simple(), new Soin_total()));
+                new Ferveur_guerrière(),new Berserk() , new Soin_simple(),new Intimidation() ,new Extension_du_territoire() ,new Soin_de_zone(), new Kamikaze(), new Soin_total()));
     }
 
     static Pokemon genererPokemon() {

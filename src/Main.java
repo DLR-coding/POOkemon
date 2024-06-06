@@ -11,6 +11,7 @@ public class Main {
         RobotPlayer robot = new RobotPlayer("Robot1");
 
         LeJeu game = new LeJeu(joueur,robot);
+
         game.Lunch();
 
     }

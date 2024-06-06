@@ -8,28 +8,28 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Soin_simple implements Pouvoir {
+public class Berserk implements Pouvoir{
+
+    private Pokemon m_pj1;
+    private Pokemon m_pRobot;
 
     @Override
-    public void activatePouvoir(Pokemon p,Player j1, Player Robot,Player joueur  ) {
-
+    public void activatePouvoir(Pokemon p, Player j1, Player Robot,Player joueur) {
         if(joueur == j1) {
             System.out.println("Selectionner le Pokemon a donner le pouvoir : ");
             Scanner scanner = new Scanner(System.in);
             String nomPokemonJoueur = scanner.nextLine();
             Pokemon pokemonJoueur = j1.getM_terrain().getPokemonByName(nomPokemonJoueur);
-
-            if (pokemonJoueur.getVie() + 30 < pokemonJoueur.getM_vieMax()) {
-                pokemonJoueur.setVie(pokemonJoueur.getVie() + 30);
-            }
+            GetPokemonJ1(pokemonJoueur);
+            pokemonJoueur.setM_attaque(pokemonJoueur.getM_attaque() * 2);
         }
         else{
 
             List<Pokemon> ciblesPotentielles = new ArrayList<>();
 
-                for (int i = 0 ; i < Robot.getM_terrain().getNbPokemon(); i++) {
-                    ciblesPotentielles.add(Robot.getM_terrain().getPokemon(i));
-                }
+            for (int i = 0 ; i < Robot.getM_terrain().getNbPokemon(); i++) {
+                ciblesPotentielles.add(Robot.getM_terrain().getPokemon(i));
+            }
 
             Pokemon cibleChoisie = ciblesPotentielles.get(0);
             for (Pokemon po : ciblesPotentielles) {
@@ -40,24 +40,26 @@ public class Soin_simple implements Pouvoir {
                     cibleChoisie = po;
                 }
             }
-            if (cibleChoisie.getVie() + 30 < cibleChoisie.getM_vieMax()) {
-                cibleChoisie.setVie(cibleChoisie.getVie() + 30);
-            }
+            GetPokemonRobot(cibleChoisie);
+            cibleChoisie.setM_attaque(cibleChoisie.getM_attaque() * 2);
         }
-            p.setPouvoir(null);
-
-
     }
 
     @Override
-    public void RetourALanormal(Pokemon p){
-        System.out.print("");
+    public void RetourALanormal(Pokemon p) {
+        m_pj1.setM_attaque(m_pj1.getM_attaque() / 2);
+        m_pRobot.setM_attaque(m_pRobot.getM_attaque() / 2);
+        m_pj1 = null;
+        m_pRobot = null;
+        p.setPouvoir(null);
     }
 
     @Override
     public String getNomPouvoir() {
-        return "Soin simple";
+        return "Berserk";
     }
 
+    public void GetPokemonJ1(Pokemon p){this.m_pj1 = p ; }
 
+    public void GetPokemonRobot(Pokemon p){this.m_pRobot = p ; }
 }
