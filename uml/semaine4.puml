@@ -58,7 +58,8 @@ package Game
                 + activatePouvoir(pokemon:Pokemon)
                 + getNom() : String
 
-           }class Ferveur_guerrière implements Pouvoir
+           }
+           class Ferveur_guerrière implements Pouvoir
            {
                 + activatePouvoir(pokemon:Pokemon)
                 + getNom() : String
@@ -242,25 +243,25 @@ package Game
         {
             - m_numTour : Integer
             + phaseAttaquer( tour : Integer)
-
-        }
-        class LeJeu
-        {
-            - m_arret : Boolean
-            + <<Create>> LeJeu(humain:JoueurHumain , robot : RobotPlayer)
-            + Lunch(humain: Game.JoueurHumain , Rrobot : RobotPlayer )
-            + MainJoueurs(tailleMain: Integer)
-            + Launch()
-            + choix1erJoueur()
-            + piochesJoueurs()
-            + placementPokemon( nbJ1 : Integer, nbRobot : Integer)
-            + verifierFinJeu()
-            + nbPokemonRestans(joueur : Player) : Integer
-            + tousPokemonsElimines(joueur : Player) : Boolean
             + PokemonMort(pokemon:Pokemon) : Boolean
             + getM_jHumain() : JoueurHumain
             + getM_jRobot() : RobotPlayer
             + grtM_numTour() : Integer
+            + choix1erJoueur()
+            + piochesJoueurs()
+            + placementPokemon( nbJ1 : Integer, nbRobot : Integer)
+        }
+
+        class LeJeu
+        {
+            - m_arret : Boolean
+            + <<Create>> LeJeu(humain:JoueurHumain , robot : RobotPlayer)
+            + Lunch(humain: JoueurHumain , Rrobot : RobotPlayer )
+            + MainJoueurs(tailleMain: Integer)
+            + Launch()
+            + verifierFinJeu()
+            + nbPokemonRestans(joueur : Player) : Integer
+            + tousPokemonsElimines(joueur : Player) : Boolean
         }
         abstract Affichage
         {
@@ -278,15 +279,15 @@ class Main
 {
     + {static} main( args:String[] )
 }
-Main ..> Game : <<uses>>
+Main ..> LeJeu : <<uses>>
 
-LeJeu "1" *---> "1\n-m_tour" Tour : composé de \t\t >
-LeJeu "1" *---> "1 \n-m_jHumain"  JoueurHumain : composé de \t\t >
-LeJeu "1" *---> "1 \n-m_jRobot"  RobotPlayer : composé de \t\t >
-Pioche "1" *---> "20..21\n-m_Pioche" Pokemon : composé de \t\t >
-MainDuJoueur "1" *---> "5\n-m_mainJoueur" Pokemon : composé de \t\t >
-Terrain "1" *---> "3\n-m_terrain" Pokemon : composé de \t\t >
-Defausse "1" *---> "*\n-m_defausse" Pokemon : composé de \t\t >
+LeJeu "1" o---> "1\n-m_tour" Tour : composé de \t\t >
+LeJeu "1" o---> "1 \n-m_jHumain"  JoueurHumain : composé de \t\t >
+LeJeu "1" o---> "1 \n-m_jRobot"  RobotPlayer : composé de \t\t >
+Pioche "1" o---> "20..21\n-m_Pioche" Pokemon : composé de \t\t >
+MainDuJoueur "1" o---> "5\n-m_mainJoueur" Pokemon : composé de \t\t >
+Terrain "1" o---> "3\n-m_terrain" Pokemon : composé de \t\t >
+Defausse "1" o---> "*\n-m_defausse" Pokemon : composé de \t\t >
 
 Player "1" *---> "1\n-m_terrain" Terrain : Possède  \t\t >
 Player "1" *---> "1\n-m_pioche" Pioche : Possède \t\t >

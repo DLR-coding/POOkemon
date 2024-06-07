@@ -77,6 +77,11 @@ public class Affichage {
         }
         System.out.println();
 
+        for (Pokemon p : pokemons) {
+            System.out.printf("  | %-12s|    ", p.getM_nom());
+        }
+        System.out.println();
+
 
 
         // Afficher la dernière ligne des cadres
