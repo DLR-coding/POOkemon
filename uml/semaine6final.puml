@@ -1,5 +1,9 @@
 @startuml
 'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
 
 top to bottom direction
 skinparam linetype ortho
@@ -24,8 +28,6 @@ package Game
         {
 
           - m_arret: Boolean
-          - m_jRobot: RobotPlayer
-          - m_jHumain: JoueurHumain
           - m_numTour: Integer
           + <<Create>> Partie(JoueurHumain, RobotPlayer)
           + Lunch()
@@ -36,8 +38,6 @@ package Game
 
         class Tour {
 
-          - m_jHumain: JoueurHumain
-          - m_jRobot: RobotPlayer
           - m_numTour: Integer
           - m_arret: Boolean
           + <<Create>> Tour(humain:JoueurHumain, robot:RobotPlayer)
@@ -63,10 +63,6 @@ package Game
 
           - m_joueur1: Boolean
           - m_nom: String
-          - m_terrain: Terrain
-          - m_pioche: Pioche
-          - m_defausse: Defausse
-          - m_main: MainDuJoueur
           + <<Create>> JoueurHumain(nom:String)
           + isJoueur1(): Boolean
           + getPokemonFromPioche(index:Integer): Pokemon
@@ -103,11 +99,7 @@ package Game
 
         class RobotPlayer
         {
-          - m_terrain: Terrain
           - m_joueur1: Boolean
-          - m_defausse: Defausse
-          - m_pioche: Pioche
-          - m_main: MainDuJoueur
           - m_nom: String
           + <<Create>> RobotPlayer(nom:String)
           + getM_nom(): String
@@ -172,7 +164,6 @@ package Game
               + transferPokemon(pokemon:Pokemon, destination:EnsemblePokemon)
             }
             class MainDuJoueur extends EnsemblePokemon{
-              - m_mainJoueur: Pokemon[*]
               + <<Create>> MainDuJoueur()
               + getPokemon(index:Integer): Pokemon
               + getPokemonByName(nom:String): Pokemon
@@ -180,7 +171,6 @@ package Game
               + getEnsemble(): List<Pokemon>
             }
             class Defausse extends EnsemblePokemon{
-              - m_defausse: List<Pokemon>
               + <<Create>> Defausse()
               + getPokemonByName(String): Pokemon
               + getNbPokemon(): Integer
@@ -189,7 +179,6 @@ package Game
             }
             class Pioche extends EnsemblePokemon{
 
-              - m_pioche: List<Pokemon>
               + <<Create>> Pioche()
               + <<Create>> Pioche(Integer)
               + getPokemonByName(nom : String): Pokemon
@@ -205,7 +194,6 @@ package Game
             }
 
             class Terrain extends EnsemblePokemon {
-              - m_terrain: Pokemon[*]
               + <<Create>> Terrain()
               + getEnsemble(): Pokemon[*]
               + getNbPokemon(): Integer
@@ -250,31 +238,31 @@ package Game
               + getPokemonJ1(p:Pokemon)
               + description(): String
             }
-            class Kamikaze {
+            class Kamikaze implements Pouvoir{
               + description(): String
               + activatePouvoir(p:Pokemon, j1:Player, robot:Player, joueur:Player)
               + RetourALanormal(p:Pokemon, joueur:Player)
               + getNomPouvoir(): String
             }
-            class Peur {
+            class Peur implements Pouvoir {
               + description(): String
               + activatePouvoir(p:Pokemon, j1:Player, robot:Player, joueur:Player)
               + RetourALanormal(p:Pokemon, joueur:Player)
               + getNomPouvoir(): String
             }
-            class Soin_de_zone {
+            class Soin_de_zone implements Pouvoir{
               + description(): String
               + activatePouvoir(p:Pokemon, j1:Player, robot:Player, joueur:Player)
               + RetourALanormal(p:Pokemon, joueur:Player)
               + getNomPouvoir(): String
             }
-            class Soin_simple {
+            class Soin_simple implements Pouvoir{
               + description(): String
               + activatePouvoir(p:Pokemon, j1:Player, robot:Player, joueur:Player)
               + RetourALanormal(p:Pokemon, joueur:Player)
               + getNomPouvoir(): String
             }
-            class Soin_total  {
+            class Soin_total  implements Pouvoir{
               + description(): String
               + activatePouvoir(p:Pokemon, j1:Player, robot:Player, joueur:Player)
               + RetourALanormal(p:Pokemon, joueur:Player)
@@ -307,49 +295,58 @@ package Game
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class LeJeu {
-  + LeJeu(JoueurHumain, RobotPlayer):
-  - m_jHumain: JoueurHumain
-  - m_jRobot: RobotPlayer
-  - m_numTour: Integer
-  - m_arret: Boolean
-  - verifierFinJeu()
-  + choix1erJoueur()
-  + getM_numTour(): Integer
-  + getM_jRobot(): RobotPlayer
-  + phaseAttaquer(Integer)
-  + getM_jHumain(): JoueurHumain
-  + tousPokemonsElimines(Player): Boolean
-  + PokemonMort(Pokemon): Boolean
-  + Lunch()
-  - nbPokemonsRestants(Player): Integer
-  + MainJoueurs(Integer)
-  - placementPokemon(Integer, Integer)
-  - piochesJoueurs()
-}
 class Main {
-  + Main():
-  + main(String[])
+  +{static} main(String[])
 }
 
+Affichage ..> Game.Pokemon.EnsemblePokemon.EnsemblePokemon  : <<uses>>
+Affichage ..> Tour : <<uses>>
+Affichage ..> Player : <<uses>>
+
+
+Main ..> Partie : <<uses>>
+Main ..> Player : <<instanciates>>
+
+Partie "1" *---> "1\n-m_tour" Tour : composé de \t\t >
+Partie "1" o---> "1 \n-m_jHumain"  JoueurHumain : composé de \t\t >
+Partie "1" o---> "1 \n-m_jRobot"  RobotPlayer : composé de \t\t >
+Partie ..> Affichage : <<uses>>
+
+Tour "1" *---> "1\n-m_jHumain" Player : composé de \t\t >
+Tour "1" *---> "1\n-m_jRobot" Player : composé de \t\t >
+Tour ..> Game.Pokemon.EnsemblePokemon.EnsemblePokemon  : <<uses>>
+Tour ..> Game.Pokemon.Pokemon : <<uses>>
+
+JoueurHumain "1" *---> "1\n-m_main" Game.Pokemon.EnsemblePokemon.EnsemblePokemon  : a \t\t >
+JoueurHumain "1" *---> "1\n-m_defausse" Game.Pokemon.EnsemblePokemon.EnsemblePokemon  : a \t\t >
+JoueurHumain "1" *---> "1\n-m_pioche" Game.Pokemon.EnsemblePokemon.EnsemblePokemon  : a \t\t >
+JoueurHumain "1" *---> "1\n-m_terrain" Game.Pokemon.EnsemblePokemon.EnsemblePokemon  : a \t\t >
+
+RobotPlayer "1" *---> "1\n-m_main" Game.Pokemon.EnsemblePokemon.EnsemblePokemon  : a \t\t >
+RobotPlayer "1" *---> "1\n-m_defausse" Game.Pokemon.EnsemblePokemon.EnsemblePokemon  : a \t\t >
+RobotPlayer "1" *---> "1\n-m_pioche" Game.Pokemon.EnsemblePokemon.EnsemblePokemon  : a \t\t >
+RobotPlayer "1" *---> "1\n-m_terrain" Game.Pokemon.EnsemblePokemon.EnsemblePokemon  : a \t\t >
+
+Player ..> Game.Pokemon.Pokemon : <<uses>>
+Player ..> Player : <<uses>>
+
+Game.Pokemon.EnsemblePokemon.EnsemblePokemon ..> Game.Pokemon.Pokemon : <<uses>>
+Game.Pokemon.EnsemblePokemon.EnsemblePokemon  ..> Game.Pokemon.EnsemblePokemon.EnsemblePokemon  : <<uses>>
+
+MainDuJoueur "1" o---> "5\n-m_mainJoueur" Game.Pokemon.Pokemon : composé de \t\t >
+Pioche "1" o---> "20..21\n-m_Pioche" Game.Pokemon.Pokemon : composé de \t\t >
+Terrain "1" o---> "3\n-m_terrain" Game.Pokemon.Pokemon : composé de \t\t >
+Defausse "1" o---> "*\n-m_defausse" Game.Pokemon.Pokemon : composé de \t\t >
+
+PokemonGenerateur ..>  Game.Pokemon.Pokemon :<<instanciate>>
+PokemonGenerateur ..>  Pouvoir :<<instanciate>>
+
+Pouvoir ..> Game.Pokemon.Pokemon : <<uses>>
+Pouvoir ..> Player : <<uses>>
+
+
+Game.Pokemon.Pokemon "\n 1" o--> "1\n-m_element" Element : Possède\n\n >
+Game.Pokemon.Pokemon "\n 1" o--> "0..1\n-m_pouvoir" Pouvoir : Possède\n\n >
 
 
 
@@ -376,73 +373,7 @@ class Main {
 
 
 
-Air                      -[#008200,dashed]-^  Element
-Berserk                 "1" *-[#595959,plain]-> "m_pj1\n1" Pokemon
-Berserk                  -[#008200,dashed]-^  Pouvoir
-Defausse                 -[#000082,plain]-^  EnsemblePokemon
-Defausse                "1" *-[#595959,plain]-> "m_defausse\n*" Pokemon
-Eau                      -[#008200,dashed]-^  Element
-Extension_du_territoire  -[#008200,dashed]-^  Pouvoir
-Ferveur_guerrière        -[#008200,dashed]-^  Pouvoir
-Feu                      -[#008200,dashed]-^  Element
-Intimidation            "1" *-[#595959,plain]-> "m_pj1\n1" Pokemon
-Intimidation             -[#008200,dashed]-^  Pouvoir
-JoueurHumain            "1" *-[#595959,plain]-> "m_defausse\n1" Defausse
-JoueurHumain             -[#595959,dashed]->  Defausse                : "«create»"
-JoueurHumain             -[#595959,dashed]->  MainDuJoueur            : "«create»"
-JoueurHumain            "1" *-[#595959,plain]-> "m_main\n1" MainDuJoueur
-JoueurHumain             -[#595959,dashed]->  Pioche                  : "«create»"
-JoueurHumain            "1" *-[#595959,plain]-> "m_pioche\n1" Pioche
-JoueurHumain             -[#008200,dashed]-^  Player
-JoueurHumain            "1" *-[#595959,plain]-> "m_terrain\n1" Terrain
-JoueurHumain             -[#595959,dashed]->  Terrain                 : "«create»"
-Kamikaze                 -[#008200,dashed]-^  Pouvoir
-LeJeu                   "1" *-[#595959,plain]-> "m_jHumain\n1" JoueurHumain
-LeJeu                   "1" *-[#595959,plain]-> "m_jRobot\n1" RobotPlayer
-Main                     -[#595959,dashed]->  JoueurHumain            : "«create»"
-Main                     -[#595959,dashed]->  Partie                  : "«create»"
-Main                     -[#595959,dashed]->  RobotPlayer             : "«create»"
-MainDuJoueur             -[#000082,plain]-^  EnsemblePokemon
-MainDuJoueur            "1" *-[#595959,plain]-> "m_mainJoueur\n*" Pokemon
-Partie                  "1" *-[#595959,plain]-> "m_jHumain\n1" JoueurHumain
-Partie                  "1" *-[#595959,plain]-> "m_jRobot\n1" RobotPlayer
-Partie                   -[#595959,dashed]->  Tour                    : "«create»"
-Peur                     -[#008200,dashed]-^  Pouvoir
-Pioche                   -[#000082,plain]-^  EnsemblePokemon
-Pioche                  "1" *-[#595959,plain]-> "m_pioche\n*" Pokemon
-Pokemon                 "1" *-[#595959,plain]-> "m_elements\n1" Element
-Pokemon                 "1" *-[#595959,plain]-> "m_pouvoir\n1" Pouvoir
-PokemonGenerateur        -[#595959,dashed]->  Air                     : "«create»"
-PokemonGenerateur        -[#595959,dashed]->  Berserk                 : "«create»"
-PokemonGenerateur        -[#595959,dashed]->  Eau                     : "«create»"
-PokemonGenerateur        -[#595959,dashed]->  Ferveur_guerrière       : "«create»"
-PokemonGenerateur        -[#595959,dashed]->  Feu                     : "«create»"
-PokemonGenerateur        -[#595959,dashed]->  Intimidation            : "«create»"
-PokemonGenerateur        -[#595959,dashed]->  Kamikaze                : "«create»"
-PokemonGenerateur        -[#595959,dashed]->  Peur                    : "«create»"
-PokemonGenerateur        -[#595959,dashed]->  Pokemon                 : "«create»"
-PokemonGenerateur       "1" *-[#595959,plain]-> "listePouvoirs\n*" Pouvoir
-PokemonGenerateur        -[#595959,dashed]->  Soin_de_zone            : "«create»"
-PokemonGenerateur        -[#595959,dashed]->  Soin_simple             : "«create»"
-PokemonGenerateur        -[#595959,dashed]->  Soin_total              : "«create»"
-PokemonGenerateur        -[#595959,dashed]->  Terre                   : "«create»"
-RobotPlayer             "1" *-[#595959,plain]-> "m_defausse\n1" Defausse
-RobotPlayer              -[#595959,dashed]->  Defausse                : "«create»"
-RobotPlayer              -[#595959,dashed]->  MainDuJoueur            : "«create»"
-RobotPlayer             "1" *-[#595959,plain]-> "m_main\n1" MainDuJoueur
-RobotPlayer              -[#595959,dashed]->  Pioche                  : "«create»"
-RobotPlayer             "1" *-[#595959,plain]-> "m_pioche\n1" Pioche
-RobotPlayer              -[#008200,dashed]-^  Player
-RobotPlayer             "1" *-[#595959,plain]-> "m_terrain\n1" Terrain
-RobotPlayer              -[#595959,dashed]->  Terrain                 : "«create»"
-Soin_de_zone             -[#008200,dashed]-^  Pouvoir
-Soin_simple              -[#008200,dashed]-^  Pouvoir
-Soin_total               -[#008200,dashed]-^  Pouvoir
-Terrain                  -[#000082,plain]-^  EnsemblePokemon
-Terrain                 "1" *-[#595959,plain]-> "m_terrain\n*" Pokemon
-Terre                    -[#008200,dashed]-^  Element
-Tour                    "1" *-[#595959,plain]-> "m_jHumain\n1" JoueurHumain
-Tour                     -[#595959,dashed]->  Pioche                  : "«create»"
-Tour                    "1" *-[#595959,plain]-> "m_jRobot\n1" RobotPlayer
+
+
 
 @enduml

@@ -22,7 +22,7 @@ public class Affichage {
 
      static void afficherTerrain(Terrain terrain){
 
-        afficherPokemon(terrain.getM_terrain());
+        afficherPokemon(terrain.getEnsemble());
 
 
     }
