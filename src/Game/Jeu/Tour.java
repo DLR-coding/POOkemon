@@ -97,11 +97,13 @@ public class Tour {
                 }
             }
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < m_jHumain.getM_terrain().getNbPokemon(); i++) {
             if (m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir() != null) {
-                m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir().RetourALanormal(m_jHumain.getM_terrain().getPokemon(i),m_jHumain);
+                m_jHumain.getM_terrain().getPokemon(i).getM_pouvoir().RetourALanormal(m_jHumain.getM_terrain().getPokemon(i), m_jHumain);
 
             }
+        }
+            for (int i = 0; i < m_jRobot.getM_terrain().getNbPokemon(); i++) {
             if (m_jRobot.getM_terrain().getPokemon(i).getM_pouvoir() != null) {
                 m_jRobot.getM_terrain().getPokemon(i).getM_pouvoir().RetourALanormal(m_jRobot.getM_terrain().getPokemon(i), m_jRobot);
             }
@@ -226,10 +228,10 @@ public class Tour {
         } else if (nbMortRobot != 0 ) {
             m_jRobot.getM_terrain().transferPokemon(m_jRobot.getM_terrain().getPokemon(index) ,m_jRobot.getM_defausse());
         }
-        if(m_jHumain.getM_terrain().getNbPokemon() != 4 ){
+        if(m_jHumain.getM_terrain().getNbPokemon() == 4 ){
             nbMortJ1 = 0;
         }
-        if(m_jRobot.getM_terrain().getNbPokemon() != 4){
+        if(m_jRobot.getM_terrain().getNbPokemon() == 4){
             nbMortRobot = 0;
         }
         if(nbMortJ1 !=0 || nbMortRobot != 0) {

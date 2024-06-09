@@ -19,33 +19,34 @@ public class Kamikaze implements Pouvoir {
 
             System.out.println("Selectionner le Pokemon a expolser : ");
             String nomPokemonRobot = scanner.nextLine();
-            Pokemon pokemonRobot = Robot.getM_terrain().getPokemonByName(nomPokemonRobot);
+                Pokemon pokemonRobot = Robot.getM_terrain().getPokemonByName(nomPokemonRobot);
 
-            j1.getM_terrain().transferPokemon(p, j1.getM_defausse());
-            Robot.getM_terrain().transferPokemon(pokemonRobot, Robot.getM_defausse());
+                j1.getM_terrain().transferPokemon(p, j1.getM_defausse());
+                Robot.getM_terrain().transferPokemon(pokemonRobot, Robot.getM_defausse());
 
 
-            System.out.println("Tu places tes Pokémon de ta main sur ton terrain...");
-            for (int i = 0; i < j1.getM_main().getNbPokemon(); i++) {
-                System.out.print(i + 1 + " : ");
-                j1.getM_main().getPokemon(i).presenter();
-            }
-
-            for (int i = 0; i < 1; i++) {
-                System.out.println("Quel Pokémon souhaites-tu placer ? (Choisissez le numéro de Pokémon dans votre main)");
-                int index = scanner.nextInt();
-
-                if (index >= 1 && index <= 5) {
-                    j1.placeSurTerrain(j1.getM_main().getPokemon(index - 1));
-                } else {
-                    System.out.println("Index invalide. Veuillez choisir un Pokémon valide.");
-                    i--; // Pour redemander le choix pour le même emplacement
+                System.out.println("Tu places tes Pokémon de ta main sur ton terrain...");
+                for (int i = 0; i < j1.getM_main().getNbPokemon(); i++) {
+                    System.out.print(i + 1 + " : ");
+                    j1.getM_main().getPokemon(i).presenter();
                 }
-                System.out.println("Robot place ses pokemon de sa main à son terrain... ");
-                for (int j = 0; i < 1; i++) {
-                    Robot.placeSurTerrain(Robot.getM_main().getPokemon(index - 1));
+
+                for (int i = 0; i < 1; i++) {
+                    System.out.println("Quel Pokémon souhaites-tu placer ? (Choisissez le numéro de Pokémon dans votre main)");
+                    int index = scanner.nextInt();
+
+                    if (index >= 1 && index <= 5) {
+                        j1.placeSurTerrain(j1.getM_main().getPokemon(index - 1));
+                    } else {
+                        System.out.println("Index invalide. Veuillez choisir un Pokémon valide.");
+                        i--; // Pour redemander le choix pour le même emplacement
+                    }
+                    System.out.println("Robot place ses pokemon de sa main à son terrain... ");
+                    for (int j = 0; i < 1; i++) {
+                        Robot.placeSurTerrain(Robot.getM_main().getPokemon(index - 1));
+                    }
                 }
-            }
+
         }
         else{
             List<Pokemon> ciblesPotentielles = new ArrayList<>();

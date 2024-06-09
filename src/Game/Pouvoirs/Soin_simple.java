@@ -20,16 +20,18 @@ public class Soin_simple implements Pouvoir {
             Pokemon pokemonJoueur = j1.getM_terrain().getPokemonByName(nomPokemonJoueur);
 
             if (pokemonJoueur.getVie() + 30 < pokemonJoueur.getM_vieMax()) {
-                pokemonJoueur.setVie(pokemonJoueur.getVie() + 30);
+                if(j1.getM_terrain().getPokemonByName(nomPokemonJoueur) != null) {
+                    pokemonJoueur.setVie(pokemonJoueur.getVie() + 30);
+                }
             }
         }
-        else{
+        else {
 
             List<Pokemon> ciblesPotentielles = new ArrayList<>();
 
-                for (int i = 0 ; i < Robot.getM_terrain().getNbPokemon(); i++) {
-                    ciblesPotentielles.add(Robot.getM_terrain().getPokemon(i));
-                }
+            for (int i = 0; i < Robot.getM_terrain().getNbPokemon(); i++) {
+                ciblesPotentielles.add(Robot.getM_terrain().getPokemon(i));
+            }
 
             Pokemon cibleChoisie = ciblesPotentielles.get(0);
             for (Pokemon po : ciblesPotentielles) {
@@ -44,8 +46,6 @@ public class Soin_simple implements Pouvoir {
                 cibleChoisie.setVie(cibleChoisie.getVie() + 30);
             }
         }
-            p.setPouvoir(null);
-
 
     }
 

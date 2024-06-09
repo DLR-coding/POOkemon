@@ -20,8 +20,11 @@ public class Berserk implements Pouvoir{
             Scanner scanner = new Scanner(System.in);
             String nomPokemonJoueur = scanner.nextLine();
             Pokemon pokemonJoueur = j1.getM_terrain().getPokemonByName(nomPokemonJoueur);
-            GetPokemonJ1(pokemonJoueur);
-            pokemonJoueur.setM_attaque(pokemonJoueur.getM_attaque() * 2);
+
+            if(j1.getM_terrain().getPokemonByName(nomPokemonJoueur) != null) {
+                GetPokemonJ1(pokemonJoueur);
+                pokemonJoueur.setM_attaque(pokemonJoueur.getM_attaque() * 2);
+            }
         }
         else{
 

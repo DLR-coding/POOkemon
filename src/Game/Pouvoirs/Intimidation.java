@@ -22,8 +22,11 @@ public class Intimidation implements Pouvoir {
             Scanner scanner = new Scanner(System.in);
             String nomPokemonJoueur = scanner.nextLine();
             Pokemon pokemonJoueur = Robot.getM_terrain().getPokemonByName(nomPokemonJoueur);
-            GetPokemonJ1(pokemonJoueur);
-            pokemonJoueur.setM_attaque(pokemonJoueur.getM_attaque() / 2);
+
+            if(Robot.getM_terrain().getPokemonByName(nomPokemonJoueur) != null) {
+                GetPokemonJ1(pokemonJoueur);
+                pokemonJoueur.setM_attaque(pokemonJoueur.getM_attaque() / 2);
+            }
         }
         else {
 

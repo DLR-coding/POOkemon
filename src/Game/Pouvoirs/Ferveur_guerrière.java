@@ -12,14 +12,16 @@ public class Ferveur_guerrière implements Pouvoir  {
 
     @Override
     public void activatePouvoir(Pokemon p, Player j1, Player Robot,Player joueur) {
+        int nb = 0;
         if(joueur == j1) {
             System.out.println("Selectionner le Pokemon a donner le pouvoir : ");
             Scanner scanner = new Scanner(System.in);
             String nomPokemonJoueur = scanner.nextLine();
             Pokemon pokemonJoueur = j1.getM_terrain().getPokemonByName(nomPokemonJoueur);
-
-            pokemonJoueur.setM_attaque(pokemonJoueur.getM_attaque() + 10);
-            System.out.println(pokemonJoueur.getM_attaque());
+            if(j1.getM_terrain().getPokemonByName(nomPokemonJoueur) != null) {
+                nb = 1;
+                pokemonJoueur.setM_attaque(pokemonJoueur.getM_attaque() + 10);
+            }
 
         }else{
 
@@ -41,7 +43,10 @@ public class Ferveur_guerrière implements Pouvoir  {
             cibleChoisie.setM_attaque(cibleChoisie.getM_attaque() + 10);
             System.out.println(cibleChoisie.getM_attaque());
         }
-        p.setPouvoir(null);
+        if(nb != 0) {
+            nb = 0;
+            p.setPouvoir(null);
+        }
 
     }
 
