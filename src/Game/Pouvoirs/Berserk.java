@@ -8,11 +8,25 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * La classe Berserk implémente le pouvoir Berserk pour un Pokémon.
+ * Berserk double l'attaque d'un Pokémon choisi pour le tour en cours.
+ *
+ * Implémente l'interface {@link Pouvoir}.
+ */
 public class Berserk implements Pouvoir{
 
     private Pokemon m_pj1;
     private Pokemon m_pRobot;
 
+    /**
+     * Active le pouvoir Berserk sur un Pokémon.
+     *
+     * @param p le Pokémon utilisant le pouvoir
+     * @param j1 le joueur humain
+     * @param Robot le joueur robot
+     * @param joueur le joueur actuel
+     */
     @Override
     public void activatePouvoir(Pokemon p, Player j1, Player Robot,Player joueur) {
         if(joueur == j1) {
@@ -48,6 +62,12 @@ public class Berserk implements Pouvoir{
         }
     }
 
+    /**
+     * Retourne le Pokémon affecté à son état normal après l'utilisation du pouvoir.
+     *
+     * @param p le Pokémon utilisant le pouvoir
+     * @param joueur le joueur actuel
+     */
     @Override
     public void RetourALanormal(Pokemon p,Player joueur) {
         if (m_pj1 != null) {
@@ -67,17 +87,36 @@ public class Berserk implements Pouvoir{
         }
     }
 
+    /**
+     * Obtient le nom du pouvoir.
+     *
+     * @return le nom du pouvoir
+     */
     @Override
     public String getNomPouvoir() {
         return "Berserk";
     }
 
+    /**
+     * Enregistre le Pokémon joueur humain affecté par le pouvoir.
+     *
+     * @param p le Pokémon affecté
+     */
     public void GetPokemonJ1(Pokemon p){this.m_pj1 = p ; }
 
+    /**
+     * Enregistre le Pokémon robot affecté par le pouvoir.
+     *
+     * @param p le Pokémon affecté
+     */
     public void GetPokemonRobot(Pokemon p){this.m_pRobot = p ; }
 
+    /**
+     * Fournit une description du pouvoir Berserk.
+     *
+     * @return la description du pouvoir
+     */
     @Override
     public String description(){
-
     return "Berserk, à utilisation unique : le Pokémon choisit un Pokémon de son camp (éventuellement lui-même).\n Pour le tour en cours, l'attaque de ce Pokémon est doublée.";}
 }

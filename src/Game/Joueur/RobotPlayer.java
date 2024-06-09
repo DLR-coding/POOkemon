@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * La classe RobotPlayer représente un joueur robot dans le jeu.
+ * Implémente l'interface {@link Player}.
+ */
 public class RobotPlayer implements Player
 {
     private String m_nom;
@@ -18,10 +22,13 @@ public class RobotPlayer implements Player
     private Pioche m_pioche;
     private Terrain m_terrain;
     private Defausse m_defausse;
-
-
     private boolean m_joueur1;
 
+    /**
+     * Constructeur pour créer un joueur robot avec un nom spécifié.
+     *
+     * @param nom le nom du joueur robot
+     */
     public RobotPlayer(String nom)
     {
         m_nom = nom;
@@ -32,6 +39,9 @@ public class RobotPlayer implements Player
         m_joueur1 = false;
     }
 
+    /**
+     * @return vrai si le joueur est le joueur 1, sinon faux
+     */
     @Override
     public boolean isJoueur1()
     {
@@ -43,22 +53,41 @@ public class RobotPlayer implements Player
         }
     }
 
+    /**
+     * Définit si le joueur est le joueur 1.
+     *
+     * @param bool vrai si le joueur est le joueur 1, sinon faux
+     */
     @Override
     public void setJoueur1(Boolean bool)
     {
         m_joueur1 = bool;
     }
 
+    /**
+     * Pioche un Pokémon et l'ajoute à la main du joueur.
+     *
+     * @param pokemon le Pokémon à piocher
+     */
     @Override
     public void piocherPokemon(Pokemon pokemon) {
         this.m_pioche.transferPokemon(pokemon,m_main);
     }
 
+    /**
+     * @param index l'index du Pokémon
+     * @return le Pokémon à l'index spécifié dans la pioche
+     */
     @Override
     public Pokemon getPokemonFromPioche(int index) {
         return m_pioche.getPokemon(index);
     }
 
+    /**
+     * Place un Pokémon sur le terrain et pioche un nouveau Pokémon pour la main.
+     *
+     * @param pokemon le Pokémon à placer sur le terrain
+     */
     @Override
     public void placeSurTerrain(Pokemon pokemon) {
         m_main.transferPokemon(pokemon,m_terrain);
@@ -67,26 +96,44 @@ public class RobotPlayer implements Player
 
     }
 
+    /**
+     * @return la défausse du joueur
+     */
     @Override
     public Defausse getM_defausse() {
         return this.m_defausse;
     }
 
+    /**
+     * @return la main du joueur
+     */
     @Override
     public MainDuJoueur getM_main() {
         return m_main;
     }
 
+    /**
+     * @return le nom du joueur
+     */
     @Override
     public String getM_nom() {
         return m_nom;
     }
 
+    /**
+     * @return le terrain du joueur
+     */
     @Override
     public Terrain getM_terrain() {
         return m_terrain;
     }
 
+    /**
+     * Permet au joueur robot de jouer un tour en attaquant un Pokémon de l'adversaire.
+     *
+     * @param adversaire le joueur adversaire
+     * @return vrai si le tour est réussi, sinon faux
+     */
     @Override
     public Boolean joue(Player adversaire) {
 
@@ -105,6 +152,13 @@ public class RobotPlayer implements Player
         return true;
     }
 
+    /**
+     * Choisit une cible par rapport a ca vie et son element fort contre pour l'attaque parmi les Pokémon de l'adversaire.
+     *
+     * @param adversairePokemons le terrain de l'adversaire contenant ses Pokémon
+     * @param attaquant le Pokémon attaquant
+     * @return le Pokémon cible choisi
+     */
     public Pokemon choisirCible(Terrain adversairePokemons, Pokemon attaquant) {
         List<Pokemon> ciblesPotentielles = new ArrayList<>();
 
@@ -134,6 +188,12 @@ public class RobotPlayer implements Player
         return cibleChoisie;
     }
 
+    /**
+     * Permet au joueur robot d'utiliser le pouvoir d'un Pokémon.
+     *
+     * @param index l'index du Pokémon dans le terrain
+     * @return vrai si le pouvoir est utilisé, sinon faux
+     */
     @Override
     public Boolean UtilisePouvoir(int index) {
         if (m_terrain.getPokemon(index).getM_pouvoir() != null) {
@@ -147,22 +207,27 @@ public class RobotPlayer implements Player
         return false;
     }
 
-    public void CiblePouvoir(){
-
-}
-
+    /**
+     * Définit la pioche du joueur.
+     *
+     * @param pioche la pioche à définir
+     */
     public void setPioche(Pioche pioche) {
         this.m_pioche = pioche;
     }
 
-
+    /**
+     * @param i l'index du Pokémon
+     * @return le Pokémon à l'index spécifié dans la main
+     */
     public Pokemon getPokemonFromMain(int i) {
         return m_main.getPokemon(i);
     }
 
+    /**
+     * @return la pioche du joueur
+     */
     public Pioche getM_pioche() {
         return m_pioche;
     }
-
-
 }

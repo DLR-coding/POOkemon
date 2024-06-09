@@ -8,9 +8,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Classe responsable de la génération aléatoire de Pokémon pour une pioche.
+ */
 public class PokemonGenerateur {
 
 
+    /**
+     * Liste des noms de Pokémon disponibles pour la génération.
+     */
     static final List<String> listeNomsPokemon = new ArrayList<>(Arrays.asList(
             "Bulbizarre", "Herbizarre", "Florizarre", "Salamèche", "Reptincel", "Dracaufeu",
             "Carapuce", "Carabaffe", "Tortank", "Chenipan", "Chrysacier", "Papilusion",
@@ -20,6 +26,9 @@ public class PokemonGenerateur {
             "Nidoran♂", "Nidorino", "Nidoking", "Mélofée", "Mélodelfe", "Goupix",
             "Feunard", "Rondoudou", "Grodoudou", "Nosferapti"));
 
+    /**
+     * Liste des pouvoirs disponibles pour la génération de Pokémon.
+     */
     static final List<Pouvoir> listePouvoirs = new ArrayList<>(Arrays.asList(
             new Intimidation(),
             new Peur() ,
@@ -31,7 +40,11 @@ public class PokemonGenerateur {
             new Kamikaze()
     ));
 
-
+    /**
+     * Méthode statique pour générer un Pokémon aléatoire.
+     *
+     * @return Le Pokémon généré.
+     */
     static Pokemon genererPokemon() {
         Random randomNumbers = new Random();
 
@@ -81,9 +94,4 @@ public class PokemonGenerateur {
         // Retourner le Pokémon généré
         return pokemon;
     }
-
-
-
 }
-
-

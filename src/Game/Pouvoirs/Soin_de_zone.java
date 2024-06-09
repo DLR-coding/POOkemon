@@ -5,8 +5,22 @@ import Game.Pokemon;
 
 import java.util.Scanner;
 
+/**
+ * La classe Soin_de_zone implémente le pouvoir Soin de zone pour un Pokémon.
+ * Soin de zone permet à chaque Pokémon du camp du Pokémon utilisateur de regagner 10 points de vie.
+ *
+ * Implémente l'interface {@link Pouvoir}.
+ */
 public class Soin_de_zone implements Pouvoir{
 
+    /**
+     * Active le pouvoir Soin de zone, permettant à chaque Pokémon du camp du Pokémon utilisateur de regagner 10 points de vie.
+     *
+     * @param p le Pokémon utilisant le pouvoir
+     * @param j1 le joueur humain
+     * @param Robot le joueur robot
+     * @param joueur le joueur actuel
+     */
     @Override
     public void activatePouvoir(Pokemon p,Player j1, Player Robot,Player joueur) {
 
@@ -29,16 +43,32 @@ public class Soin_de_zone implements Pouvoir{
 
     }
 
+    /**
+     * Retourne rien pour se pouvoir
+     *
+     * @param p le Pokémon utilisant le pouvoir
+     * @param joueur le joueur actuel
+     */
     @Override
     public void RetourALanormal(Pokemon p,Player joueur){
         System.out.print("");
     }
 
+    /**
+     * Obtient le nom du pouvoir.
+     *
+     * @return le nom du pouvoir
+     */
     @Override
     public String getNomPouvoir() {
         return "Soin de zone";
     }
 
+    /**
+     * Fournit une description du pouvoir Soin de zone.
+     *
+     * @return la description du pouvoir
+     */
     @Override
     public String description(){
 

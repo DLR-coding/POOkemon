@@ -5,6 +5,9 @@ import Game.Joueur.JoueurHumain;
 import Game.Joueur.Player;
 import Game.Joueur.RobotPlayer;
 
+/**
+ * Classe représentant une partie de jeu entre un joueur humain et un robot.
+ */
 public class Partie
 {
     private JoueurHumain m_jHumain;
@@ -12,6 +15,12 @@ public class Partie
     private int m_numTour;
     private Boolean m_arret = false;
 
+    /**
+     * Constructeur de la classe Partie.
+     *
+     * @param humain Le joueur humain participant à la partie.
+     * @param robot Le joueur robot participant à la partie.
+     */
     public Partie(JoueurHumain humain, RobotPlayer robot )
     {
         m_jHumain = humain;
@@ -19,6 +28,9 @@ public class Partie
         m_numTour = 1;
     }
 
+    /**
+     * Lance la partie et gère les différentes phases de jeu.
+     */
     public void Lunch()
     {
         Tour tour = new Tour(m_jHumain,m_jRobot);
@@ -43,6 +55,10 @@ public class Partie
         }
 
     }
+
+    /**
+     * Vérifie si le jeu doit se terminer en fonction des pokemon du joueur.
+     */
     private void verifierFinJeu() {
         if (tousPokemonsElimines(m_jHumain)) {
             m_arret = true;
@@ -53,6 +69,12 @@ public class Partie
         }
     }
 
+    /**
+     * Calcule le nombre de Pokémons restants pour un joueur donné.
+     *
+     * @param joueur Le joueur dont on veut connaître le nombre de Pokémons restants.
+     * @return Le nombre de Pokémons restants pour le joueur.
+     */
     private int nbPokemonsRestants(Player joueur)
     {
         int nbPokemonInitial = (joueur.isJoueur1()) ? 20 : 21;
@@ -60,6 +82,12 @@ public class Partie
         return count;
     }
 
+    /**
+     * Vérifie si tous les Pokémons d'un joueur sont éliminés.
+     *
+     * @param joueur Le joueur dont on veut vérifier si tous les Pokémons sont éliminés.
+     * @return true si tous les Pokémons du joueur sont éliminés, false sinon.
+     */
     public boolean tousPokemonsElimines(Player joueur) {
         int nbPokemonInitial = (joueur.isJoueur1()) ? 20 : 21;
         return joueur.getM_defausse().getNbPokemon() == nbPokemonInitial;

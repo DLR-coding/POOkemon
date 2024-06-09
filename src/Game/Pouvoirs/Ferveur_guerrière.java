@@ -8,8 +8,22 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * La classe Ferveur_guerrière implémente le pouvoir Ferveur Guerrière pour un Pokémon.
+ * Ferveur Guerrière augmente l'attaque d'un Pokémon choisi de 10 points jusqu'à la fin de la partie ou à sa mort
+ *
+ * Implémente l'interface {@link Pouvoir}.
+ */
 public class Ferveur_guerrière implements Pouvoir  {
 
+    /**
+     * Active le pouvoir Ferveur Guerrière sur un Pokémon.
+     *
+     * @param p le Pokémon utilisant le pouvoir
+     * @param j1 le joueur humain
+     * @param Robot le joueur robot
+     * @param joueur le joueur actuel
+     */
     @Override
     public void activatePouvoir(Pokemon p, Player j1, Player Robot,Player joueur) {
         int nb = 0;
@@ -50,16 +64,32 @@ public class Ferveur_guerrière implements Pouvoir  {
 
     }
 
+    /**
+     * Retourne rien pour se pouvoir.
+     *
+     * @param p le Pokémon utilisant le pouvoir
+     * @param joueur le joueur actuel
+     */
     @Override
     public void RetourALanormal(Pokemon p,Player joueur){
         System.out.print("");
     }
 
+    /**
+     * Obtient le nom du pouvoir.
+     *
+     * @return le nom du pouvoir
+     */
     @Override
     public String getNomPouvoir() {
         return "Ferveur Guerriere";
     }
 
+    /**
+     * Fournit une description du pouvoir Ferveur Guerrière.
+     *
+     * @return la description du pouvoir
+     */
     @Override
     public String description(){
 

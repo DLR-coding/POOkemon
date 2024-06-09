@@ -10,17 +10,33 @@ import Game.Jeu.Affichage;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Classe représentant un tour de jeu.
+ */
 public class Tour {
     private JoueurHumain m_jHumain;
     private RobotPlayer m_jRobot;
     private int m_numTour;
     private Boolean m_arret = false;
+
+    /**
+     * Constructeur de la classe Tour.
+     *
+     * @param humain Le joueur humain participant au tour.
+     * @param robot Le joueur robot participant au tour.
+     */
     public Tour(JoueurHumain humain, RobotPlayer robot )
     {
         m_jHumain = humain;
         m_jRobot = robot;
         m_numTour = 1;
     }
+
+    /**
+     * Initialise les mains des joueurs avec un certain nombre de Pokémons.
+     *
+     * @param tailleMain La taille de la main pour chaque joueur.
+     */
 
     public void MainJoueurs(int tailleMain)
     {
@@ -33,6 +49,11 @@ public class Tour {
 
     }
 
+    /**
+     * Gère la phase d'attaque,ainsi que les pouvoir pour un tour donné.
+     *
+     * @param tour Le numéro du tour.
+     */
     public void phaseAttaquer(int tour) {
         int nb = tour % 2;
         System.out.println("le tour est : " + nb);
@@ -111,6 +132,12 @@ public class Tour {
 
     }
 
+    /**
+     * Place les Pokémons des joueurs sur le terrain.
+     *
+     * @param nbJ1 Le nombre de Pokémons à placer pour le joueur humain.
+     * @param nbRobot Le nombre de Pokémons à placer pour le robot.
+     */
     public void placementPokemon(int nbJ1,int nbRobot)
     {
         //Terrain
@@ -164,6 +191,10 @@ public class Tour {
             }
         }
     }
+
+    /**
+     * Initialise les pioches des joueurs.
+     */
     public void piochesJoueurs()
     {
         // Initialisation des pioches
@@ -180,7 +211,9 @@ public class Tour {
         }
     }
 
-    // Choix random de qui joue en premier
+    /**
+     * Choisit aléatoirement quel joueur commence en premier.
+     */
     public void choix1erJoueur()
     {
         Random random = new Random();
@@ -196,12 +229,23 @@ public class Tour {
         }
     }
 
+    /**
+     * Vérifie si un Pokémon est mort.
+     *
+     * @param pokemon Le Pokémon à vérifier.
+     * @return true si le Pokémon est mort, false sinon.
+     */
     public boolean PokemonMort(Pokemon pokemon){
         if (pokemon.getVie() <= 0){
             return true;
         }
         return false;
     }
+
+
+    /**
+     * Vérifie et gère la mort des Pokémons sur le terrain.
+     */
     public void verifMort(){
         int nbMortJ1 = 0;
         int nbMortRobot = 0;
@@ -242,6 +286,12 @@ public class Tour {
 
 
     }
+
+    /**
+     * Active les pouvoirs des Pokémons sur le terrain pour un joueur donné.
+     *
+     * @param joueur Le joueur dont les pouvoirs des Pokémons doivent être activés.
+     */
     public void Pouvoir(Player joueur) {
         if (joueur == m_jHumain) {
 
@@ -265,17 +315,36 @@ public class Tour {
         }
     }
 
+    /**
+     * Affiche l'état actuel du jeu.
+     */
     public void Affichage() {Affichage.afficherJeu(this); }
+
+    /**
+     * Obtient le joueur humain.
+     *
+     * @return Le joueur humain.
+     */
     public JoueurHumain getM_jHumain()
     {
         return m_jHumain;
     }
 
+    /**
+     * Obtient le joueur robot.
+     *
+     * @return Le joueur robot.
+     */
     public RobotPlayer getM_jRobot()
     {
         return m_jRobot;
     }
 
+    /**
+     * Obtient le numéro actuel du tour.
+     *
+     * @return Le numéro actuel du tour.
+     */
     public int getM_numTour()
     {
         return m_numTour;

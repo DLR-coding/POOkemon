@@ -8,8 +8,22 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * La classe Peur implémente le pouvoir Peur pour un Pokémon.
+ * Peur réduit l'attaque d'un Pokémon adverse choisi de 10.
+ *
+ * Implémente l'interface {@link Pouvoir}.
+ */
 public class Peur implements Pouvoir{
 
+    /**
+     * Active le pouvoir Peur sur un Pokémon adverse.
+     *
+     * @param p le Pokémon utilisant le pouvoir
+     * @param j1 le joueur humain
+     * @param Robot le joueur robot
+     * @param joueur le joueur actuel
+     */
     @Override
     public void activatePouvoir(Pokemon p, Player j1, Player Robot, Player joueur) {
         int nb = 0;
@@ -51,16 +65,32 @@ public class Peur implements Pouvoir{
 
     }
 
+    /**
+     * Retourne rien pour se pouvoir.
+     *
+     * @param p le Pokémon utilisant le pouvoir
+     * @param joueur le joueur actuel
+     */
     @Override
     public void RetourALanormal(Pokemon p,Player joueur){
         System.out.print("");
     }
 
+    /**
+     * Obtient le nom du pouvoir.
+     *
+     * @return le nom du pouvoir
+     */
     @Override
     public String getNomPouvoir() {
         return "Peur";
     }
 
+    /**
+     * Fournit une description du pouvoir Peur.
+     *
+     * @return la description du pouvoir
+     */
     @Override
     public String description(){
 
