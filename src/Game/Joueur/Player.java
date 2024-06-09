@@ -13,6 +13,7 @@ public interface Player {
     void piocherPokemon(Pokemon pokemon);
 
     Pokemon getPokemonFromPioche(int index);
+    Pokemon getPokemonFromMain(int i);
     void placeSurTerrain(Pokemon pokemon);
     Defausse getM_defausse();
     MainDuJoueur getM_main();

@@ -53,12 +53,13 @@ package Game
                 + activatePouvoir(pokemon:Pokemon)
                 + getNom() : String
             }
-           class Extension_Du_Territoire implements Pouvoir
+           class Peur implements Pouvoir
            {
                 + activatePouvoir(pokemon:Pokemon)
                 + getNom() : String
 
-           }class Ferveur_guerrière implements Pouvoir
+           }
+           class Ferveur_guerrière implements Pouvoir
            {
                 + activatePouvoir(pokemon:Pokemon)
                 + getNom() : String
@@ -102,6 +103,8 @@ package Game
             + setJoueur1()
             + piocherPokemon(pokemon:Pokemon)
             + placeSurTerrain(pokemon:Pokemon)
+            + getPokemonFromPioche(index:Integer) : Pokemon
+            + getPokemonFromMain(i : Integer ) : Pokemon
             + getM_defausse() : Defausse
             + getM_main() : MainDuJoueur
             + getM_nom() : String
@@ -116,6 +119,8 @@ package Game
                         + <<Create>> Joueur(nom: String)
                         + getM_defausse() : Defausse
                         + getM_main() : MainDuJoueur
+                        + getPokemonFromPioche(index:Integer) : Pokemon
+                        + getPokemonFromMain(i : Integer ) : Pokemon
                         + getM_nom() : String
                         + getM_terrain() : Terrain
                         + getM_pioche() : Pioche
@@ -138,6 +143,7 @@ package Game
                                 + getM_nom() : String
                                 + getM_terrain() : Terrain
                                 + getM_pioche() : Pioche
+                                + getPokemonFromPioche(index:Integer) : Pokemon
                                 + piocherPokemon(pokemon:Pokemon)
                                 + placeSurTerrain(pokemon:Pokemon)
                                 + isJoueur1() : Boolean

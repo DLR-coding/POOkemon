@@ -26,16 +26,6 @@ public class JoueurHumain implements Player
 
 
 
-
-    public boolean aDesPokemons() {
-        for (int i = 0; i < 4; i++) {
-            if (m_main.getPokemon(i) == null) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public Defausse getM_defausse() {
         return m_defausse;
     }
