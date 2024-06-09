@@ -1,15 +1,14 @@
 package Game.Joueur;
 
-import Game.EnsemblePokemon.Defausse;
-import Game.EnsemblePokemon.MainDuJoueur;
-import Game.EnsemblePokemon.Pioche;
-import Game.EnsemblePokemon.Terrain;
-import Game.Pokemon;
+import Game.Pokemons.EnsemblePokemon.Defausse;
+import Game.Pokemons.EnsemblePokemon.MainDuJoueur;
+import Game.Pokemons.EnsemblePokemon.Pioche;
+import Game.Pokemons.EnsemblePokemon.Terrain;
+import Game.Pokemons.Pokemon;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class RobotPlayer implements Player
 {

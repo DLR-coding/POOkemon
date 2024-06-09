@@ -1,6 +1,6 @@
-package Game.EnsemblePokemon;
+package Game.Pokemons.EnsemblePokemon;
 
-import Game.Pokemon;
+import Game.Pokemons.Pokemon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +19,7 @@ public class Defausse extends EnsemblePokemon{
     }
 
 
-    @Override
-    public void transferPokemon(Pokemon pokemon, EnsemblePokemon destination) {
-        if (!destination.getEnsemble().contains(pokemon) && this.getEnsemble().contains(pokemon)) {
-            destination.getEnsemble().add(pokemon);
-            this.getEnsemble().remove(pokemon);
-        } else {
-            System.out.println("Le Pokémon invalide : déjà dans destination/pas dans source.");
-        }
-    }
+
 
     @Override
     public Pokemon getPokemonByName(String name) {

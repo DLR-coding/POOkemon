@@ -1,8 +1,7 @@
-package Game.Pouvoirs;
+package Game.Pokemons.Pouvoirs;
 
-import Game.EnsemblePokemon.Terrain;
 import Game.Joueur.Player;
-import Game.Pokemon;
+import Game.Pokemons.Pokemon;
 
 public interface Pouvoir {
 

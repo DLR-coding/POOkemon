@@ -1,7 +1,7 @@
-package Game.Pouvoirs;
+package Game.Pokemons.Pouvoirs;
 
 import Game.Joueur.Player;
-import Game.Pokemon;
+import Game.Pokemons.Pokemon;
 
 import java.util.Scanner;
 

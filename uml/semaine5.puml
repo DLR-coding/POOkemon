@@ -8,93 +8,6 @@ hide empty members
 
 package Game
 {
-    package Elements
-    {
-
-        class Element <<Interface>>
-            {
-                + getElmt() : String
-                + getFortContre(): String
-                + getFaibleContre() : String
-            }
-
-        class Terre implements Element
-            {
-                + getElmt() : String
-                + getFortContre(): String
-                + getFaibleContre() : String
-            }
-
-        class Eau implements Element
-            {
-                + getElmt() : String
-                + getFortContre(): String
-                + getFaibleContre() : String
-            }
-
-        class Feu implements Element
-            {
-                + getElmt() : String
-                + getFortContre(): String
-                + getFaibleContre() : String
-            }
-
-        class Air implements Element
-            {
-                + getElmt() : String
-                + getFortContre(): String
-                + getFaibleContre() : String
-            }
-    }
-    package Pouvoirs
-    {
-        class Pouvoir <<Interface>>
-            {
-                + activatePouvoir(pokemon:Pokemon)
-                + getNom() : String
-            }
-           class Peur implements Pouvoir
-           {
-                + activatePouvoir(pokemon:Pokemon)
-                + getNom() : String
-
-           }
-           class Ferveur_guerrière implements Pouvoir
-           {
-                + activatePouvoir(pokemon:Pokemon)
-                + getNom() : String
-           }
-           class Soin_de_zone implements Pouvoir
-           {
-                + activatePouvoir(pokemon:Pokemon)
-                + getNom() : String
-           }
-           class Soin_simple implements Pouvoir
-           {
-                + activatePouvoir(pokemon:Pokemon)
-                + getNom() : String
-           }
-           class Soin_total implements Pouvoir
-           {
-                + activatePouvoir(pokemon:Pokemon)
-                + getNom() : String
-           }
-           class Kamikaze implements Pouvoir
-           {
-                + activatePouvoir(pokemon:Pokemon)
-                + getNom() : String
-           }
-           class Intimidation implements Pouvoir
-           {
-                + activatePouvoir(pokemon:Pokemon)
-                + getNom() : String
-           }
-
-    }
-
-
-
-
     package Joueur
     {
         class Player <<Interface>>
@@ -157,6 +70,93 @@ package Game
     }
     package Pokemons
     {
+        package Elements
+            {
+
+                class Element <<Interface>>
+                    {
+                        + getElmt() : String
+                        + getFortContre(): String
+                        + getFaibleContre() : String
+                    }
+
+                class Terre implements Element
+                    {
+                        + getElmt() : String
+                        + getFortContre(): String
+                        + getFaibleContre() : String
+                    }
+
+                class Eau implements Element
+                    {
+                        + getElmt() : String
+                        + getFortContre(): String
+                        + getFaibleContre() : String
+                    }
+
+                class Feu implements Element
+                    {
+                        + getElmt() : String
+                        + getFortContre(): String
+                        + getFaibleContre() : String
+                    }
+
+                class Air implements Element
+                    {
+                        + getElmt() : String
+                        + getFortContre(): String
+                        + getFaibleContre() : String
+                    }
+            }
+
+            package Pouvoirs
+            {
+                    class Pouvoir <<Interface>>
+                    {
+                        + activatePouvoir(pokemon:Pokemon , j1:Player , robot:Player , joueur : Player)
+                        + getNomPouvoir() : String
+                        +
+                    }
+                   class Peur implements Pouvoir
+                   {
+                        + activatePouvoir(pokemon:Pokemon)
+                        + getNom() : String
+
+                   }
+                   class Ferveur_guerrière implements Pouvoir
+                   {
+                        + activatePouvoir(pokemon:Pokemon)
+                        + getNom() : String
+                   }
+                   class Soin_de_zone implements Pouvoir
+                   {
+                        + activatePouvoir(pokemon:Pokemon)
+                        + getNom() : String
+                   }
+                   class Soin_simple implements Pouvoir
+                   {
+                        + activatePouvoir(pokemon:Pokemon)
+                        + getNom() : String
+                   }
+                   class Soin_total implements Pouvoir
+                   {
+                        + activatePouvoir(pokemon:Pokemon)
+                        + getNom() : String
+                   }
+                   class Kamikaze implements Pouvoir
+                   {
+                        + activatePouvoir(pokemon:Pokemon)
+                        + getNom() : String
+                   }
+                   class Intimidation implements Pouvoir
+                   {
+                        + activatePouvoir(pokemon:Pokemon)
+                        + getNom() : String
+                   }
+            }
+
+
+
         class Pokemon
             {
                 - m_nom: String
@@ -179,7 +179,7 @@ package Game
                 + getM_vieMax() : Integer
                 + presenter()
             }
-         package EnsemblePokemon
+            package EnsemblePokemon
             {
                 class  EnsemblePokemon <<abstract>>
                 {
@@ -241,52 +241,58 @@ package Game
                         + transferPokemon(pokemon:Pokemon , to:EnsemblePokemon )
                     }
             }
-    }
 
 
     package Jeu
-    {
-        class Tour
-        {
-            - m_numTour : Integer
-            + phaseAttaquer( tour : Integer)
-            + MainJoueurs(tailleMain: Integer)
-            + choix1erJoueur()
-            + piochesJoueurs()
-            + placementPokemon( nbJ1 : Integer, nbRobot : Integer)
-            + PokemonMort(pokemon:Pokemon) : Boolean
-            + getM_jHumain() : JoueurHumain
-            + getM_jRobot() : RobotPlayer
-            + grtM_numTour() : Integer
-        }
-        class Partie
-        {
-            - m_arret : Boolean
-            + <<Create>> LeJeu(humain:JoueurHumain , robot : RobotPlayer)
-            + Launch()
-            + verifierFinJeu()
-            + nbPokemonRestans(joueur : Player) : Integer
-            + tousPokemonsElimines(joueur : Player) : Boolean
+         {
+             class Tour
+             {
+                 - m_numTour : Integer
+                 + phaseAttaquer( tour : Integer)
+                 + MainJoueurs(tailleMain: Integer)
+                 + choix1erJoueur()
+                 + piochesJoueurs()
+                 + placementPokemon( nbJ1 : Integer, nbRobot : Integer)
+                 + PokemonMort(pokemon:Pokemon) : Boolean
+                 + getM_jHumain() : JoueurHumain
+                 + getM_jRobot() : RobotPlayer
+                 + grtM_numTour() : Integer
+             }
+             class Partie
+             {
+                 - m_arret : Boolean
+                 + <<Create>> Partie(humain:JoueurHumain , robot : RobotPlayer)
+                 + Launch()
+                 + verifierFinJeu()
+                 + nbPokemonRestans(joueur : Player) : Integer
+                 + tousPokemonsElimines(joueur : Player) : Boolean
 
 
-        }
-        abstract Affichage
-        {
-            + {static} afficherJeu(jeu : LeJeu)
-            + {static} afficherMain(main : MainDuJoeur)
-            + {static} afficherTerrain(terrain : Terrain)
-            + {static} afficherPioche(pioche : Pioche)
-            + {static} afficherDefausse(defausse : Defausse)
-            + {static} afficherPokemon(pokemons : ListePokemon)
-        }
-    }
+             }
+             abstract Affichage
+             {
+                 + {static} afficherJeu(jeu : LeJeu)
+                 + {static} afficherMain(main : MainDuJoeur)
+                 + {static} afficherTerrain(terrain : Terrain)
+                 + {static} afficherPioche(pioche : Pioche)
+                 + {static} afficherDefausse(defausse : Defausse)
+                 + {static} afficherPokemon(pokemons : ListePokemon)
+                 + {static} adjustLength(str:String,int:length) : String
+                 + {static} clearConsole()
 
+
+             }
+         }
 }
 class Main
 {
     + {static} main( args:String[] )
 }
+Main ..> Partie : <<uses>>
 Main ..> Game : <<uses>>
+
+Tour "1" *---> "1\n-m_jHumain" JoueurHumain : composé de \t\t >
+Tour "1" *---> "1\n-m_jRobot" RobotPlayer : composé de \t\t >
 
 Partie "1" *---> "1\n-m_tour" Tour : composé de \t\t >
 Partie "1" *---> "1 \n-m_jHumain"  JoueurHumain : composé de \t\t >

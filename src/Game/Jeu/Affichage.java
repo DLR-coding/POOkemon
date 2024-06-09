@@ -1,13 +1,10 @@
 package Game.Jeu;
-import Game.EnsemblePokemon.Defausse;
-import Game.EnsemblePokemon.MainDuJoueur;
-import Game.EnsemblePokemon.Pioche;
-import Game.EnsemblePokemon.Terrain;
-import Game.Joueur.JoueurHumain;
-import Game.Joueur.RobotPlayer;
-import Game.Pokemon;
+import Game.Pokemons.EnsemblePokemon.Defausse;
+import Game.Pokemons.EnsemblePokemon.MainDuJoueur;
+import Game.Pokemons.EnsemblePokemon.Pioche;
+import Game.Pokemons.EnsemblePokemon.Terrain;
+import Game.Pokemons.Pokemon;
 import java.io.IOException;
-import java.io.Console;
 import java.util.List;
 
 public class Affichage {

@@ -1,7 +1,7 @@
 package Game.Joueur;
 
-import Game.EnsemblePokemon.*;
-import Game.Pokemon;
+import Game.Pokemons.EnsemblePokemon.*;
+import Game.Pokemons.Pokemon;
 
 import java.util.Scanner;
 

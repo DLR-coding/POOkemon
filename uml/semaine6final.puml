@@ -1,0 +1,548 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+top to bottom direction
+skinparam linetype ortho
+
+package Game
+{
+    package Jeu
+    {
+        class Affichage
+        {
+          + {static} afficherTerrain(Terrain)
+          +{static} afficherDefausse(Defausse)
+          +{static} afficherMain(MainDuJoueur)
+          +{static} afficherJeu(Tour)
+          +{static} clearConsole()
+          +{static} afficherPokemon(List<Pokemon>)
+          +{static} adjustLength(String, Integer): String
+          +{static} afficherPioche(Pioche)
+        }
+
+        class Partie
+        {
+
+          - m_arret: Boolean
+          - m_jRobot: RobotPlayer
+          - m_jHumain: JoueurHumain
+          - m_numTour: Integer
+          + <<Create>> Partie(JoueurHumain, RobotPlayer)
+          + Lunch()
+          + verifierFinJeu()
+          + nbPokemonsRestants(Player): Integer
+          + tousPokemonsElimines(Player): Boolean
+        }
+
+        class Tour {
+
+          - m_jHumain: JoueurHumain
+          - m_jRobot: RobotPlayer
+          - m_numTour: Integer
+          - m_arret: Boolean
+          + <<Create>> Tour(humain:JoueurHumain, robot:RobotPlayer):
+          + placementPokemon(Integer, Integer)
+          + MainJoueurs(Integer)
+          + Affichage()
+          + PokemonMort(Pokemon): boolean
+          + getM_numTour(): Integer
+          + verifMort()
+          + piochesJoueurs()
+          + getM_jHumain(): JoueurHumain
+          + getM_jRobot(): RobotPlayer
+          + phaseAttaquer(Integer)
+          + Pouvoir(Player)
+          + choix1erJoueur()
+        }
+
+    }
+    package Joueur
+    {
+
+    }
+    package Pokemon
+    {
+
+    }
+
+}
+
+class Air {
+  + Air():
+  + toString(): String
+  + getFaibleContre(): String
+  + getElmnt(): String
+  + getFortContre(): String
+}
+class Air {
+  + Air():
+  + getFortContre(): String
+  + getElmnt(): String
+  + getFaibleContre(): String
+}
+class Berserk {
+  + Berserk():
+  - m_pj1: Pokemon
+  - m_pRobot: Pokemon
+  + RetourALanormal(Pokemon, Player)
+  + activatePouvoir(Pokemon, Player, Player, Player)
+  + GetPokemonJ1(Pokemon)
+  + getNomPouvoir(): String
+  + description(): String
+  + GetPokemonRobot(Pokemon)
+}
+class Defausse {
+  + Defausse():
+  - m_defausse: List<Pokemon>
+  + getPokemonByName(String): Pokemon
+  + getNbPokemon(): Integer
+  + getEnsemble(): List<Pokemon>
+  + getPokemon(Integer): Pokemon
+}
+class Defausse {
+  + Defausse():
+  - m_defausse: List<Pokemon>
+  + transferPokemon(Pokemon, EnsemblePokemon)
+  + getNbPokemon(): Integer
+  + getEnsemble(): List<Pokemon>
+  + getPokemon(Integer): Pokemon
+  + getPokemonByName(String): Pokemon
+}
+class Eau {
+  + Eau():
+  + getFaibleContre(): String
+  + toString(): String
+  + getElmnt(): String
+  + getFortContre(): String
+}
+class Eau {
+  + Eau():
+  + getFortContre(): String
+  + getElmnt(): String
+  + getFaibleContre(): String
+}
+interface Element << interface >> {
+  + getElmnt(): String
+  + getFortContre(): String
+  + getFaibleContre(): String
+}
+interface Element << interface >> {
+  + getFaibleContre(): String
+  + getElmnt(): String
+  + getFortContre(): String
+}
+class EnsemblePokemon {
+  + EnsemblePokemon():
+  + getPokemonByName(String): Pokemon
+  + getNbPokemon(): Integer
+  + getPokemon(Integer): Pokemon
+  + transferPokemon(Pokemon, EnsemblePokemon)
+  + getEnsemble(): List<Pokemon>
+}
+interface EnsemblePokemon << interface >> {
+  + getPokemon(Integer): Pokemon
+  + getPokemonByName(String): Pokemon
+  + getNbPokemon(): Integer
+  + getEnsemble(): List<Pokemon>
+  + transferPokemon(Pokemon, EnsemblePokemon)
+}
+class Extension_du_territoire {
+  + Extension_du_territoire():
+  + getNomPouvoir(): String
+  + RetourALanormal(Pokemon, Player)
+  + activatePouvoir(Pokemon, Player, Player, Player)
+  + description(): String
+}
+class Extension_du_territoire {
+  + Extension_du_territoire():
+  + activatePouvoir(Pokemon)
+  + getNom(): String
+}
+class Ferveur_guerrière {
+  + Ferveur_guerrière():
+  + getNomPouvoir(): String
+  + description(): String
+  + activatePouvoir(Pokemon, Player, Player, Player)
+  + RetourALanormal(Pokemon, Player)
+}
+class Ferveur_guerrière {
+  + Ferveur_guerrière():
+  + getNom(): String
+  + activatePouvoir(Pokemon)
+}
+class Feu {
+  + Feu():
+  + getElmnt(): String
+  + getFortContre(): String
+  + getFaibleContre(): String
+}
+class Feu {
+  + Feu():
+  + toString(): String
+  + getElmnt(): String
+  + getFortContre(): String
+  + getFaibleContre(): String
+}
+class Intimidation {
+  + Intimidation():
+  + RetourALanormal(Pokemon)
+  + activatePouvoir(Pokemon)
+  + getNom(): String
+}
+class Intimidation {
+  + Intimidation():
+  - m_pj1: Pokemon
+  - m_pRobot: Pokemon
+  + activatePouvoir(Pokemon, Player, Player, Player)
+  + GetPokemonRobot(Pokemon)
+  + RetourALanormal(Pokemon, Player)
+  + getNomPouvoir(): String
+  + GetPokemonJ1(Pokemon)
+  + description(): String
+}
+class JoueurHumain {
+  + JoueurHumain(String):
+  - m_joueur1: boolean
+  - m_nom: String
+  - m_terrain: Terrain
+  - m_pioche: Pioche
+  - m_defausse: Defausse
+  - m_main: MainDuJoueur
+  + getPokemonFromMain(Integer): Pokemon
+  + isJoueur1(): boolean
+  + getPokemonFromPioche(Integer): Pokemon
+  + placeSurTerrain(Pokemon)
+  + getM_defausse(): Defausse
+  + getM_pioche(): Pioche
+  + joue(Player): Boolean
+  + getM_terrain(): Terrain
+  + getM_main(): MainDuJoueur
+  + setPioche(Pioche)
+  + getM_nom(): String
+  + piocherPokemon(Pokemon)
+  + UtilisePouvoir(Integer): Boolean
+  + setJoueur1(Boolean)
+}
+class Kamikaze {
+  + Kamikaze():
+  + description(): String
+  + activatePouvoir(Pokemon, Player, Player, Player)
+  + RetourALanormal(Pokemon, Player)
+  + getNomPouvoir(): String
+}
+class LeJeu {
+  + LeJeu(JoueurHumain, RobotPlayer):
+  - m_jHumain: JoueurHumain
+  - m_jRobot: RobotPlayer
+  - m_numTour: Integer
+  - m_arret: Boolean
+  - verifierFinJeu()
+  + choix1erJoueur()
+  + getM_numTour(): Integer
+  + getM_jRobot(): RobotPlayer
+  + phaseAttaquer(Integer)
+  + getM_jHumain(): JoueurHumain
+  + tousPokemonsElimines(Player): boolean
+  + PokemonMort(Pokemon): boolean
+  + Lunch()
+  - nbPokemonsRestants(Player): Integer
+  + MainJoueurs(Integer)
+  - placementPokemon(Integer, Integer)
+  - piochesJoueurs()
+}
+class Main {
+  + Main():
+  + main(String[])
+}
+class MainDuJoueur {
+  + MainDuJoueur():
+  - m_mainJoueur: List<Pokemon>
+  + getPokemon(Integer): Pokemon
+  + getPokemonByName(String): Pokemon
+  + getNbPokemon(): Integer
+  + getEnsemble(): List<Pokemon>
+}
+class MainDuJoueur {
+  + MainDuJoueur():
+  - m_mainJoueur: List<Pokemon>
+  + getPokemonByName(String): Pokemon
+  + getEnsemble(): List<Pokemon>
+  + getNbPokemon(): Integer
+  + getPokemon(Integer): Pokemon
+  + transferPokemon(Pokemon, EnsemblePokemon)
+}
+
+class Peur {
+  + Peur():
+  + activatePouvoir(Pokemon, Player, Player, Player)
+  + getNomPouvoir(): String
+  + RetourALanormal(Pokemon, Player)
+  + description(): String
+}
+class Pioche {
+  + Pioche():
+  + Pioche(Integer):
+  - m_pioche: List<Pokemon>
+  + transferPokemon(Pokemon, EnsemblePokemon)
+  + getPokemonByName(String): Pokemon
+  + getNbPokemon(): Integer
+  + getEnsemble(): List<Pokemon>
+  + getPokemon(Integer): Pokemon
+}
+class Pioche {
+  + Pioche(Integer):
+  + Pioche():
+  - m_pioche: List<Pokemon>
+  + getEnsemble(): List<Pokemon>
+  + getPokemon(Integer): Pokemon
+  + getPokemonByName(String): Pokemon
+  + getNbPokemon(): Integer
+}
+interface Player << interface >> {
+  + joue(Player): Boolean
+  + getM_nom(): String
+  + setJoueur1(Boolean)
+  + isJoueur1(): boolean
+  + getM_defausse(): Defausse
+  + getM_main(): MainDuJoueur
+  + UtilisePouvoir(Integer): Boolean
+  + getPokemonFromPioche(Integer): Pokemon
+  + placeSurTerrain(Pokemon)
+  + getM_terrain(): Terrain
+  + getPokemonFromMain(Integer): Pokemon
+  + piocherPokemon(Pokemon)
+}
+class Pokemon {
+  + Pokemon(String, Element, Integer, Integer):
+  - m_attaque: Integer
+  - m_pouvoir: Pouvoir
+  - m_vie: Integer
+  - m_nom: String
+  - m_elements: Element
+  - m_vieMax: Integer
+  + getM_attaque(): Integer
+  + setVie(Integer)
+  + attaquer(Pokemon)
+  + presenter()
+  + getNom_pouvoir(): String
+  + getM_vieMax(): Integer
+  + setPouvoir(Pouvoir)
+  + getM_nom(): String
+  + getVie(): Integer
+  + getM_pouvoir(): Pouvoir
+  + setM_attaque(Integer)
+  + getM_elements(): Element
+}
+class Pokemon {
+  + Pokemon(String, Element, Integer, Integer):
+  - m_attaque: Integer
+  - m_vie: Integer
+  - m_elements: Element
+  - m_vieMax: Integer
+  - m_nom: String
+  - m_pouvoir: Pouvoir
+  + estVivant(): boolean
+  + setVie(Integer)
+  + getNom_pouvoir(): String
+  + setM_attaque(Integer)
+  + getM_attaque(): Integer
+  + getM_nom(): String
+  + getM_elements(): Element
+  + setM_pouvoir(Pouvoir)
+  + getM_vieMax(): Integer
+  + getVie(): Integer
+  + presenter()
+  + attaquer(Pokemon)
+  + getM_pouvoir(): Pouvoir
+  + setPouvoir(Pouvoir)
+}
+class PokemonGenerateur {
+  + PokemonGenerateur():
+  ~ listeNomsPokemon: List<String>
+  ~ listePouvoirs: List<Pouvoir>
+  ~ genererPokemon(): Pokemon
+}
+class PokemonGenerateur {
+  + PokemonGenerateur():
+  ~ listePouvoirs: List<Pouvoir>
+  ~ listeNomsPokemon: List<String>
+  ~ genererPokemon(): Pokemon
+}
+interface Pouvoir << interface >> {
+  + activatePouvoir(Pokemon)
+  + getNom(): String
+}
+interface Pouvoir << interface >> {
+  + activatePouvoir(Pokemon, Player, Player, Player)
+  + description(): String
+  + RetourALanormal(Pokemon, Player)
+  + getNomPouvoir(): String
+}
+class RobotPlayer {
+  + RobotPlayer(String):
+  - m_terrain: Terrain
+  - m_joueur1: boolean
+  - m_defausse: Defausse
+  - m_pioche: Pioche
+  - m_main: MainDuJoueur
+  - m_nom: String
+  + getM_nom(): String
+  + getM_defausse(): Defausse
+  + getM_pioche(): Pioche
+  + CiblePouvoir()
+  + setJoueur1(Boolean)
+  + getM_terrain(): Terrain
+  + isJoueur1(): boolean
+  + setPioche(Pioche)
+  + getPokemonFromMain(Integer): Pokemon
+  + getPokemonFromPioche(Integer): Pokemon
+  + placeSurTerrain(Pokemon)
+  + joue(Player): Boolean
+  + piocherPokemon(Pokemon)
+  + UtilisePouvoir(Integer): Boolean
+  + getM_main(): MainDuJoueur
+  + choisirCible(Terrain, Pokemon): Pokemon
+}
+class Soin_de_zone {
+  + Soin_de_zone():
+  + getNom(): String
+  + activatePouvoir(Pokemon)
+}
+class Soin_de_zone {
+  + Soin_de_zone():
+  + getNomPouvoir(): String
+  + description(): String
+  + activatePouvoir(Pokemon, Player, Player, Player)
+  + RetourALanormal(Pokemon, Player)
+}
+class Soin_simple {
+  + Soin_simple():
+  + activatePouvoir(Pokemon, Player, Player, Player)
+  + RetourALanormal(Pokemon, Player)
+  + getNomPouvoir(): String
+  + description(): String
+}
+class Soin_simple {
+  + Soin_simple():
+  + getNom(): String
+  + activatePouvoir(Pokemon)
+}
+class Soin_total {
+  + Soin_total():
+  + activatePouvoir(Pokemon)
+  + getNom(): String
+}
+class Soin_total {
+  + Soin_total():
+  + RetourALanormal(Pokemon, Player)
+  + getNomPouvoir(): String
+  + description(): String
+  + activatePouvoir(Pokemon, Player, Player, Player)
+}
+class Terrain {
+  + Terrain():
+  - m_terrain: List<Pokemon>
+  + getEnsemble(): List<Pokemon>
+  + getNbPokemon(): Integer
+  + transferPokemon(Pokemon, EnsemblePokemon)
+  + getPokemonAvecLeMoinsDeVie(): Pokemon
+  + getPokemon(Integer): Pokemon
+  + getPokemonByName(String): Pokemon
+  + ajouterPokemon(Pokemon)
+}
+class Terrain {
+  + Terrain():
+  - m_terrain: List<Pokemon>
+  + getPokemonAvecLeMoinsDeVie(): Pokemon
+  + getEnsemble(): List<Pokemon>
+  + ajouterPokemon(Pokemon)
+  + getPokemon(Integer): Pokemon
+  + getNbPokemon(): Integer
+  + getM_terrain(): List<Pokemon>
+  + getPokemonByName(String): Pokemon
+}
+class Terre {
+  + Terre():
+  + getFaibleContre(): String
+  + getElmnt(): String
+  + getFortContre(): String
+}
+class Terre {
+  + Terre():
+  + toString(): String
+  + getFortContre(): String
+  + getFaibleContre(): String
+  + getElmnt(): String
+}
+
+
+Air                      -[#008200,dashed]-^  Element
+Berserk                 "1" *-[#595959,plain]-> "m_pj1\n1" Pokemon
+Berserk                  -[#008200,dashed]-^  Pouvoir
+Defausse                 -[#000082,plain]-^  EnsemblePokemon
+Defausse                "1" *-[#595959,plain]-> "m_defausse\n*" Pokemon
+Eau                      -[#008200,dashed]-^  Element
+Extension_du_territoire  -[#008200,dashed]-^  Pouvoir
+Ferveur_guerrière        -[#008200,dashed]-^  Pouvoir
+Feu                      -[#008200,dashed]-^  Element
+Intimidation            "1" *-[#595959,plain]-> "m_pj1\n1" Pokemon
+Intimidation             -[#008200,dashed]-^  Pouvoir
+JoueurHumain            "1" *-[#595959,plain]-> "m_defausse\n1" Defausse
+JoueurHumain             -[#595959,dashed]->  Defausse                : "«create»"
+JoueurHumain             -[#595959,dashed]->  MainDuJoueur            : "«create»"
+JoueurHumain            "1" *-[#595959,plain]-> "m_main\n1" MainDuJoueur
+JoueurHumain             -[#595959,dashed]->  Pioche                  : "«create»"
+JoueurHumain            "1" *-[#595959,plain]-> "m_pioche\n1" Pioche
+JoueurHumain             -[#008200,dashed]-^  Player
+JoueurHumain            "1" *-[#595959,plain]-> "m_terrain\n1" Terrain
+JoueurHumain             -[#595959,dashed]->  Terrain                 : "«create»"
+Kamikaze                 -[#008200,dashed]-^  Pouvoir
+LeJeu                   "1" *-[#595959,plain]-> "m_jHumain\n1" JoueurHumain
+LeJeu                   "1" *-[#595959,plain]-> "m_jRobot\n1" RobotPlayer
+Main                     -[#595959,dashed]->  JoueurHumain            : "«create»"
+Main                     -[#595959,dashed]->  Partie                  : "«create»"
+Main                     -[#595959,dashed]->  RobotPlayer             : "«create»"
+MainDuJoueur             -[#000082,plain]-^  EnsemblePokemon
+MainDuJoueur            "1" *-[#595959,plain]-> "m_mainJoueur\n*" Pokemon
+Partie                  "1" *-[#595959,plain]-> "m_jHumain\n1" JoueurHumain
+Partie                  "1" *-[#595959,plain]-> "m_jRobot\n1" RobotPlayer
+Partie                   -[#595959,dashed]->  Tour                    : "«create»"
+Peur                     -[#008200,dashed]-^  Pouvoir
+Pioche                   -[#000082,plain]-^  EnsemblePokemon
+Pioche                  "1" *-[#595959,plain]-> "m_pioche\n*" Pokemon
+Pokemon                 "1" *-[#595959,plain]-> "m_elements\n1" Element
+Pokemon                 "1" *-[#595959,plain]-> "m_pouvoir\n1" Pouvoir
+PokemonGenerateur        -[#595959,dashed]->  Air                     : "«create»"
+PokemonGenerateur        -[#595959,dashed]->  Berserk                 : "«create»"
+PokemonGenerateur        -[#595959,dashed]->  Eau                     : "«create»"
+PokemonGenerateur        -[#595959,dashed]->  Ferveur_guerrière       : "«create»"
+PokemonGenerateur        -[#595959,dashed]->  Feu                     : "«create»"
+PokemonGenerateur        -[#595959,dashed]->  Intimidation            : "«create»"
+PokemonGenerateur        -[#595959,dashed]->  Kamikaze                : "«create»"
+PokemonGenerateur        -[#595959,dashed]->  Peur                    : "«create»"
+PokemonGenerateur        -[#595959,dashed]->  Pokemon                 : "«create»"
+PokemonGenerateur       "1" *-[#595959,plain]-> "listePouvoirs\n*" Pouvoir
+PokemonGenerateur        -[#595959,dashed]->  Soin_de_zone            : "«create»"
+PokemonGenerateur        -[#595959,dashed]->  Soin_simple             : "«create»"
+PokemonGenerateur        -[#595959,dashed]->  Soin_total              : "«create»"
+PokemonGenerateur        -[#595959,dashed]->  Terre                   : "«create»"
+RobotPlayer             "1" *-[#595959,plain]-> "m_defausse\n1" Defausse
+RobotPlayer              -[#595959,dashed]->  Defausse                : "«create»"
+RobotPlayer              -[#595959,dashed]->  MainDuJoueur            : "«create»"
+RobotPlayer             "1" *-[#595959,plain]-> "m_main\n1" MainDuJoueur
+RobotPlayer              -[#595959,dashed]->  Pioche                  : "«create»"
+RobotPlayer             "1" *-[#595959,plain]-> "m_pioche\n1" Pioche
+RobotPlayer              -[#008200,dashed]-^  Player
+RobotPlayer             "1" *-[#595959,plain]-> "m_terrain\n1" Terrain
+RobotPlayer              -[#595959,dashed]->  Terrain                 : "«create»"
+Soin_de_zone             -[#008200,dashed]-^  Pouvoir
+Soin_simple              -[#008200,dashed]-^  Pouvoir
+Soin_total               -[#008200,dashed]-^  Pouvoir
+Terrain                  -[#000082,plain]-^  EnsemblePokemon
+Terrain                 "1" *-[#595959,plain]-> "m_terrain\n*" Pokemon
+Terre                    -[#008200,dashed]-^  Element
+Tour                    "1" *-[#595959,plain]-> "m_jHumain\n1" JoueurHumain
+Tour                     -[#595959,dashed]->  Pioche                  : "«create»"
+Tour                    "1" *-[#595959,plain]-> "m_jRobot\n1" RobotPlayer
+
+@enduml

@@ -1,9 +1,7 @@
-package Game.Pouvoirs;
+package Game.Pokemons.Pouvoirs;
 
 import Game.Joueur.Player;
-import Game.Pokemon;
-
-import java.util.Scanner;
+import Game.Pokemons.Pokemon;
 
 public class Soin_de_zone implements Pouvoir{
 
