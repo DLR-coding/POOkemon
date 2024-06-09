@@ -26,18 +26,18 @@ public class Pokemon
     }
 
 
-    public void attaquer(Pokemon blesser)
+    public void attaquer(Pokemon adversaire)
     {
         int attaque = 0;
-        if (m_elements.getFortContre() == blesser.m_elements.toString()) {
+        if (m_elements.getFortContre() == adversaire.m_elements.toString()) {
             attaque = 10;
         }
-        else if (m_elements.getFaibleContre() == blesser.m_elements.toString()) {
+        else if (m_elements.getFaibleContre() == adversaire.m_elements.toString()) {
             attaque = -10;
         }
         attaque = attaque + this.m_attaque;
-        blesser.m_vie = blesser.m_vie - attaque ;
-        System.out.println(m_nom + " attaque de " + attaque + " a été effectué a "+ blesser.m_nom);
+        adversaire.m_vie = adversaire.m_vie - attaque ;
+        System.out.println(m_nom + " attaque de " + attaque + " a été effectué a "+ adversaire.m_nom);
 
     }
 

@@ -22,7 +22,7 @@ public class Berserk implements Pouvoir{
             Pokemon pokemonJoueur = j1.getM_terrain().getPokemonByName(nomPokemonJoueur);
 
             if(j1.getM_terrain().getPokemonByName(nomPokemonJoueur) != null) {
-                GetPokemonJ1(pokemonJoueur);
+                getPokemonJ1(pokemonJoueur);
                 pokemonJoueur.setM_attaque(pokemonJoueur.getM_attaque() * 2);
             }
         }
@@ -43,7 +43,7 @@ public class Berserk implements Pouvoir{
                     cibleChoisie = po;
                 }
             }
-            GetPokemonRobot(cibleChoisie);
+            getPokemonRobot(cibleChoisie);
             cibleChoisie.setM_attaque(cibleChoisie.getM_attaque() * 2);
         }
     }
@@ -72,9 +72,9 @@ public class Berserk implements Pouvoir{
         return "Berserk";
     }
 
-    public void GetPokemonJ1(Pokemon p){this.m_pj1 = p ; }
+    public void getPokemonJ1(Pokemon p){this.m_pj1 = p ; }
 
-    public void GetPokemonRobot(Pokemon p){this.m_pRobot = p ; }
+    public void getPokemonRobot(Pokemon p){this.m_pRobot = p ; }
 
     @Override
     public String description(){

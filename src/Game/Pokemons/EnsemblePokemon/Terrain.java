@@ -46,10 +46,7 @@ public class Terrain extends EnsemblePokemon {
         return m_terrain;
     }
 
-    public List<Pokemon> getM_terrain()
-    {
-        return new ArrayList<>(m_terrain);
-    }
+
 
     public Pokemon getPokemonAvecLeMoinsDeVie() {
         Pokemon cible = null;

@@ -146,9 +146,7 @@ public class RobotPlayer implements Player
         return false;
     }
 
-    public void CiblePouvoir(){
 
-}
 
     public void setPioche(Pioche pioche) {
         this.m_pioche = pioche;
