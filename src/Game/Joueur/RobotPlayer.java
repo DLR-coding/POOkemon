@@ -88,21 +88,21 @@ public class RobotPlayer implements Player
     }
 
     @Override
-    public void joue(Player adversaire) {
+    public Boolean joue(Player adversaire) {
 
         Random rand = new Random();
         int index = rand.nextInt(m_terrain.getNbPokemon());
         Pokemon attaquant = m_terrain.getPokemon(index);
 
 
-        for (int i = 0 ; i < adversaire.getM_terrain().getNbPokemon(); i++)
-        {
+
             Pokemon cible = choisirCible(adversaire.getM_terrain(), attaquant);
             if (cible != null) {
                 attaquant.attaquer(cible);
                 System.out.println(attaquant.getM_nom() + " attaque " + cible.getM_nom() + " !");
             }
-        }
+
+        return true;
     }
 
     public Pokemon choisirCible(Terrain adversairePokemons, Pokemon attaquant) {

@@ -46,7 +46,7 @@ public class Ferveur_guerrière implements Pouvoir  {
     }
 
     @Override
-    public void RetourALanormal(Pokemon p){
+    public void RetourALanormal(Pokemon p,Player joueur){
         System.out.print("");
     }
 
@@ -54,5 +54,10 @@ public class Ferveur_guerrière implements Pouvoir  {
     public String getNomPouvoir() {
         return "Ferveur Guerriere";
     }
+
+    @Override
+    public String description(){
+
+        return "Ferveur guerrière, à utilisation unique : le Pokémon choisit un Pokémon de son camp (éventuellement lui-même). \nJusqu'à la fin de la partie ou à la mort du Pokémon choisi, les attaques de celui-ci infligent 10 dégâts de plus.";}
 
 }

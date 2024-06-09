@@ -1,5 +1,6 @@
 package Game.Pouvoirs;
 
+import Game.Joueur.JoueurHumain;
 import Game.Joueur.Player;
 import Game.Pokemon;
 
@@ -47,12 +48,22 @@ public class Intimidation implements Pouvoir {
     }
 
     @Override
-    public void RetourALanormal(Pokemon p){
-      m_pj1.setM_attaque(m_pj1.getM_attaque() * 2);
-      m_pRobot.setM_attaque(m_pRobot.getM_attaque() * 2);
-      m_pj1 = null;
-      m_pRobot = null;
-      p.setPouvoir(null);
+    public void RetourALanormal(Pokemon p,Player joueur){
+        if (m_pj1 != null) {
+
+            if(joueur.getM_nom().equals("j1")) {
+                m_pj1.setM_attaque(m_pj1.getM_attaque() / 2);
+                p.setPouvoir(null);
+            }
+            m_pj1 = null;
+        }
+        if (m_pRobot != null) {
+            if (joueur.getM_nom().equals("Robot1")) {
+                m_pRobot.setM_attaque(m_pRobot.getM_attaque() / 2);
+                p.setPouvoir(null);
+            }
+            m_pRobot = null;
+        }
     }
 
     @Override
@@ -63,6 +74,11 @@ public class Intimidation implements Pouvoir {
     public void GetPokemonJ1(Pokemon p){this.m_pj1 = p ; }
 
     public void GetPokemonRobot(Pokemon p){this.m_pRobot = p ; }
+
+    @Override
+    public String description(){
+
+        return "Intimidation, à utilisation unique : le Pokémon choisit un Pokémon du camp adverse.\n Pour le prochain tour de l'adversaire, les dégats infligés par le Pokémon choisi sont réduits de moitié.";}
 }
 
 

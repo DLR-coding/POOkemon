@@ -1,7 +1,6 @@
 package Game.Joueur;
 
 import Game.EnsemblePokemon.*;
-import Game.Jeu.Affichage;
 import Game.Pokemon;
 
 import java.util.Scanner;
@@ -25,13 +24,6 @@ public class JoueurHumain implements Player
         m_joueur1 = false;
     }
 
-    /*
-    public void RemplireTerrain(){
-        for(int i = 0;i< 3 ;i++)
-            m_terrain.ajouterPokemon(getPokemonFromMain(i));
-    }
-
-     */
 
 
 
@@ -108,19 +100,19 @@ public class JoueurHumain implements Player
 
 
 
-    public void joue(Player adversaire)
+    public Boolean joue(Player adversaire)
     {
         Scanner scanner = new Scanner(System.in);
 
-        for (int i = 0; i < 3; i++) {
+
             System.out.println("Quel Pokémon souhaites-tu jouer depuis ta main ? (Donne le nom du Pokémon)");
             String nomPokemonJoueur = scanner.nextLine();
             Pokemon pokemonJoueur = m_terrain.getPokemonByName(nomPokemonJoueur);
 
             if (pokemonJoueur == null) {
                 System.out.println("Pokémon introuvable dans ta main. Réessaye.");
-                i--; // Pour redemander le choix pour le même tour
-                continue;
+                return false; // Pour redemander le choix pour le même tour
+               // continue;
             }
 
             System.out.println("Quel Pokémon de l'adversaire souhaites-tu attaquer ? (Donne le nom du Pokémon)");
@@ -129,26 +121,39 @@ public class JoueurHumain implements Player
 
             if (pokemonAdversaire == null) {
                 System.out.println("Pokémon introuvable sur le terrain de l'adversaire. Réessaye.");
-                i--; // Pour redemander le choix pour le même tour
-                continue;
+                return false; // Pour redemander le choix pour le même tour
+                //continue;
             }
             System.out.println(pokemonJoueur.getM_nom() + " attaque " + pokemonAdversaire.getM_nom() + " !");
             pokemonJoueur.attaquer(pokemonAdversaire);
-        }
 
 
 
+   return true;
     }
 
     @Override
     public Boolean UtilisePouvoir(int index) {
         if (m_terrain.getPokemon(index).getM_pouvoir() != null) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Veut tu utiliser le pouvoir : " + getM_terrain().getPokemon(index).getM_pouvoir().getNomPouvoir() + " y/n");
-            String confirm = scanner.nextLine();
-            if (confirm.equals("y")) {// Utilisation de equals pour comparer le contenu des chaînes
+            System.out.println("Veut tu utiliser le pouvoir : " + getM_terrain().getPokemon(index).getM_pouvoir().getNomPouvoir() + " \"i\" pour info sur le pouvoir y/n");
+            String confirmInfo = scanner.nextLine();
+            if (confirmInfo.equals("y") || confirmInfo.equals("i")) {// Utilisation de equals pour comparer le contenu des chaînes
 
-                return true;
+                if(confirmInfo.equals("i")){
+                    System.out.println(getM_terrain().getPokemon(index).getM_pouvoir().description());
+                     System.out.println("Veut tu utiliser le pouvoir : " + getM_terrain().getPokemon(index).getM_pouvoir().getNomPouvoir() + " y/n");
+                     String confirm = scanner.nextLine();
+                     if (confirm.equals("y")) {// Utilisation de equals pour comparer le contenu des chaînes
+
+                         return true;
+
+                     }
+                }
+                else {
+
+                        return true;
+                }
             }
         }
         return false;

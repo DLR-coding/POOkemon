@@ -4,13 +4,16 @@ import Game.Pokemon;
 
 import java.util.List;
 
-public interface EnsemblePokemon
+public abstract class EnsemblePokemon
 {
-        Pokemon getPokemon(int index);
+        public abstract Pokemon getPokemon(int index);
 
-        void transferPokemon(Pokemon pokemon , EnsemblePokemon destination);
-        Pokemon getPokemonByName(String name);
-        int getNbPokemon();
-        List<Pokemon> getEnsemble();
+        public abstract void transferPokemon(Pokemon pokemon, EnsemblePokemon destination);
+
+        public abstract Pokemon getPokemonByName(String name);
+
+        public abstract int getNbPokemon();
+
+        public abstract List<Pokemon> getEnsemble();
 
 }

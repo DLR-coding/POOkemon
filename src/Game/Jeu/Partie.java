@@ -1,26 +1,18 @@
 package Game.Jeu;
 
 
-import Game.Jeu.Affichage;
-import Game.EnsemblePokemon.MainDuJoueur;
-import Game.EnsemblePokemon.Pioche;
 import Game.Joueur.JoueurHumain;
 import Game.Joueur.Player;
 import Game.Joueur.RobotPlayer;
-import Game.Pokemon;
-import Game.Pouvoirs.Pouvoir;
 
-import java.util.Random;
-import java.util.Scanner;
-
-public class LeJeu
+public class Partie
 {
     private JoueurHumain m_jHumain;
     private RobotPlayer m_jRobot;
     private int m_numTour;
     private Boolean m_arret = false;
 
-    public LeJeu(JoueurHumain humain, RobotPlayer robot )
+    public Partie(JoueurHumain humain, RobotPlayer robot )
     {
         m_jHumain = humain;
         m_jRobot = robot;

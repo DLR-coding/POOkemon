@@ -3,11 +3,6 @@ package Game.EnsemblePokemon;
 import Game.Elements.*;
 import Game.Pokemon;
 import Game.Pouvoirs.*;
-import Game.Pouvoirs.Ferveur_guerrière;
-import Game.Pouvoirs.Pouvoir;
-import Game.Pouvoirs.Soin_simple;
-import Game.Pouvoirs.Soin_total;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,12 +20,17 @@ public class PokemonGenerateur {
             "Nidoran♂", "Nidorino", "Nidoking", "Mélofée", "Mélodelfe", "Goupix",
             "Feunard", "Rondoudou", "Grodoudou", "Nosferapti"));
 
-    static final List<Pouvoir> listePouvoirs;
+    static final List<Pouvoir> listePouvoirs = new ArrayList<>(Arrays.asList(
+            new Intimidation(),
+            new Peur() ,
+            new Soin_de_zone(),
+            new Soin_simple(),
+            new Ferveur_guerrière(),
+            new Soin_total(),
+            new Berserk(),
+            new Kamikaze()
+    ));
 
-    static {
-        listePouvoirs = new ArrayList<>(Arrays.asList(
-                new Ferveur_guerrière(),new Berserk() , new Soin_simple(),new Intimidation() ,new Extension_du_territoire() ,new Soin_de_zone(), new Kamikaze(), new Soin_total()));
-    }
 
     static Pokemon genererPokemon() {
         Random randomNumbers = new Random();
@@ -39,7 +39,7 @@ public class PokemonGenerateur {
         int indexNomPokemon = randomNumbers.nextInt(listeNomsPokemon.size());
         String nomPokemon = listeNomsPokemon.get(indexNomPokemon);
 
-        // Enlever le nom de Pokémon sélectionné de la liste pour éviter qu'il reviennent 2 fois
+        // Enlever le nom de Pokémon sélectionné de la liste pour éviter qu'il revienne 2 fois
         listeNomsPokemon.remove(indexNomPokemon);
 
         // Générer aléatoirement les points de vie (entre 100 et 200)
@@ -75,13 +75,9 @@ public class PokemonGenerateur {
             // Attribuer le pouvoir sélectionné au Pokémon
             pokemon.setPouvoir(pouvoir);
         }
-        if (pokemon.getM_pouvoir() != null)
-        {
-            System.out.println("Pokemon crée : " + pokemon.getM_nom() + " atk :" + pokemon.getM_attaque() + "HP : " +  pokemon.getVie() + " Pouvoir : " + pokemon.getM_pouvoir().getNomPouvoir());
-        }
-        else {
-            System.out.println("Pokemon crée : " + pokemon.getM_nom() + " atk :" + pokemon.getM_attaque() + "HP : " +  pokemon.getVie() + " Pouvoir : " + "Aucun");
-        }
+        System.out.println("Pokemon crée : " + pokemon.getM_nom() + " atk :" + pokemon.getM_attaque() + "HP : " +  pokemon.getVie() + " Pouvoir : " + pokemon.getNom_pouvoir());
+
+
         // Retourner le Pokémon généré
         return pokemon;
     }

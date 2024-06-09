@@ -4,7 +4,7 @@ import Game.Pokemon;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pioche implements EnsemblePokemon {
+public class Pioche extends EnsemblePokemon {
 
     private List<Pokemon> m_pioche;
 

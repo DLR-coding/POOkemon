@@ -44,7 +44,7 @@ public class Soin_total implements Pouvoir {
     }
 
     @Override
-    public void RetourALanormal(Pokemon p){
+    public void RetourALanormal(Pokemon p,Player joueur){
         System.out.print("");
     }
 
@@ -52,6 +52,11 @@ public class Soin_total implements Pouvoir {
     public String getNomPouvoir() {
         return "Soin total";
     }
+
+    @Override
+    public String description(){
+
+        return "Soin total, à utilisation unique : le Pokémon choisit un Pokémon de son camp (éventuellement lui-même). Celui-ci regagne toute sa vie.";}
 
 
 }

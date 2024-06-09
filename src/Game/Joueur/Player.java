@@ -19,7 +19,7 @@ public interface Player {
     String getM_nom();
     Terrain getM_terrain();
 
-    void joue(Player adversaire);
+    Boolean joue(Player adversaire);
     Boolean UtilisePouvoir(int index);
 
 

@@ -5,7 +5,7 @@ import Game.Pokemon;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Defausse implements EnsemblePokemon{
+public class Defausse extends EnsemblePokemon{
     private List<Pokemon> m_defausse;
 
     public Defausse() {
@@ -13,17 +13,10 @@ public class Defausse implements EnsemblePokemon{
     }
 
 
-    public int getNombreDePokemons() {
-        return m_defausse.size();
-    }
-
-
     @Override
     public Pokemon getPokemon(int index) {
         return m_defausse.get(index);
     }
-
-
 
 
     @Override

@@ -39,7 +39,7 @@ public class Extension_du_territoire implements Pouvoir {
     }
 
     @Override
-    public void RetourALanormal(Pokemon p){
+    public void RetourALanormal(Pokemon p,Player joueur){
         System.out.print("");
     }
 
@@ -47,4 +47,9 @@ public class Extension_du_territoire implements Pouvoir {
     public String getNomPouvoir() {
         return "Extension du territoire";
     }
+
+    @Override
+    public String description(){
+
+        return "Extension du territoire, à utilisation unique :  le terrain du joueur gagne un quatrième emplacement sur lequel il peut placer immédiatement un Pokémon de sa main. Lorsque le Pokémon qui a utilisé ce pouvoir meurt, son emplacement est perdu et le terrain possède de nouveau trois emplacements.";}
 }

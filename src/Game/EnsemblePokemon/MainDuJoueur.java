@@ -5,7 +5,7 @@ import Game.Pokemon;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainDuJoueur implements EnsemblePokemon
+public class MainDuJoueur extends EnsemblePokemon
 {
     private List<Pokemon> m_mainJoueur;
 

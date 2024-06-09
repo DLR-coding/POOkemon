@@ -30,7 +30,7 @@ public class Soin_de_zone implements Pouvoir{
     }
 
     @Override
-    public void RetourALanormal(Pokemon p){
+    public void RetourALanormal(Pokemon p,Player joueur){
         System.out.print("");
     }
 
@@ -38,4 +38,9 @@ public class Soin_de_zone implements Pouvoir{
     public String getNomPouvoir() {
         return "Soin de zone";
     }
+
+    @Override
+    public String description(){
+
+        return "Soin de zone, utilisable à chaque tour : chaque Pokémon de son camp regagne 10 points de vie.";}
 }

@@ -5,7 +5,7 @@ import Game.Pokemon;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Terrain implements EnsemblePokemon {
+public class Terrain extends EnsemblePokemon {
     private List<Pokemon> m_terrain;
 
     public Terrain() {

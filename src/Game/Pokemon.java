@@ -41,10 +41,6 @@ public class Pokemon
 
     }
 
-    public boolean estVivant(){
-        if(m_vie <= 0){return true;}
-        else {return false;}
-    }
 
 
     public int getVie() {
@@ -72,7 +68,7 @@ public class Pokemon
 
 
     public void presenter() {
-        String pouvoir = "nul";
+        String pouvoir = "Aucun";
         if(m_pouvoir != null){
          pouvoir = m_pouvoir.getNomPouvoir();
         }
@@ -92,4 +88,15 @@ public class Pokemon
     {
         return this.m_pouvoir;
     }
+
+    public String getNom_pouvoir()
+    {
+        if (m_pouvoir != null) {
+            String nomPouvoir = m_pouvoir.getNomPouvoir();
+            return nomPouvoir;
+        } else {
+            return "Aucun";
+        }
+    }
+
 }

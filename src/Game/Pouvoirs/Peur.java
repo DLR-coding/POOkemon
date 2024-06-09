@@ -8,28 +8,26 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Soin_simple implements Pouvoir {
+public class Peur implements Pouvoir{
 
     @Override
-    public void activatePouvoir(Pokemon p,Player j1, Player Robot,Player joueur  ) {
-
+    public void activatePouvoir(Pokemon p, Player j1, Player Robot, Player joueur) {
         if(joueur == j1) {
             System.out.println("Selectionner le Pokemon a donner le pouvoir : ");
             Scanner scanner = new Scanner(System.in);
             String nomPokemonJoueur = scanner.nextLine();
-            Pokemon pokemonJoueur = j1.getM_terrain().getPokemonByName(nomPokemonJoueur);
+            Pokemon pokemonJoueur = Robot.getM_terrain().getPokemonByName(nomPokemonJoueur);
 
-            if (pokemonJoueur.getVie() + 30 < pokemonJoueur.getM_vieMax()) {
-                pokemonJoueur.setVie(pokemonJoueur.getVie() + 30);
-            }
-        }
-        else{
+            pokemonJoueur.setM_attaque(pokemonJoueur.getM_attaque() - 10);
+            System.out.println(pokemonJoueur.getM_attaque());
+
+        }else{
 
             List<Pokemon> ciblesPotentielles = new ArrayList<>();
 
-                for (int i = 0 ; i < Robot.getM_terrain().getNbPokemon(); i++) {
-                    ciblesPotentielles.add(Robot.getM_terrain().getPokemon(i));
-                }
+            for (int i = 0 ; i < j1.getM_terrain().getNbPokemon(); i++) {
+                ciblesPotentielles.add(j1.getM_terrain().getPokemon(i));
+            }
 
             Pokemon cibleChoisie = ciblesPotentielles.get(0);
             for (Pokemon po : ciblesPotentielles) {
@@ -40,12 +38,10 @@ public class Soin_simple implements Pouvoir {
                     cibleChoisie = po;
                 }
             }
-            if (cibleChoisie.getVie() + 30 < cibleChoisie.getM_vieMax()) {
-                cibleChoisie.setVie(cibleChoisie.getVie() + 30);
-            }
+            cibleChoisie.setM_attaque(cibleChoisie.getM_attaque() - 10);
+            System.out.println(cibleChoisie.getM_attaque());
         }
-            p.setPouvoir(null);
-
+        p.setPouvoir(null);
 
     }
 
@@ -56,13 +52,14 @@ public class Soin_simple implements Pouvoir {
 
     @Override
     public String getNomPouvoir() {
-        return "Soin simple";
+        return "Peur";
     }
 
     @Override
     public String description(){
 
-        return "Soin simple, utilisable à chaque tour : le Pokémon choisit un Pokémon de son camp (éventuellement lui-même).\n Celui-ci regagne 30 points de vie (mais ne peut pas dépasser son nombre de points de vie initial).";}
-
+        return "Peur, à utilisation unique : le Pokémon choisit un Pokémon du camp adverse.\n Jusqu'à la fin de la partie ou à la mort du Pokémon choisi, les attaques de celui-ci infligent 10 dégats de moins.";}
 
 }
+
+

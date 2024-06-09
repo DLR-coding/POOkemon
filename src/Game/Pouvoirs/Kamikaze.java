@@ -71,7 +71,7 @@ public class Kamikaze implements Pouvoir {
     }
 
     @Override
-    public void RetourALanormal(Pokemon p){
+    public void RetourALanormal(Pokemon p,Player joueur){
       System.out.print("");
     }
 
@@ -79,4 +79,9 @@ public class Kamikaze implements Pouvoir {
     public String getNomPouvoir() {
         return "Kamikaze";
     }
+
+    @Override
+    public String description(){
+
+        return "Kamikaze, à utilisation unique : le Pokémon choisit un Pokémon du camp adverse. Les deux Pokémons sont alors éliminés.";}
 }
