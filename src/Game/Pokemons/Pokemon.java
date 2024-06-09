@@ -1,0 +1,102 @@
+package Game.Pokemons;
+
+import Game.Pokemons.Elements.*;
+//import Game.Pouvoir.Pouvoir;
+import Game.Pokemons.Pouvoirs.Pouvoir;
+
+public class Pokemon
+{
+    private String m_nom;
+    private Element m_elements;
+    private int m_vie;
+    private int m_attaque;
+
+    private int m_vieMax;
+    private Pouvoir m_pouvoir;
+
+
+    public Pokemon(String nom, Element elements, int vie, int attaque)
+    {
+        m_nom = nom;
+        m_elements = elements;
+        m_vie = vie ;
+        m_attaque = attaque;
+        m_vieMax = vie;
+        m_pouvoir = null;
+    }
+
+
+    public void attaquer(Pokemon adversaire)
+    {
+        int attaque = 0;
+        if (m_elements.getFortContre() == adversaire.m_elements.toString()) {
+            attaque = 10;
+        }
+        else if (m_elements.getFaibleContre() == adversaire.m_elements.toString()) {
+            attaque = -10;
+        }
+        attaque = attaque + this.m_attaque;
+        adversaire.m_vie = adversaire.m_vie - attaque ;
+        System.out.println(m_nom + " attaque de " + attaque + " a été effectué a "+ adversaire.m_nom);
+
+    }
+
+
+
+    public int getVie() {
+        return this.m_vie;
+    }
+
+    public void setVie(int vie) {
+        this.m_vie = vie;
+    }
+
+    public int getM_attaque() {
+        return m_attaque;
+    }
+
+    public void setM_attaque(int attaque) {
+        this.m_attaque = attaque;
+    }
+    public String getM_nom() {
+        return m_nom;
+    }
+
+    public Element getM_elements() {
+        return m_elements;
+    }
+
+
+    public void presenter() {
+        String pouvoir = "Aucun";
+        if(m_pouvoir != null){
+         pouvoir = m_pouvoir.getNomPouvoir();
+        }
+        String Presenter = m_nom + " :  element - " + m_elements.toString() + ", Vie : " + m_vie + ", Atk : " + m_attaque + " Pouvoir : " + pouvoir;
+        System.out.println(Presenter);
+    }
+
+    public int getM_vieMax() {
+        return m_vieMax;
+    }
+
+    public void setPouvoir(Pouvoir pouvoir) {
+        this.m_pouvoir = pouvoir;
+    }
+
+    public Pouvoir getM_pouvoir()
+    {
+        return this.m_pouvoir;
+    }
+
+    public String getNom_pouvoir()
+    {
+        if (m_pouvoir != null) {
+            String nomPouvoir = m_pouvoir.getNomPouvoir();
+            return nomPouvoir;
+        } else {
+            return "Aucun";
+        }
+    }
+
+}

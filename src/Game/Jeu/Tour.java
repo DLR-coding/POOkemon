@@ -1,11 +1,10 @@
 package Game.Jeu;
 
-import Game.EnsemblePokemon.Pioche;
+import Game.Pokemons.EnsemblePokemon.Pioche;
 import Game.Joueur.JoueurHumain;
 import Game.Joueur.Player;
 import Game.Joueur.RobotPlayer;
-import Game.Pokemon;
-import Game.Jeu.Affichage;
+import Game.Pokemons.Pokemon;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -40,7 +39,7 @@ public class Tour {
 
     public void MainJoueurs(int tailleMain)
     {
-        // Main pour chaque joueur
+        // Remplis Main pour chaque joueur
         for (int i = 0; i < tailleMain; i++)
         {
             m_jHumain.piocherPokemon(m_jHumain.getPokemonFromPioche(i));

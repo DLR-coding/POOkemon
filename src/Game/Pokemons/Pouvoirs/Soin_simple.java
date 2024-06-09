@@ -1,7 +1,7 @@
-package Game.Pouvoirs;
+package Game.Pokemons.Pouvoirs;
 
 import Game.Joueur.Player;
-import Game.Pokemon;
+import Game.Pokemons.Pokemon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +9,15 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * La classe Peur implémente le pouvoir Peur pour un Pokémon.
- * Peur réduit l'attaque d'un Pokémon adverse choisi de 10.
+ * La classe Soin_simple implémente le pouvoir Soin simple pour un Pokémon.
+ * Soin simple permet à un Pokémon du camp du lanceur de regagner 30 points de vie.
  *
  * Implémente l'interface {@link Pouvoir}.
  */
-public class Peur implements Pouvoir{
+public class Soin_simple implements Pouvoir {
 
     /**
-     * Active le pouvoir Peur sur un Pokémon adverse.
+     * Active le pouvoir Soin simple, permettant à un Pokémon du camp du lanceur de regagner 30 points de vie.
      *
      * @param p le Pokémon utilisant le pouvoir
      * @param j1 le joueur humain
@@ -25,25 +25,26 @@ public class Peur implements Pouvoir{
      * @param joueur le joueur actuel
      */
     @Override
-    public void activatePouvoir(Pokemon p, Player j1, Player Robot, Player joueur) {
-        int nb = 0;
+    public void activatePouvoir(Pokemon p,Player j1, Player Robot,Player joueur  ) {
+
         if(joueur == j1) {
             System.out.println("Selectionner le Pokemon a donner le pouvoir : ");
             Scanner scanner = new Scanner(System.in);
             String nomPokemonJoueur = scanner.nextLine();
-            Pokemon pokemonJoueur = Robot.getM_terrain().getPokemonByName(nomPokemonJoueur);
-            if(Robot.getM_terrain().getPokemonByName(nomPokemonJoueur) != null) {
-                nb = 1;
-                pokemonJoueur.setM_attaque(pokemonJoueur.getM_attaque() - 10);
+            Pokemon pokemonJoueur = j1.getM_terrain().getPokemonByName(nomPokemonJoueur);
 
+            if (pokemonJoueur.getVie() + 30 < pokemonJoueur.getM_vieMax()) {
+                if(j1.getM_terrain().getPokemonByName(nomPokemonJoueur) != null) {
+                    pokemonJoueur.setVie(pokemonJoueur.getVie() + 30);
+                }
             }
-
-        }else{
+        }
+        else {
 
             List<Pokemon> ciblesPotentielles = new ArrayList<>();
 
-            for (int i = 0 ; i < j1.getM_terrain().getNbPokemon(); i++) {
-                ciblesPotentielles.add(j1.getM_terrain().getPokemon(i));
+            for (int i = 0; i < Robot.getM_terrain().getNbPokemon(); i++) {
+                ciblesPotentielles.add(Robot.getM_terrain().getPokemon(i));
             }
 
             Pokemon cibleChoisie = ciblesPotentielles.get(0);
@@ -55,18 +56,15 @@ public class Peur implements Pouvoir{
                     cibleChoisie = po;
                 }
             }
-            cibleChoisie.setM_attaque(cibleChoisie.getM_attaque() - 10);
-            System.out.println(cibleChoisie.getM_attaque());
-        }
-        if(nb != 0) {
-            nb = 0;
-            p.setPouvoir(null);
+            if (cibleChoisie.getVie() + 30 < cibleChoisie.getM_vieMax()) {
+                cibleChoisie.setVie(cibleChoisie.getVie() + 30);
+            }
         }
 
     }
 
     /**
-     * Retourne rien pour se pouvoir.
+     * Retourne rien pour se pouvoir
      *
      * @param p le Pokémon utilisant le pouvoir
      * @param joueur le joueur actuel
@@ -83,19 +81,18 @@ public class Peur implements Pouvoir{
      */
     @Override
     public String getNomPouvoir() {
-        return "Peur";
+        return "Soin simple";
     }
 
     /**
-     * Fournit une description du pouvoir Peur.
+     * Fournit une description du pouvoir Soin simple.
      *
      * @return la description du pouvoir
      */
     @Override
     public String description(){
 
-        return "Peur, à utilisation unique : le Pokémon choisit un Pokémon du camp adverse.\n Jusqu'à la fin de la partie ou à la mort du Pokémon choisi, les attaques de celui-ci infligent 10 dégats de moins.";}
+        return "Soin simple, utilisable à chaque tour : le Pokémon choisit un Pokémon de son camp (éventuellement lui-même).\n Celui-ci regagne 30 points de vie (mais ne peut pas dépasser son nombre de points de vie initial).";}
+
 
 }
-
-

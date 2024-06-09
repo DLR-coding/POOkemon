@@ -1,7 +1,7 @@
-package Game.Pouvoirs;
+package Game.Pokemons.Pouvoirs;
 
 import Game.Joueur.Player;
-import Game.Pokemon;
+import Game.Pokemons.Pokemon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +9,15 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * La classe Soin_simple implémente le pouvoir Soin simple pour un Pokémon.
- * Soin simple permet à un Pokémon du camp du lanceur de regagner 30 points de vie.
+ * La classe Soin_total implémente le pouvoir Soin total pour un Pokémon.
+ * Soin total permet à un Pokémon du camp du lanceur de regagner toute sa vie.
  *
  * Implémente l'interface {@link Pouvoir}.
  */
-public class Soin_simple implements Pouvoir {
+public class Soin_total implements Pouvoir {
 
     /**
-     * Active le pouvoir Soin simple, permettant à un Pokémon du camp du lanceur de regagner 30 points de vie.
+     * Active le pouvoir Soin total, permettant à un Pokémon du camp du lanceur de regagner toute sa vie.
      *
      * @param p le Pokémon utilisant le pouvoir
      * @param j1 le joueur humain
@@ -25,27 +25,25 @@ public class Soin_simple implements Pouvoir {
      * @param joueur le joueur actuel
      */
     @Override
-    public void activatePouvoir(Pokemon p,Player j1, Player Robot,Player joueur  ) {
+    public void activatePouvoir(Pokemon p, Player j1, Player Robot,Player joueur) {
 
+        int nb = 0;
         if(joueur == j1) {
             System.out.println("Selectionner le Pokemon a donner le pouvoir : ");
             Scanner scanner = new Scanner(System.in);
             String nomPokemonJoueur = scanner.nextLine();
             Pokemon pokemonJoueur = j1.getM_terrain().getPokemonByName(nomPokemonJoueur);
-
-            if (pokemonJoueur.getVie() + 30 < pokemonJoueur.getM_vieMax()) {
-                if(j1.getM_terrain().getPokemonByName(nomPokemonJoueur) != null) {
-                    pokemonJoueur.setVie(pokemonJoueur.getVie() + 30);
-                }
+            if(j1.getM_terrain().getPokemonByName(nomPokemonJoueur) != null) {
+                nb = 1;
+                pokemonJoueur.setVie(pokemonJoueur.getM_vieMax());
             }
-        }
-        else {
+        }else{
 
             List<Pokemon> ciblesPotentielles = new ArrayList<>();
 
-            for (int i = 0; i < Robot.getM_terrain().getNbPokemon(); i++) {
-                ciblesPotentielles.add(Robot.getM_terrain().getPokemon(i));
-            }
+                for (int i = 0 ; i < Robot.getM_terrain().getNbPokemon(); i++) {
+                    ciblesPotentielles.add(Robot.getM_terrain().getPokemon(i));
+                }
 
             Pokemon cibleChoisie = ciblesPotentielles.get(0);
             for (Pokemon po : ciblesPotentielles) {
@@ -56,11 +54,12 @@ public class Soin_simple implements Pouvoir {
                     cibleChoisie = po;
                 }
             }
-            if (cibleChoisie.getVie() + 30 < cibleChoisie.getM_vieMax()) {
-                cibleChoisie.setVie(cibleChoisie.getVie() + 30);
-            }
+            cibleChoisie.setVie(cibleChoisie.getM_vieMax());
         }
-
+        if(nb != 0) {
+            nb = 0;
+            p.setPouvoir(null);
+        }
     }
 
     /**
@@ -81,18 +80,15 @@ public class Soin_simple implements Pouvoir {
      */
     @Override
     public String getNomPouvoir() {
-        return "Soin simple";
+        return "Soin total";
     }
 
     /**
-     * Fournit une description du pouvoir Soin simple.
+     * Fournit une description du pouvoir Soin total.
      *
      * @return la description du pouvoir
      */
     @Override
     public String description(){
-
-        return "Soin simple, utilisable à chaque tour : le Pokémon choisit un Pokémon de son camp (éventuellement lui-même).\n Celui-ci regagne 30 points de vie (mais ne peut pas dépasser son nombre de points de vie initial).";}
-
-
+        return "Soin total, à utilisation unique : le Pokémon choisit un Pokémon de son camp (éventuellement lui-même). Celui-ci regagne toute sa vie.";}
 }

@@ -1,8 +1,8 @@
-package Game.EnsemblePokemon;
+package Game.Pokemons.EnsemblePokemon;
 
-import Game.Elements.*;
-import Game.Pokemon;
-import Game.Pouvoirs.*;
+import Game.Pokemons.Elements.*;
+import Game.Pokemons.Pokemon;
+import Game.Pokemons.Pouvoirs.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

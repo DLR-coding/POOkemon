@@ -1,8 +1,7 @@
-package Game.Pouvoirs;
+package Game.Pokemons.Pouvoirs;
 
 import Game.Joueur.Player;
-import Game.Joueur.RobotPlayer;
-import Game.Pokemon;
+import Game.Pokemons.Pokemon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +9,15 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * La classe Soin_total implémente le pouvoir Soin total pour un Pokémon.
- * Soin total permet à un Pokémon du camp du lanceur de regagner toute sa vie.
+ * La classe Peur implémente le pouvoir Peur pour un Pokémon.
+ * Peur réduit l'attaque d'un Pokémon adverse choisi de 10.
  *
  * Implémente l'interface {@link Pouvoir}.
  */
-public class Soin_total implements Pouvoir {
+public class Peur implements Pouvoir{
 
     /**
-     * Active le pouvoir Soin total, permettant à un Pokémon du camp du lanceur de regagner toute sa vie.
+     * Active le pouvoir Peur sur un Pokémon adverse.
      *
      * @param p le Pokémon utilisant le pouvoir
      * @param j1 le joueur humain
@@ -26,25 +25,26 @@ public class Soin_total implements Pouvoir {
      * @param joueur le joueur actuel
      */
     @Override
-    public void activatePouvoir(Pokemon p, Player j1, Player Robot,Player joueur) {
-
+    public void activatePouvoir(Pokemon p, Player j1, Player Robot, Player joueur) {
         int nb = 0;
         if(joueur == j1) {
             System.out.println("Selectionner le Pokemon a donner le pouvoir : ");
             Scanner scanner = new Scanner(System.in);
             String nomPokemonJoueur = scanner.nextLine();
-            Pokemon pokemonJoueur = j1.getM_terrain().getPokemonByName(nomPokemonJoueur);
-            if(j1.getM_terrain().getPokemonByName(nomPokemonJoueur) != null) {
+            Pokemon pokemonJoueur = Robot.getM_terrain().getPokemonByName(nomPokemonJoueur);
+            if(Robot.getM_terrain().getPokemonByName(nomPokemonJoueur) != null) {
                 nb = 1;
-                pokemonJoueur.setVie(pokemonJoueur.getM_vieMax());
+                pokemonJoueur.setM_attaque(pokemonJoueur.getM_attaque() - 10);
+
             }
+
         }else{
 
             List<Pokemon> ciblesPotentielles = new ArrayList<>();
 
-                for (int i = 0 ; i < Robot.getM_terrain().getNbPokemon(); i++) {
-                    ciblesPotentielles.add(Robot.getM_terrain().getPokemon(i));
-                }
+            for (int i = 0 ; i < j1.getM_terrain().getNbPokemon(); i++) {
+                ciblesPotentielles.add(j1.getM_terrain().getPokemon(i));
+            }
 
             Pokemon cibleChoisie = ciblesPotentielles.get(0);
             for (Pokemon po : ciblesPotentielles) {
@@ -55,16 +55,18 @@ public class Soin_total implements Pouvoir {
                     cibleChoisie = po;
                 }
             }
-            cibleChoisie.setVie(cibleChoisie.getM_vieMax());
+            cibleChoisie.setM_attaque(cibleChoisie.getM_attaque() - 10);
+            System.out.println(cibleChoisie.getM_attaque());
         }
         if(nb != 0) {
             nb = 0;
             p.setPouvoir(null);
         }
+
     }
 
     /**
-     * Retourne rien pour se pouvoir
+     * Retourne rien pour se pouvoir.
      *
      * @param p le Pokémon utilisant le pouvoir
      * @param joueur le joueur actuel
@@ -81,15 +83,19 @@ public class Soin_total implements Pouvoir {
      */
     @Override
     public String getNomPouvoir() {
-        return "Soin total";
+        return "Peur";
     }
 
     /**
-     * Fournit une description du pouvoir Soin total.
+     * Fournit une description du pouvoir Peur.
      *
      * @return la description du pouvoir
      */
     @Override
     public String description(){
-        return "Soin total, à utilisation unique : le Pokémon choisit un Pokémon de son camp (éventuellement lui-même). Celui-ci regagne toute sa vie.";}
+
+        return "Peur, à utilisation unique : le Pokémon choisit un Pokémon du camp adverse.\n Jusqu'à la fin de la partie ou à la mort du Pokémon choisi, les attaques de celui-ci infligent 10 dégats de moins.";}
+
 }
+
+

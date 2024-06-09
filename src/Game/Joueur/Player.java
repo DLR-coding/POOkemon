@@ -1,9 +1,9 @@
 package Game.Joueur;
 
-import Game.EnsemblePokemon.Defausse;
-import Game.EnsemblePokemon.MainDuJoueur;
-import Game.EnsemblePokemon.Terrain;
-import Game.Pokemon;
+import Game.Pokemons.EnsemblePokemon.Defausse;
+import Game.Pokemons.EnsemblePokemon.MainDuJoueur;
+import Game.Pokemons.EnsemblePokemon.Terrain;
+import Game.Pokemons.Pokemon;
 
 /**
  * L'interface Player représente un joueur dans le jeu.
