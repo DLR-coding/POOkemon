@@ -1,11 +1,8 @@
 package Game.Jeu;
-import Game.EnsemblePokemon.Defausse;
-import Game.EnsemblePokemon.MainDuJoueur;
-import Game.EnsemblePokemon.Pioche;
-import Game.EnsemblePokemon.Terrain;
-import Game.Joueur.JoueurHumain;
-import Game.Joueur.RobotPlayer;
-import Game.Pokemon;
+
+import Game.Pokemons.EnsemblePokemon.*;
+import Game.Pokemons.Pokemon;
+
 import java.io.IOException;
 import java.io.Console;
 import java.util.List;
@@ -25,7 +22,7 @@ public class Affichage {
 
      static void afficherTerrain(Terrain terrain){
 
-        afficherPokemon(terrain.getM_terrain());
+        afficherPokemon(terrain.getEnsemble());
 
 
     }
