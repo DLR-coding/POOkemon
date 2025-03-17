@@ -90,3 +90,8 @@ Quel pokemon souhaitez-vous jouer? (Dracaufeu/Bulbizarre/Pikachu):
 - Génération aléatoire avec `java.util.Random`
 - Gestion des entrées/sorties console
 - POO : Héritage, Interfaces, Design Patterns
+
+📝 Remerciements
+Nos remerciments à l'équipe enseignante qui a conçu le sujet original de ce projet. Leur accompagnement pédagogique et leurs retours constructifs tout au long du développement ont été précieux pour aboutir à cette réalisation.
+
+Ce projet a constitué une excellente opportunité d'approfondir nos compétences en conception logicielle et en programmation orientée objet, tout en s'amusant.
