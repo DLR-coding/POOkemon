@@ -86,8 +86,7 @@ Quel pokemon souhaitez-vous jouer? (Dracaufeu/Bulbizarre/Pikachu):
 
 ## 🛠️ Technologies Utilisées
 
-- Java 11+
-- Architecture MVC
+- Java
 - Génération aléatoire avec `java.util.Random`
 - Gestion des entrées/sorties console
 - POO : Héritage, Interfaces, Design Patterns
